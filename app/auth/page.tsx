@@ -129,7 +129,7 @@ export default function NeuroRiftLogin() {
         <div className="h-dvh text-white bg-[#110022] overflow-hidden flex flex-col relative isolate font-sans">
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <Image
-                    src="/images/futuristic-data-mesh.png"
+                    src="/images/bg.png"
                     alt="Neural data mesh background"
                     fill
                     className="object-cover scale-[1.03] saturate-125 contrast-110 brightness-110"

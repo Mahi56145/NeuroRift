@@ -20,7 +20,7 @@ return (
 {/* Background: An intricate, complex neural-network/data-mesh visualization */}
 <div className="absolute inset-0 z-0">
 <Image
-src="/images/futuristic-data-mesh.png" // Replace with actual high-res mesh asset path
+src="/images/bg.png" // Replace with actual high-res mesh asset path
 alt="Intricate, Glowing AI Network and Data Mesh"
 fill
 className="object-cover"

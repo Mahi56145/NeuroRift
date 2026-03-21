@@ -1,76 +1,171 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
 
-const datasets = [
-  { id: 1, name: "ImageNet-21K Subset", type: "Computer Vision", size: "84.2 GB", rows: "14.2M", tags: ["image", "classification"], status: "ready", accuracy: 94.2 },
-  { id: 2, name: "CommonCrawl NLP Corpus", type: "NLP", size: "312 GB", rows: "890M", tags: ["text", "multilingual"], status: "processing", accuracy: 87.6 },
-  { id: 3, name: "BioBench Genomics v3", type: "Bioinformatics", size: "22.1 GB", rows: "4.1M", tags: ["genomics", "medical"], status: "ready", accuracy: 91.8 },
-  { id: 4, name: "TimeSeries-Finance 2024", type: "Time Series", size: "5.6 GB", rows: "120M", tags: ["finance", "temporal"], status: "ready", accuracy: 88.3 },
-  { id: 5, name: "3D-ShapeNet Pro", type: "3D / Point Cloud", size: "47.9 GB", rows: "2.8M", tags: ["3d", "mesh"], status: "error", accuracy: 79.1 },
-  { id: 6, name: "SatelliteEarth RGB-IR", type: "Remote Sensing", size: "198 GB", rows: "6.5M", tags: ["satellite", "geo"], status: "ready", accuracy: 92.5 },
-];
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const stats = [
-  { label: "Total Datasets", value: "1,284", delta: "+12 this week", icon: "⬡" },
-  { label: "Active Pipelines", value: "38", delta: "6 running now", icon: "◈" },
-  { label: "Compute Used", value: "72.4%", delta: "↑ 4.2% today", icon: "◉" },
-  { label: "Models Trained", value: "9,741", delta: "+221 this month", icon: "◆" },
-];
+interface Dataset {
+  id: string;
+  name: string;
+  category: string;
+  file_url: string;
+  rows_count: number;
+  columns_count: number;
+  score: number;
+  created_at: string;
+}
 
-const activity = [
-  { time: "2m ago", event: "Training complete", detail: "ResNet-50 on BioBench v3", type: "success" },
-  { time: "14m ago", event: "Dataset indexed", detail: "SatelliteEarth RGB-IR uploaded", type: "info" },
-  { time: "1h ago", event: "Pipeline error", detail: "3D-ShapeNet preprocessing failed", type: "error" },
-  { time: "3h ago", event: "New model deployed", detail: "GPT-mini-finance v2 → production", type: "success" },
-  { time: "5h ago", event: "Collaboration invite", detail: "Dr. Meera Nair joined workspace", type: "info" },
-];
+function scoreColor(s: number) { return s > 80 ? "#22c55e" : s > 60 ? "#fbbf24" : "#ef4444"; }
+function scoreBg(s: number)    { return s > 80 ? "rgba(34,197,94,0.12)" : s > 60 ? "rgba(251,191,36,0.12)" : "rgba(239,68,68,0.12)"; }
+function scoreBorder(s: number){ return s > 80 ? "rgba(34,197,94,0.25)" : s > 60 ? "rgba(251,191,36,0.25)" : "rgba(239,68,68,0.25)"; }
 
-const navItems = [
-  { icon: "⬡", label: "Dashboard", active: true },
-  { icon: "◈", label: "Datasets" },
-  { icon: "◉", label: "Pipelines" },
-  { icon: "◆", label: "Models" },
-  { icon: "⬟", label: "Analytics" },
-  { icon: "⬠", label: "Workspace" },
-  { icon: "◇", label: "Settings" },
-];
+function timeAgo(iso: string): string {
+  if (!iso) return "—";
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "just now";
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
+}
 
-const sparkData = [40, 55, 48, 72, 60, 85, 78, 92, 88, 95, 82, 98];
+function fileTypeLabel(url: string): string {
+  return url?.split("?")[0]?.split(".").pop()?.toUpperCase() ?? "–";
+}
 
-function Spark({ data }: { data: number[] }) {
-  const max = Math.max(...data);
-  const min = Math.min(...data);
-  const h = 36;
-  const w = 120;
-  const pts = data.map((v, i) => {
-    const x = (i / (data.length - 1)) * w;
-    const y = h - ((v - min) / (max - min)) * h;
-    return `${x},${y}`;
-  }).join(" ");
+function fileTypeIcon(url: string): string {
+  const ext = url?.split("?")[0]?.split(".").pop()?.toLowerCase() ?? "";
+  if (ext === "csv") return "⬡";
+  if (ext === "pdf") return "◉";
+  if (["png","jpg","jpeg","gif","webp"].includes(ext)) return "◈";
+  return "◆";
+}
+
+function formatRows(n: number): string {
+  if (!n || isNaN(n)) return "0";
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+  return String(n);
+}
+
+const saveRecent = (id: string) => {
+  const existing = JSON.parse(localStorage.getItem("recent_datasets") || "[]");
+  const updated = [id, ...existing.filter((i: string) => i !== id)].slice(0, 5);
+  localStorage.setItem("recent_datasets", JSON.stringify(updated));
+};
+
+function SkeletonCard() {
   return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: "block" }}>
-      <defs>
-        <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#7c3aed" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <polyline points={pts} fill="none" stroke="#a78bfa" strokeWidth="2" strokeLinejoin="round" />
-    </svg>
+    <div style={{
+      background: "rgba(16,10,30,0.7)", border: "1px solid rgba(124,58,237,0.12)",
+      borderRadius: 14, padding: "20px",
+      display: "flex", flexDirection: "column", gap: 10,
+    }}>
+      {[140, 90, 60].map((w, i) => (
+        <div key={i} style={{
+          height: 9, width: w, borderRadius: 4,
+          background: "rgba(124,58,237,0.1)",
+          animation: "pulse 1.5s ease-in-out infinite",
+          animationDelay: `${i * 0.12}s`,
+        }} />
+      ))}
+    </div>
   );
 }
 
 export default function Dashboard() {
-  const [activeNav, setActiveNav] = useState("Dashboard");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const router = useRouter();
 
-  const filtered = datasets.filter(
-    (d) =>
-      d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      d.type.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const [activeNav, setActiveNav]     = useState("Dashboard");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [recentDatasets, setRecentDatasets] = useState<Dataset[]>([]);
+  const [loadingRecent, setLoadingRecent]   = useState(true);
+  const [uploadCount, setUploadCount]       = useState(0);
+  const [downloadCount, setDownloadCount]   = useState(0);
+  const [lastActivity, setLastActivity]     = useState<string | null>(null);
+  const [downloadingId, setDownloadingId]   = useState<string | null>(null);
+  const [toast, setToast] = useState<{ msg: string; type: "success" | "error" } | null>(null);
+  const [searchFocused, setSearchFocused]   = useState(false);
+
+  const fetchCounts = useCallback(async () => {
+    try {
+      const { count: uCount } = await supabase
+        .from("datasets").select("*", { count: "exact", head: true });
+      setUploadCount(uCount ?? 0);
+
+      const { count: dCount } = await supabase
+        .from("downloads").select("*", { count: "exact", head: true });
+      setDownloadCount(dCount ?? 0);
+
+      const { data: latest } = await supabase
+        .from("downloads").select("downloaded_at")
+        .order("downloaded_at", { ascending: false }).limit(1).single();
+      if (latest?.downloaded_at) setLastActivity(latest.downloaded_at);
+    } catch { /* silent */ }
+  }, []);
+
+  const fetchRecentDatasets = useCallback(async () => {
+    setLoadingRecent(true);
+    try {
+      const ids: string[] = JSON.parse(localStorage.getItem("recent_datasets") || "[]");
+      if (ids.length === 0) { setRecentDatasets([]); return; }
+      const { data, error } = await supabase.from("datasets").select("*").in("id", ids);
+      if (error) throw error;
+      const ordered = ids
+        .map((id) => (data ?? []).find((d) => d.id === id))
+        .filter(Boolean) as Dataset[];
+      setRecentDatasets(ordered);
+    } catch { setRecentDatasets([]); }
+    finally { setLoadingRecent(false); }
+  }, []);
+
+  useEffect(() => {
+    fetchCounts();
+    fetchRecentDatasets();
+  }, [fetchCounts, fetchRecentDatasets]);
+
+  const filteredRecent = recentDatasets.filter((d) => {
+    const q = searchQuery.toLowerCase();
+    return (d.name ?? "").toLowerCase().includes(q) || (d.category ?? "").toLowerCase().includes(q);
+  });
+
+  const handleDatasetClick = (dataset: Dataset) => {
+    saveRecent(dataset.id);
+    router.push(`/dataset/${dataset.id}`);
+  };
+
+  const handleDownload = async (dataset: Dataset, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!dataset.file_url) { showToast("No file URL available.", "error"); return; }
+    setDownloadingId(dataset.id);
+    try {
+      window.open(dataset.file_url, "_blank", "noopener,noreferrer");
+      await supabase.from("downloads").insert({ dataset_id: dataset.id, downloaded_at: new Date().toISOString() });
+      setDownloadCount((c) => c + 1);
+      showToast(`Download started: ${dataset.name}`, "success");
+    } catch (err: unknown) {
+      showToast(err instanceof Error ? err.message : "Download log failed.", "error");
+    } finally { setDownloadingId(null); }
+  };
+
+  const showToast = (msg: string, type: "success" | "error") => {
+    setToast({ msg, type });
+    setTimeout(() => setToast(null), 3500);
+  };
+
+  const navItems = [
+    { icon: "⬡", label: "Dashboard",        color: "#a78bfa", glow: "rgba(167,139,250,0.25)", action: () => setActiveNav("Dashboard") },
+    { icon: "↑",  label: "Upload",           color: "#38bdf8", glow: "rgba(56,189,248,0.25)",  action: () => { setActiveNav("Upload"); router.push("/upload"); } },
+    { icon: "◈",  label: "Datasets",         color: "#c4b5fd", glow: "rgba(196,181,253,0.25)", action: () => { setActiveNav("Datasets"); router.push("/datasets"); } },
+    { icon: "⬟",  label: "Analyse Dataset",  color: "#4ade80", glow: "rgba(74,222,128,0.25)",  action: () => { setActiveNav("Analyse Dataset"); router.push("/analyse"); } },
+    { icon: "◆",  label: "Compare Dataset",  color: "#fbbf24", glow: "rgba(251,191,36,0.25)",  action: () => { setActiveNav("Compare Dataset"); router.push("/compare"); } },
+    { icon: "◇",  label: "Profile",          color: "#f472b6", glow: "rgba(244,114,182,0.25)", action: () => { setActiveNav("Profile"); router.push("/profile"); } },
+  ];
 
   return (
     <div style={{
@@ -78,356 +173,495 @@ export default function Dashboard() {
       background: "#0a0812",
       fontFamily: "'IBM Plex Mono', 'Fira Code', monospace",
       color: "#e2d9f3",
-      display: "flex",
-      overflow: "hidden",
       position: "relative",
+      overflowX: "hidden",
     }}>
-      {/* Animated Background */}
+      <style>{`
+        @keyframes pulse    { 0%,100%{opacity:.35} 50%{opacity:.75} }
+        @keyframes fadeIn   { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeUp   { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes toastIn  { from{opacity:0;transform:translateX(40px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes glowPulse{ 0%,100%{box-shadow:0 0 12px rgba(124,58,237,0.2)} 50%{box-shadow:0 0 28px rgba(124,58,237,0.45)} }
+        @keyframes shimmer  { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+        @keyframes spin     { to{transform:rotate(360deg)} }
+
+        .stat-card:hover {
+          transform: translateY(-3px) !important;
+          box-shadow: 0 8px 32px rgba(124,58,237,0.25) !important;
+          border-color: rgba(124,58,237,0.35) !important;
+        }
+        .nav-card:hover {
+          transform: translateY(-4px) scale(1.03) !important;
+          border-color: rgba(124,58,237,0.55) !important;
+        }
+        .recent-card:hover {
+          transform: translateY(-3px) !important;
+          border-color: rgba(124,58,237,0.45) !important;
+          box-shadow: 0 8px 28px rgba(124,58,237,0.2) !important;
+        }
+        .dl-btn:hover {
+          background: rgba(124,58,237,0.3) !important;
+          box-shadow: 0 0 16px rgba(124,58,237,0.35) !important;
+          color: #e2d9f3 !important;
+        }
+        .logout-btn:hover {
+          background: rgba(239,68,68,0.2) !important;
+          box-shadow: 0 0 14px rgba(239,68,68,0.25) !important;
+        }
+        .explore-btn:hover {
+          background: rgba(56,189,248,0.18) !important;
+          box-shadow: 0 0 16px rgba(56,189,248,0.25) !important;
+          color: #7dd3fc !important;
+        }
+        .search-input:focus {
+          border-color: rgba(124,58,237,0.5) !important;
+          box-shadow: 0 0 14px rgba(124,58,237,0.15) !important;
+        }
+      `}</style>
+
+      {/* Background */}
       <div style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         background: `
-          radial-gradient(ellipse 80% 60% at 20% 10%, rgba(99,51,180,0.18) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168,85,247,0.12) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 40% at 55% 40%, rgba(234,179,8,0.05) 0%, transparent 60%)
+          radial-gradient(ellipse 80% 60% at 20% 10%, rgba(99,51,180,0.2) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168,85,247,0.14) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 40% at 55% 40%, rgba(56,189,248,0.05) 0%, transparent 60%)
         `,
       }} />
-      {/* Grid overlay */}
       <div style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        backgroundImage: `linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px)`,
+        backgroundImage: `linear-gradient(rgba(124,58,237,0.035) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(124,58,237,0.035) 1px, transparent 1px)`,
         backgroundSize: "40px 40px",
       }} />
 
-      {/* Sidebar */}
-      <aside style={{
-        width: sidebarOpen ? 220 : 64,
-        minHeight: "100vh",
-        background: "rgba(16,10,30,0.85)",
-        borderRight: "1px solid rgba(124,58,237,0.18)",
-        display: "flex",
-        flexDirection: "column",
-        zIndex: 10,
-        transition: "width 0.3s cubic-bezier(.4,0,.2,1)",
-        backdropFilter: "blur(24px)",
-        flexShrink: 0,
-      }}>
-        {/* Logo */}
+      {/* Toast */}
+      {toast && (
         <div style={{
-          padding: "24px 18px 20px",
-          borderBottom: "1px solid rgba(124,58,237,0.12)",
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          overflow: "hidden",
+          position: "fixed", bottom: 28, right: 28, zIndex: 9999,
+          padding: "12px 20px", borderRadius: 10,
+          background: toast.type === "success" ? "rgba(34,197,94,0.15)" : "rgba(239,68,68,0.15)",
+          border: `1px solid ${toast.type === "success" ? "rgba(34,197,94,0.35)" : "rgba(239,68,68,0.35)"}`,
+          color: toast.type === "success" ? "#4ade80" : "#f87171",
+          fontSize: 12, fontFamily: "inherit", fontWeight: 600,
+          backdropFilter: "blur(16px)",
+          animation: "toastIn 0.3s ease", maxWidth: 340,
         }}>
-          <div style={{
-            width: 32, height: 32, borderRadius: 8,
-            background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontWeight: 900, fontSize: 16, color: "#fff", flexShrink: 0,
-            boxShadow: "0 0 16px rgba(124,58,237,0.5)",
-          }}>N</div>
-          {sidebarOpen && (
-            <span style={{ fontWeight: 800, fontSize: 15, letterSpacing: "0.12em", whiteSpace: "nowrap" }}>
-              <span style={{ color: "#fff" }}>NEURO</span><span style={{ color: "#38bdf8" }}>RIFT</span>
-            </span>
-          )}
+          {toast.type === "success" ? "✓ " : "✕ "}{toast.msg}
         </div>
+      )}
 
-        {/* Nav */}
-        <nav style={{ flex: 1, padding: "16px 10px", display: "flex", flexDirection: "column", gap: 4 }}>
-          {navItems.map((item) => (
-            <button key={item.label} onClick={() => setActiveNav(item.label)} style={{
-              display: "flex", alignItems: "center", gap: 12,
-              padding: "10px 12px", borderRadius: 8, border: "none",
-              background: activeNav === item.label
-                ? "linear-gradient(90deg, rgba(124,58,237,0.28), rgba(124,58,237,0.08))"
-                : "transparent",
-              color: activeNav === item.label ? "#c4b5fd" : "#6b7280",
-              cursor: "pointer", width: "100%", textAlign: "left",
-              fontSize: 13, fontFamily: "inherit",
-              borderLeft: activeNav === item.label ? "2px solid #7c3aed" : "2px solid transparent",
-              transition: "all 0.2s",
-              whiteSpace: "nowrap", overflow: "hidden",
-            }}>
-              <span style={{ fontSize: 16, flexShrink: 0 }}>{item.icon}</span>
-              {sidebarOpen && <span style={{ fontWeight: activeNav === item.label ? 600 : 400 }}>{item.label}</span>}
-            </button>
-          ))}
-        </nav>
+      <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
 
-        {/* User */}
-        <div style={{
-          padding: "16px 14px",
-          borderTop: "1px solid rgba(124,58,237,0.12)",
-          display: "flex", alignItems: "center", gap: 10, overflow: "hidden",
-        }}>
-          <div style={{
-            width: 32, height: 32, borderRadius: "50%",
-            background: "linear-gradient(135deg, #a855f7, #38bdf8)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 13, fontWeight: 700, color: "#fff", flexShrink: 0,
-          }}>AK</div>
-          {sidebarOpen && (
-            <div style={{ overflow: "hidden" }}>
-              <div style={{ fontSize: 12, fontWeight: 600, color: "#e2d9f3", whiteSpace: "nowrap" }}>Arjun Kumar</div>
-              <div style={{ fontSize: 10, color: "#6b7280" }}>Pro Plan</div>
-            </div>
-          )}
-        </div>
-      </aside>
-
-      {/* Main */}
-      <main style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", position: "relative", zIndex: 1 }}>
-        {/* Topbar */}
+        {/* ── TOP BAR ────────────────────────────────────────────────────────── */}
         <header style={{
-          display: "flex", alignItems: "center", gap: 16,
-          padding: "16px 28px",
-          borderBottom: "1px solid rgba(124,58,237,0.13)",
-          background: "rgba(10,8,18,0.7)",
-          backdropFilter: "blur(20px)",
-          position: "sticky", top: 0, zIndex: 20,
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "22px 0 0", gap: 16,
+          animation: "fadeIn 0.3s ease both",
         }}>
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} style={{
-            background: "transparent", border: "none", color: "#6b7280",
-            cursor: "pointer", fontSize: 18, padding: 4,
-          }}>☰</button>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{
+              width: 34, height: 34, borderRadius: 9,
+              background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontWeight: 900, fontSize: 15, color: "#fff",
+              boxShadow: "0 0 18px rgba(124,58,237,0.55)",
+            }}>N</div>
+            <span style={{ fontWeight: 800, fontSize: 15, letterSpacing: "0.12em" }}>
+              <span style={{ color: "#fff" }}>NEURO</span>
+              <span style={{ color: "#38bdf8" }}>RIFT</span>
+            </span>
+          </div>
 
+          {/* Search bar in topbar */}
           <div style={{ flex: 1, maxWidth: 420, position: "relative" }}>
-            <span style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", fontSize: 13, color: "#6b7280" }}>⌕</span>
+            <span style={{
+              position: "absolute", left: 13, top: "50%", transform: "translateY(-50%)",
+              fontSize: 13, color: searchFocused ? "#7c3aed" : "#6b7280",
+              transition: "color 0.2s",
+            }}>⌕</span>
             <input
+              className="search-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search datasets, models, pipelines..."
+              onFocus={() => setSearchFocused(true)}
+              onBlur={() => setSearchFocused(false)}
+              placeholder="Search recent datasets..."
               style={{
-                width: "100%", padding: "8px 12px 8px 32px",
-                background: "rgba(124,58,237,0.08)",
+                width: "100%", padding: "9px 14px 9px 34px",
+                background: "rgba(124,58,237,0.07)",
                 border: "1px solid rgba(124,58,237,0.2)",
-                borderRadius: 8, color: "#e2d9f3",
+                borderRadius: 10, color: "#e2d9f3",
                 fontSize: 12, fontFamily: "inherit", outline: "none",
-                boxSizing: "border-box",
+                boxSizing: "border-box", transition: "all 0.2s",
+                backdropFilter: "blur(8px)",
               }}
             />
           </div>
 
-          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{
-              padding: "6px 14px", borderRadius: 6,
-              background: "rgba(234,179,8,0.1)",
-              border: "1px solid rgba(234,179,8,0.25)",
-              color: "#fbbf24", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em",
-            }}>◉ 6 LIVE</div>
-            <div style={{
-              width: 34, height: 34, borderRadius: "50%",
-              background: "rgba(124,58,237,0.15)",
-              border: "1px solid rgba(124,58,237,0.3)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              cursor: "pointer", color: "#a78bfa", fontSize: 15,
-            }}>🔔</div>
+          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            {/* Explore button */}
+            <button
+              className="explore-btn"
+              onClick={() => router.push("/datasets")}
+              style={{
+                display: "flex", alignItems: "center", gap: 7,
+                padding: "9px 20px", borderRadius: 10,
+                background: "rgba(56,189,248,0.08)",
+                border: "1px solid rgba(56,189,248,0.22)",
+                color: "#38bdf8", fontSize: 12,
+                fontFamily: "inherit", fontWeight: 700,
+                cursor: "pointer", letterSpacing: "0.08em",
+                transition: "all 0.2s", backdropFilter: "blur(8px)",
+              }}
+            >
+              <span style={{ fontSize: 14 }}>◎</span>
+              EXPLORE
+            </button>
+
+            {/* Logout */}
+            <button
+              className="logout-btn"
+              onClick={() => router.push("/auth")}
+              style={{
+                padding: "9px 20px", borderRadius: 10,
+                background: "rgba(239,68,68,0.08)",
+                border: "1px solid rgba(239,68,68,0.22)",
+                color: "#f87171", fontSize: 12,
+                fontFamily: "inherit", fontWeight: 700,
+                cursor: "pointer", letterSpacing: "0.08em",
+                transition: "all 0.2s",
+              }}
+            >LOGOUT</button>
           </div>
         </header>
 
-        {/* Content */}
-        <div style={{ padding: "28px 28px", display: "flex", flexDirection: "column", gap: 24 }}>
-          {/* Page Title */}
-          <div>
-            <div style={{ fontSize: 11, color: "#7c3aed", letterSpacing: "0.2em", fontWeight: 600, marginBottom: 4 }}>// OVERVIEW</div>
-            <h1 style={{ fontSize: 26, fontWeight: 800, margin: 0, letterSpacing: "-0.02em", color: "#f3f0ff" }}>
-              Mission Control
-            </h1>
-            <p style={{ fontSize: 12, color: "#6b7280", margin: "4px 0 0" }}>
-              Friday, 20 March 2026 · Workspace: <span style={{ color: "#a78bfa" }}>NeuroRift-Main</span>
-            </p>
+        {/* ── NAV CARDS ───────────────────────────────────────────────────────── */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(6, 1fr)",
+          gap: 12,
+          padding: "28px 0 0",
+          animation: "fadeIn 0.4s ease both",
+          animationDelay: "0.05s",
+        }}>
+          {navItems.map((item, i) => {
+            const isActive = activeNav === item.label;
+            return (
+              <button
+                key={item.label}
+                className="nav-card"
+                onClick={item.action}
+                style={{
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                  gap: 10, padding: "18px 12px",
+                  background: isActive
+                    ? `linear-gradient(145deg, rgba(124,58,237,0.22), rgba(16,10,30,0.85))`
+                    : "rgba(16,10,30,0.75)",
+                  border: isActive
+                    ? `1px solid ${item.color}55`
+                    : "1px solid rgba(124,58,237,0.14)",
+                  borderRadius: 14,
+                  cursor: "pointer", fontFamily: "inherit",
+                  transition: "all 0.22s cubic-bezier(.4,0,.2,1)",
+                  backdropFilter: "blur(14px)",
+                  boxShadow: isActive ? `0 0 24px ${item.glow}` : "none",
+                  animation: `fadeIn 0.4s ease both`,
+                  animationDelay: `${0.06 + i * 0.06}s`,
+                  position: "relative", overflow: "hidden",
+                }}
+              >
+                {/* Glow blob */}
+                <div style={{
+                  position: "absolute", inset: 0, pointerEvents: "none",
+                  background: isActive
+                    ? `radial-gradient(ellipse 70% 70% at 50% 0%, ${item.glow}, transparent 70%)`
+                    : "none",
+                  transition: "all 0.3s",
+                }} />
+                {/* Icon box — matches stat card icon style */}
+                <div style={{
+                  width: 42, height: 42, borderRadius: 11,
+                  background: isActive
+                    ? `linear-gradient(135deg, ${item.color}33, ${item.color}11)`
+                    : "rgba(124,58,237,0.1)",
+                  border: `1px solid ${isActive ? item.color + "55" : "rgba(124,58,237,0.18)"}`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 18, color: isActive ? item.color : "#6b7280",
+                  fontWeight: 700, flexShrink: 0,
+                  transition: "all 0.22s",
+                  boxShadow: isActive ? `0 0 16px ${item.glow}` : "none",
+                }}>{item.icon}</div>
+                <span style={{
+                  fontSize: 10, fontWeight: 700,
+                  color: isActive ? item.color : "#6b7280",
+                  letterSpacing: "0.08em",
+                  textAlign: "center", lineHeight: 1.3,
+                  transition: "color 0.2s",
+                }}>{item.label.toUpperCase()}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ── STAT CARDS ──────────────────────────────────────────────────────── */}
+        <div style={{
+          display: "grid", gridTemplateColumns: "1fr 1fr",
+          gap: 14, padding: "22px 0 0",
+          animation: "fadeIn 0.45s ease both",
+          animationDelay: "0.1s",
+        }}>
+          {[
+            { icon: "↑", label: "Total Uploads",   value: String(uploadCount),   color: "#a78bfa", glow: "rgba(167,139,250,0.18)", borderActive: "rgba(167,139,250,0.3)" },
+            { icon: "↓", label: "Total Downloads",  value: String(downloadCount), color: "#38bdf8", glow: "rgba(56,189,248,0.18)",  borderActive: "rgba(56,189,248,0.3)"  },
+          ].map((s, i) => (
+            <div
+              key={i}
+              className="stat-card"
+              style={{
+                background: "rgba(16,10,30,0.75)",
+                border: "1px solid rgba(124,58,237,0.16)",
+                borderRadius: 14, padding: "20px 24px",
+                backdropFilter: "blur(14px)",
+                display: "flex", alignItems: "center", gap: 18,
+                animation: "fadeIn 0.4s ease both",
+                animationDelay: `${0.1 + i * 0.08}s`,
+                position: "relative", overflow: "hidden",
+                transition: "all 0.22s cubic-bezier(.4,0,.2,1)",
+                cursor: "default",
+              }}
+            >
+              <div style={{
+                position: "absolute", inset: 0, pointerEvents: "none",
+                background: `radial-gradient(ellipse 55% 55% at 8% 50%, ${s.glow}, transparent 70%)`,
+              }} />
+              <div style={{
+                width: 48, height: 48, borderRadius: 12,
+                background: `linear-gradient(135deg, ${s.color}22, ${s.color}0a)`,
+                border: `1px solid ${s.borderActive}`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 20, color: s.color, fontWeight: 800, flexShrink: 0,
+                boxShadow: `0 0 16px ${s.glow}`,
+              }}>{s.icon}</div>
+              <div>
+                <div style={{ fontSize: 32, fontWeight: 900, color: "#f3f0ff", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.value}</div>
+                <div style={{ fontSize: 10, color: "#6b7280", marginTop: 4, letterSpacing: "0.12em" }}>{s.label.toUpperCase()}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── ACTIVITY STRIP ──────────────────────────────────────────────────── */}
+        <div style={{
+          margin: "14px 0 0",
+          padding: "12px 22px",
+          background: "rgba(16,10,30,0.55)",
+          border: "1px solid rgba(124,58,237,0.11)",
+          borderRadius: 10, backdropFilter: "blur(12px)",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          animation: "fadeIn 0.5s ease both", animationDelay: "0.14s",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{
+              width: 6, height: 6, borderRadius: "50%", background: "#a78bfa",
+              boxShadow: "0 0 8px rgba(167,139,250,0.7)",
+              animation: "glowPulse 2s ease-in-out infinite",
+            }} />
+            <span style={{ fontSize: 12, color: "#9ca3af" }}>
+              You uploaded{" "}
+              <span style={{ color: "#c4b5fd", fontWeight: 700 }}>{uploadCount}</span>
+              {" "}dataset{uploadCount !== 1 ? "s" : ""}, downloaded{" "}
+              <span style={{ color: "#38bdf8", fontWeight: 700 }}>{downloadCount}</span>
+              {" "}dataset{downloadCount !== 1 ? "s" : ""}
+            </span>
+          </div>
+          {lastActivity && (
+            <span style={{ fontSize: 10, color: "#4b5563", letterSpacing: "0.08em" }}>
+              Last activity: {timeAgo(lastActivity)}
+            </span>
+          )}
+        </div>
+
+        {/* ── RECENTLY OPENED ─────────────────────────────────────────────────── */}
+        <div style={{
+          margin: "24px 0 0",
+          background: "rgba(16,10,30,0.72)",
+          border: "1px solid rgba(124,58,237,0.16)",
+          borderRadius: 16, backdropFilter: "blur(14px)",
+          overflow: "hidden",
+          animation: "fadeIn 0.55s ease both", animationDelay: "0.18s",
+        }}>
+          <div style={{
+            padding: "20px 26px",
+            borderBottom: "1px solid rgba(124,58,237,0.1)",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+          }}>
+            <div>
+              <div style={{ fontSize: 10, color: "#7c3aed", letterSpacing: "0.2em", fontWeight: 600 }}>// RECENT</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: "#f3f0ff", marginTop: 3 }}>Recently Opened Datasets</div>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <span style={{ fontSize: 10, color: "#4b5563", letterSpacing: "0.1em" }}>
+                {recentDatasets.length} / 5 datasets
+              </span>
+              <button
+                onClick={() => { localStorage.removeItem("recent_datasets"); setRecentDatasets([]); }}
+                style={{
+                  background: "transparent", border: "1px solid rgba(124,58,237,0.15)",
+                  borderRadius: 6, padding: "4px 10px",
+                  color: "#4b5563", fontSize: 9, fontFamily: "inherit",
+                  cursor: "pointer", letterSpacing: "0.1em",
+                  transition: "all 0.15s",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#f87171"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(239,68,68,0.3)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#4b5563"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(124,58,237,0.15)"; }}
+              >✕ CLEAR</button>
+            </div>
           </div>
 
-          {/* Stats Row */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
-            {stats.map((s, i) => (
-              <div key={i} style={{
-                background: "rgba(16,10,30,0.7)",
-                border: "1px solid rgba(124,58,237,0.16)",
-                borderRadius: 12, padding: "18px 20px",
-                backdropFilter: "blur(12px)",
-                position: "relative", overflow: "hidden",
+          <div style={{ padding: "20px 26px" }}>
+            {loadingRecent && (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14 }}>
+                {Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)}
+              </div>
+            )}
+
+            {!loadingRecent && filteredRecent.length === 0 && (
+              <div style={{
+                padding: "52px 0", textAlign: "center",
+                display: "flex", flexDirection: "column", alignItems: "center", gap: 12,
               }}>
                 <div style={{
-                  position: "absolute", top: 0, right: 0,
-                  width: 60, height: 60,
-                  background: "radial-gradient(circle, rgba(124,58,237,0.12), transparent 70%)",
-                }} />
-                <div style={{ fontSize: 20, marginBottom: 8, color: "#7c3aed" }}>{s.icon}</div>
-                <div style={{ fontSize: 26, fontWeight: 800, color: "#f3f0ff", letterSpacing: "-0.03em" }}>{s.value}</div>
-                <div style={{ fontSize: 11, color: "#6b7280", marginTop: 2 }}>{s.label}</div>
-                <div style={{ fontSize: 10, color: "#a78bfa", marginTop: 6, fontWeight: 600 }}>{s.delta}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Middle Row: Compute Chart + Activity */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 14 }}>
-            {/* Compute usage */}
-            <div style={{
-              background: "rgba(16,10,30,0.7)",
-              border: "1px solid rgba(124,58,237,0.16)",
-              borderRadius: 12, padding: "20px 22px",
-              backdropFilter: "blur(12px)",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
-                <div>
-                  <div style={{ fontSize: 10, color: "#7c3aed", letterSpacing: "0.18em", fontWeight: 600 }}>// THROUGHPUT</div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "#f3f0ff", marginTop: 2 }}>Training Compute (12h)</div>
+                  width: 56, height: 56, borderRadius: "50%",
+                  background: "rgba(124,58,237,0.08)",
+                  border: "1px solid rgba(124,58,237,0.16)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 22, color: "#7c3aed",
+                  animation: "glowPulse 3s ease-in-out infinite",
+                }}>◈</div>
+                <div style={{ fontSize: 13, color: "#6b7280" }}>
+                  {searchQuery ? `No results for "${searchQuery}"` : "No recently opened datasets yet."}
                 </div>
-                <Spark data={sparkData} />
-              </div>
-              {/* Usage bars */}
-              {[
-                { label: "GPU Cluster A — H100×8", pct: 88, color: "#7c3aed" },
-                { label: "GPU Cluster B — A100×4", pct: 61, color: "#a855f7" },
-                { label: "CPU Pool — 128 cores", pct: 43, color: "#38bdf8" },
-                { label: "Storage I/O — NVMe", pct: 72, color: "#fbbf24" },
-              ].map((r, i) => (
-                <div key={i} style={{ marginBottom: 14 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
-                    <span style={{ fontSize: 11, color: "#9ca3af" }}>{r.label}</span>
-                    <span style={{ fontSize: 11, color: r.color, fontWeight: 700 }}>{r.pct}%</span>
-                  </div>
-                  <div style={{ height: 5, background: "rgba(255,255,255,0.05)", borderRadius: 3 }}>
-                    <div style={{
-                      height: "100%", width: `${r.pct}%`, borderRadius: 3,
-                      background: `linear-gradient(90deg, ${r.color}, ${r.color}88)`,
-                      boxShadow: `0 0 8px ${r.color}55`,
-                      transition: "width 1s ease",
-                    }} />
-                  </div>
+                <div style={{ fontSize: 11, color: "#4b5563" }}>
+                  {searchQuery ? "Try a different search." : "Browse datasets using the Explore button to get started."}
                 </div>
-              ))}
-            </div>
+                {!searchQuery && (
+                  <button
+                    onClick={() => router.push("/datasets")}
+                    style={{
+                      marginTop: 6, padding: "9px 22px", borderRadius: 10,
+                      background: "rgba(124,58,237,0.14)",
+                      border: "1px solid rgba(124,58,237,0.3)",
+                      color: "#c4b5fd", fontSize: 11, fontFamily: "inherit",
+                      fontWeight: 700, cursor: "pointer", letterSpacing: "0.08em",
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(124,58,237,0.25)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 16px rgba(124,58,237,0.25)"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(124,58,237,0.14)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; }}
+                  >◎ BROWSE DATASETS →</button>
+                )}
+              </div>
+            )}
 
-            {/* Activity Feed */}
-            <div style={{
-              background: "rgba(16,10,30,0.7)",
-              border: "1px solid rgba(124,58,237,0.16)",
-              borderRadius: 12, padding: "20px 18px",
-              backdropFilter: "blur(12px)",
-            }}>
-              <div style={{ fontSize: 10, color: "#7c3aed", letterSpacing: "0.18em", fontWeight: 600, marginBottom: 4 }}>// LOG</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#f3f0ff", marginBottom: 16 }}>Recent Activity</div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                {activity.map((a, i) => (
-                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                    <div style={{
-                      width: 8, height: 8, borderRadius: "50%", flexShrink: 0, marginTop: 4,
-                      background: a.type === "success" ? "#22c55e" : a.type === "error" ? "#ef4444" : "#38bdf8",
-                      boxShadow: `0 0 8px ${a.type === "success" ? "#22c55e" : a.type === "error" ? "#ef4444" : "#38bdf8"}88`,
-                    }} />
-                    <div>
-                      <div style={{ fontSize: 11, color: "#e2d9f3", fontWeight: 600 }}>{a.event}</div>
-                      <div style={{ fontSize: 10, color: "#6b7280", marginTop: 1 }}>{a.detail}</div>
-                      <div style={{ fontSize: 9, color: "#4b5563", marginTop: 2, letterSpacing: "0.05em" }}>{a.time}</div>
+            {!loadingRecent && filteredRecent.length > 0 && (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 14 }}>
+                {filteredRecent.map((d, i) => {
+                  const safeScore = d.score ?? 0;
+                  return (
+                    <div
+                      key={d.id}
+                      className="recent-card"
+                      onClick={() => handleDatasetClick(d)}
+                      style={{
+                        background: "rgba(124,58,237,0.07)",
+                        border: "1px solid rgba(124,58,237,0.18)",
+                        borderRadius: 13, padding: "16px 18px",
+                        cursor: "pointer",
+                        transition: "all 0.2s cubic-bezier(.4,0,.2,1)",
+                        animation: "fadeUp 0.35s ease both",
+                        animationDelay: `${i * 0.07}s`,
+                        position: "relative", overflow: "hidden",
+                      }}
+                    >
+                      <div style={{
+                        position: "absolute", top: 0, right: 0, width: 50, height: 50,
+                        background: "radial-gradient(circle, rgba(124,58,237,0.12), transparent 70%)",
+                      }} />
+
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                        <div style={{
+                          width: 30, height: 30, borderRadius: 8,
+                          background: "rgba(124,58,237,0.12)",
+                          border: "1px solid rgba(124,58,237,0.2)",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          fontSize: 14, color: "#38bdf8",
+                        }}>{fileTypeIcon(d.file_url)}</div>
+                        <span style={{
+                          fontSize: 9, padding: "3px 8px", borderRadius: 5, fontWeight: 700,
+                          background: scoreBg(safeScore),
+                          border: `1px solid ${scoreBorder(safeScore)}`,
+                          color: scoreColor(safeScore),
+                          letterSpacing: "0.06em",
+                        }}>{safeScore}</span>
+                      </div>
+
+                      <div style={{ fontSize: 12, fontWeight: 700, color: "#e2d9f3", lineHeight: 1.35, marginBottom: 8 }}>
+                        {(d.name ?? "—").length > 24 ? (d.name ?? "—").slice(0, 24) + "…" : (d.name ?? "—")}
+                      </div>
+
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
+                        <span style={{
+                          fontSize: 9, padding: "2px 8px", borderRadius: 5, display: "inline-block",
+                          background: "rgba(124,58,237,0.12)",
+                          border: "1px solid rgba(124,58,237,0.2)",
+                          color: "#a78bfa", letterSpacing: "0.06em",
+                        }}>{d.category ?? "—"}</span>
+                        <span style={{
+                          fontSize: 9, padding: "2px 7px", borderRadius: 5,
+                          background: "rgba(56,189,248,0.08)",
+                          border: "1px solid rgba(56,189,248,0.18)",
+                          color: "#38bdf8", letterSpacing: "0.06em",
+                        }}>{fileTypeLabel(d.file_url)}</span>
+                      </div>
+
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+                        <span style={{ fontSize: 9, color: "#6b7280" }}>
+                          {formatRows(d.rows_count ?? 0)} rows · {d.columns_count ?? 0} cols
+                        </span>
+                        <span style={{ fontSize: 9, color: "#4b5563" }}>{timeAgo(d.created_at)}</span>
+                      </div>
+
+                      <button
+                        className="dl-btn"
+                        onClick={(e) => handleDownload(d, e)}
+                        disabled={downloadingId === d.id}
+                        style={{
+                          width: "100%", padding: "7px 0", borderRadius: 8,
+                          background: downloadingId === d.id ? "rgba(124,58,237,0.06)" : "rgba(124,58,237,0.14)",
+                          border: "1px solid rgba(124,58,237,0.28)",
+                          color: downloadingId === d.id ? "#4b5563" : "#c4b5fd",
+                          fontSize: 10, fontFamily: "inherit", fontWeight: 700,
+                          cursor: downloadingId === d.id ? "not-allowed" : "pointer",
+                          letterSpacing: "0.08em", transition: "all 0.18s",
+                          display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+                        }}
+                      >
+                        {downloadingId === d.id ? "···" : "↓ DOWNLOAD"}
+                      </button>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
-            </div>
-          </div>
-
-          {/* Datasets Table */}
-          <div style={{
-            background: "rgba(16,10,30,0.7)",
-            border: "1px solid rgba(124,58,237,0.16)",
-            borderRadius: 12,
-            backdropFilter: "blur(12px)",
-            overflow: "hidden",
-          }}>
-            <div style={{
-              display: "flex", justifyContent: "space-between", alignItems: "center",
-              padding: "18px 22px", borderBottom: "1px solid rgba(124,58,237,0.1)",
-            }}>
-              <div>
-                <div style={{ fontSize: 10, color: "#7c3aed", letterSpacing: "0.18em", fontWeight: 600 }}>// DATASETS</div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#f3f0ff", marginTop: 2 }}>Recent Datasets</div>
-              </div>
-              <button style={{
-                padding: "7px 16px", borderRadius: 7,
-                background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-                border: "none", color: "#fff", fontSize: 11,
-                fontFamily: "inherit", fontWeight: 700,
-                cursor: "pointer", letterSpacing: "0.06em",
-                boxShadow: "0 0 14px rgba(124,58,237,0.35)",
-              }}>+ IMPORT DATASET</button>
-            </div>
-
-            {/* Table Header */}
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "2fr 1.2fr 0.8fr 0.8fr 1.2fr 0.8fr 0.7fr",
-              padding: "10px 22px",
-              borderBottom: "1px solid rgba(124,58,237,0.08)",
-              fontSize: 9, color: "#4b5563", letterSpacing: "0.14em", fontWeight: 600,
-            }}>
-              <span>DATASET NAME</span><span>TYPE</span><span>SIZE</span>
-              <span>ROWS</span><span>TAGS</span><span>ACCURACY</span><span>STATUS</span>
-            </div>
-
-            {filtered.map((d, i) => (
-              <div key={d.id} style={{
-                display: "grid",
-                gridTemplateColumns: "2fr 1.2fr 0.8fr 0.8fr 1.2fr 0.8fr 0.7fr",
-                padding: "14px 22px",
-                borderBottom: i < filtered.length - 1 ? "1px solid rgba(124,58,237,0.06)" : "none",
-                alignItems: "center",
-                cursor: "pointer",
-                transition: "background 0.15s",
-              }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(124,58,237,0.06)")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-              >
-                <span style={{ fontSize: 12, fontWeight: 600, color: "#e2d9f3" }}>{d.name}</span>
-                <span style={{ fontSize: 11, color: "#9ca3af" }}>{d.type}</span>
-                <span style={{ fontSize: 11, color: "#9ca3af" }}>{d.size}</span>
-                <span style={{ fontSize: 11, color: "#9ca3af" }}>{d.rows}</span>
-                <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-                  {d.tags.map((t) => (
-                    <span key={t} style={{
-                      fontSize: 9, padding: "2px 7px", borderRadius: 4,
-                      background: "rgba(124,58,237,0.15)",
-                      border: "1px solid rgba(124,58,237,0.22)",
-                      color: "#a78bfa", letterSpacing: "0.06em",
-                    }}>{t}</span>
-                  ))}
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <div style={{ flex: 1, height: 4, background: "rgba(255,255,255,0.05)", borderRadius: 2 }}>
-                    <div style={{
-                      height: "100%", width: `${d.accuracy}%`, borderRadius: 2,
-                      background: d.accuracy > 90 ? "#22c55e" : d.accuracy > 85 ? "#fbbf24" : "#ef4444",
-                    }} />
-                  </div>
-                  <span style={{ fontSize: 10, color: "#9ca3af" }}>{d.accuracy}%</span>
-                </div>
-                <span style={{
-                  fontSize: 9, padding: "3px 9px", borderRadius: 4, fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  background: d.status === "ready"
-                    ? "rgba(34,197,94,0.12)"
-                    : d.status === "processing"
-                    ? "rgba(251,191,36,0.12)"
-                    : "rgba(239,68,68,0.12)",
-                  color: d.status === "ready" ? "#22c55e" : d.status === "processing" ? "#fbbf24" : "#ef4444",
-                  border: `1px solid ${d.status === "ready" ? "rgba(34,197,94,0.25)" : d.status === "processing" ? "rgba(251,191,36,0.25)" : "rgba(239,68,68,0.25)"}`,
-                }}>
-                  {d.status.toUpperCase()}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Footer */}
-          <div style={{ textAlign: "center", fontSize: 10, color: "#374151", paddingBottom: 8, letterSpacing: "0.12em" }}>
-            © 2026 NEURORIFT · All systems nominal
+            )}
           </div>
         </div>
-      </main>
+
+        {/* Footer */}
+        <div style={{ textAlign: "center", fontSize: 10, color: "#374151", padding: "28px 0 36px", letterSpacing: "0.12em" }}>
+          © 2026 NEURORIFT · All systems nominal
+        </div>
+
+      </div>
     </div>
   );
 }
