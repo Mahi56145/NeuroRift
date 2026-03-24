@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 
@@ -14,6 +14,7 @@ interface Dataset {
   name: string;
   category: string;
   file_url: string;
+  kaggle_url?: string;
   rows_count: number;
   columns_count: number;
   score: number;
@@ -59,8 +60,6 @@ function fileIcon(url: string) {
   if (["png","jpg","jpeg","gif","webp"].includes(e)) return "◈";
   return "◆";
 }
-
-const CATEGORIES = ["All", "CSV Dataset", "PDF Document", "General", "Other", "NLP", "Computer Vision", "Bioinformatics"];
 
 const SPARK_POINTS = [
   [22, 38, 31, 55, 48, 62, 57, 74, 69, 82, 78, 91],
@@ -139,22 +138,47 @@ export default function ExplorePage() {
       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
     });
 
+  const availableCategories = useMemo(
+    () => [
+      "All",
+      ...Array.from(
+        new Set(
+          datasets
+            .map((d) => d.category)
+            .filter((c): c is string => Boolean(c && c.trim()))
+        )
+      ).sort((a, b) => a.localeCompare(b)),
+    ],
+    [datasets]
+  );
+
+  useEffect(() => {
+    if (category !== "All" && !availableCategories.includes(category)) {
+      setCategory("All");
+    }
+  }, [category, availableCategories]);
+
   const avgScore = datasets.length
     ? Math.round(datasets.reduce((s, d) => s + (d.score ?? 0), 0) / datasets.length)
     : 0;
 
   const handleClick = (d: Dataset) => {
-    saveRecent(d.id);
     router.push(`/dataset/${d.id}`);
   };
 
   const handleDownload = async (d: Dataset, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!d.file_url) { showToast("No file URL.", "error"); return; }
+    const link = d.file_url || d.kaggle_url;
+    if (!link) { showToast("No download URL available.", "error"); return; }
     setDlId(d.id);
     try {
-      window.open(d.file_url, "_blank", "noopener,noreferrer");
-      await supabase.from("downloads").insert({ dataset_id: d.id, downloaded_at: new Date().toISOString() });
+      window.open(link, "_blank", "noopener,noreferrer");
+      const { data: { session } } = await supabase.auth.getSession();
+      await supabase.from("downloads").insert({
+        dataset_id: d.id,
+        downloaded_at: new Date().toISOString(),
+        user_id: session?.user?.id ?? null,
+      });
       setTotalDownloads(c => c + 1);
       showToast(`Download started: ${d.name}`, "success");
     } catch { showToast("Download log failed.", "error"); }
@@ -458,7 +482,7 @@ export default function ExplorePage() {
         }}>
           {/* Category filters */}
           <div style={{ display:"flex",gap:8,flexWrap:"wrap" }}>
-            {CATEGORIES.map((cat) => (
+            {availableCategories.map((cat) => (
               <button
                 key={cat}
                 className="cat-btn"
