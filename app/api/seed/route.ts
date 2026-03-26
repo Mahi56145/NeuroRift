@@ -4,6 +4,40 @@ import { computeDatasetScore } from "@/lib/dataset-score";
 import path from "path";
 import fs from "fs";
 
+type SeedDataset = {
+  name: string;
+  slug?: string;
+  size?: string | number;
+  votes?: number;
+  kaggle_url?: string;
+};
+
+function bytesToHuman(size?: string | number): string | null {
+  if (size === undefined || size === null) return null;
+  if (typeof size === "string") return size;
+  if (!Number.isFinite(size) || size <= 0) return null;
+
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let value = size;
+  let unitIdx = 0;
+
+  while (value >= 1024 && unitIdx < units.length - 1) {
+    value /= 1024;
+    unitIdx += 1;
+  }
+
+  const rounded = value >= 10 ? Math.round(value) : Number(value.toFixed(1));
+  return `${rounded} ${units[unitIdx]}`;
+}
+
+function chunkArray<T>(items: T[], chunkSize: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < items.length; i += chunkSize) {
+    out.push(items.slice(i, i + chunkSize));
+  }
+  return out;
+}
+
 const categoryMap = (name: string, slug?: string) => {
   const text = `${name ?? ""} ${slug ?? ""}`.toLowerCase();
 
@@ -57,27 +91,31 @@ export async function GET() {
   try {
     const filePath = path.join(process.cwd(), "app/api/seed/datasets.json");
     const file = fs.readFileSync(filePath, "utf-8");
-    const data = JSON.parse(file);
+    const data = JSON.parse(file) as SeedDataset[];
 
-    const mapped = data.map((d: {
-      name: string; slug?: string; size?: string;
-      votes?: number; kaggle_url?: string;
-    }) => ({
+    // Remove duplicate slugs inside the seed file itself before DB checks.
+    const unique = new Map<string, SeedDataset>();
+    for (const entry of data) {
+      if (!entry?.slug) continue;
+      if (!unique.has(entry.slug)) unique.set(entry.slug, entry);
+    }
+    const normalized = Array.from(unique.values());
+
+    const mapped = normalized.map((d) => ({
       name:       d.name,
       slug:       d.slug,
       category:   categoryMap(d.name, d.slug),
-      size:       d.size,
+      size:       bytesToHuman(d.size),
       votes:      d.votes,
       kaggle_url: d.kaggle_url,
       score:      computeDatasetScore({
         source: "kaggle",
         votes: d.votes,
-        size: d.size,
+        size: bytesToHuman(d.size),
         name: d.name,
         category: categoryMap(d.name, d.slug),
       }),
-      source:     "kaggle" as const,
-    }));
+    })).filter((d) => d.slug);
 
     const { data: existingRows, error: existingError } = await supabaseAdmin
       .from("datasets")
@@ -87,9 +125,15 @@ export async function GET() {
     const existingSlugs = new Set((existingRows ?? []).map((r: { slug: string }) => r.slug));
     const toInsert = mapped.filter((d: { slug: string }) => !existingSlugs.has(d.slug));
 
+    let inserted = 0;
     if (toInsert.length > 0) {
-      const { error } = await supabaseAdmin.from("datasets").insert(toInsert);
-      if (error) throw error;
+      // Insert in batches to avoid payload/statement limits when seeding 500+ rows.
+      const batches = chunkArray(toInsert, 200);
+      for (const batch of batches) {
+        const { error } = await supabaseAdmin.from("datasets").insert(batch);
+        if (error) throw error;
+        inserted += batch.length;
+      }
     }
 
     const { count, error: countError } = await supabaseAdmin
@@ -99,8 +143,10 @@ export async function GET() {
 
     return new Response(JSON.stringify({
       message: "Seed success",
-      inserted: toInsert.length,
+      inserted,
       total: count ?? 0,
+      sourceRows: data.length,
+      uniqueSourceRows: normalized.length,
     }), { status: 200, headers: { "Content-Type": "application/json" } });
   } catch (err) {
     console.error("Seed error:", err);

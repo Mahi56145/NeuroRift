@@ -36,3 +36,34 @@ Deploy instantly on [Vercel](https://vercel.com) — connect your GitHub repo an
 npm run build   # production build
 npm run start   # start production server
 ```
+
+## Seed 500-600 Kaggle Datasets
+
+1. Install Kaggle API client:
+
+```bash
+pip install kaggle
+```
+
+2. Configure Kaggle credentials (either environment variables or `~/.kaggle/kaggle.json`):
+
+```env
+KAGGLE_USERNAME=your_kaggle_username
+KAGGLE_KEY=your_kaggle_api_key
+```
+
+3. Fetch top datasets into the seed file (example: 600):
+
+```bash
+python scripts/fetch_kaggle_datasets.py --target 600 --sort-by votes --output app/api/seed/datasets.json --merge
+```
+
+4. Run the seed endpoint to insert into Supabase:
+
+```bash
+curl http://localhost:3000/api/seed
+```
+
+Notes:
+- The seed route de-duplicates by `slug` and inserts in batches for large payloads.
+- Existing rows in your database are preserved; only unseen slugs are added.

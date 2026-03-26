@@ -1,18 +1,106 @@
 [
   {
+    "name": "Animal Crossing New Horizons Catalog",
+    "slug": "jessicali9530/animal-crossing-new-horizons-nookplaza-dataset",
+    "category": "General",
+    "size": 590770,
+    "votes": 57455,
+    "kaggle_url": "https://www.kaggle.com/datasets/jessicali9530/animal-crossing-new-horizons-nookplaza-dataset"
+  },
+  {
     "name": "Credit Card Fraud Detection",
     "slug": "mlg-ulb/creditcardfraud",
     "category": "General",
     "size": 69155672,
-    "votes": 13021,
+    "votes": 13033,
     "kaggle_url": "https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud"
+  },
+  {
+    "name": "COVID-19 Open Research Dataset Challenge (CORD-19)",
+    "slug": "allen-institute-for-ai/CORD-19-research-challenge",
+    "category": "General",
+    "size": 19724979450,
+    "votes": 11307,
+    "kaggle_url": "https://www.kaggle.com/datasets/allen-institute-for-ai/CORD-19-research-challenge"
+  },
+  {
+    "name": "Netflix Movies and TV Shows",
+    "slug": "shivamb/netflix-shows",
+    "category": "General",
+    "size": 1400865,
+    "votes": 9781,
+    "kaggle_url": "https://www.kaggle.com/datasets/shivamb/netflix-shows"
+  },
+  {
+    "name": "Chest X-Ray Images (Pneumonia)",
+    "slug": "paultimothymooney/chest-xray-pneumonia",
+    "category": "General",
+    "size": 2463365435,
+    "votes": 7452,
+    "kaggle_url": "https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia"
+  },
+  {
+    "name": "Video Game Sales",
+    "slug": "gregorut/videogamesales",
+    "category": "General",
+    "size": 390286,
+    "votes": 6721,
+    "kaggle_url": "https://www.kaggle.com/datasets/gregorut/videogamesales"
+  },
+  {
+    "name": "Novel Corona Virus 2019 Dataset",
+    "slug": "sudalairajkumar/novel-corona-virus-2019-dataset",
+    "category": "General",
+    "size": 8928752,
+    "votes": 6309,
+    "kaggle_url": "https://www.kaggle.com/datasets/sudalairajkumar/novel-corona-virus-2019-dataset"
+  },
+  {
+    "name": "Trending YouTube Video Statistics",
+    "slug": "datasnaek/youtube-new",
+    "category": "General",
+    "size": 210575746,
+    "votes": 5894,
+    "kaggle_url": "https://www.kaggle.com/datasets/datasnaek/youtube-new"
+  },
+  {
+    "name": "Data Science Cheat Sheets",
+    "slug": "timoboz/data-science-cheat-sheets",
+    "category": "General",
+    "size": 625256639,
+    "votes": 5536,
+    "kaggle_url": "https://www.kaggle.com/datasets/timoboz/data-science-cheat-sheets"
+  },
+  {
+    "name": "FiveThirtyEight Comic Characters Dataset",
+    "slug": "fivethirtyeight/fivethirtyeight-comic-characters-dataset",
+    "category": "General",
+    "size": 611306,
+    "votes": 5358,
+    "kaggle_url": "https://www.kaggle.com/datasets/fivethirtyeight/fivethirtyeight-comic-characters-dataset"
+  },
+  {
+    "name": "Google Play Store Apps",
+    "slug": "lava18/google-play-store-apps",
+    "category": "General",
+    "size": 2037893,
+    "votes": 5106,
+    "kaggle_url": "https://www.kaggle.com/datasets/lava18/google-play-store-apps"
+  },
+  {
+    "name": "Students Performance in Exams",
+    "slug": "spscientist/students-performance-in-exams",
+    "category": "General",
+    "size": 8907,
+    "votes": 5078,
+    "kaggle_url": "https://www.kaggle.com/datasets/spscientist/students-performance-in-exams"
   },
   {
     "name": "Pima Indians Diabetes Database",
     "slug": "uciml/pima-indians-diabetes-database",
     "category": "General",
     "size": 9128,
-    "votes": 4997,
+    "votes": 5001,
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database"
   },
   {
@@ -20,7 +108,7 @@
     "slug": "hugomathien/soccer",
     "category": "General",
     "size": 34297253,
-    "votes": 4882,
+    "votes": 4883,
     "kaggle_url": "https://www.kaggle.com/datasets/hugomathien/soccer"
   },
   {
@@ -28,23 +116,111 @@
     "slug": "uciml/iris",
     "category": "General",
     "size": 3687,
-    "votes": 4700,
+    "votes": 4706,
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/iris"
+  },
+  {
+    "name": "Huge Stock Market Dataset",
+    "slug": "borismarjanovic/price-volume-data-for-all-us-stocks-etfs",
+    "category": "General",
+    "size": 515591518,
+    "votes": 4619,
+    "kaggle_url": "https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs"
+  },
+  {
+    "name": "World Happiness Report",
+    "slug": "unsdsn/world-happiness",
+    "category": "General",
+    "size": 37692,
+    "votes": 4462,
+    "kaggle_url": "https://www.kaggle.com/datasets/unsdsn/world-happiness"
+  },
+  {
+    "name": "TMDB 5000 Movie Dataset",
+    "slug": "tmdb/tmdb-movie-metadata",
+    "category": "General",
+    "size": 9317430,
+    "votes": 4270,
+    "kaggle_url": "https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata"
+  },
+  {
+    "name": "Brazilian E-Commerce Public Dataset by Olist",
+    "slug": "olistbr/brazilian-ecommerce",
+    "category": "General",
+    "size": 44717580,
+    "votes": 4036,
+    "kaggle_url": "https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce"
+  },
+  {
+    "name": "Bitcoin Historical Data",
+    "slug": "mczielinski/bitcoin-historical-data",
+    "category": "General",
+    "size": 105805342,
+    "votes": 4015,
+    "kaggle_url": "https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data"
   },
   {
     "name": "Breast Cancer Wisconsin (Diagnostic) Data Set",
     "slug": "uciml/breast-cancer-wisconsin-data",
     "category": "General",
     "size": 49796,
-    "votes": 4010,
+    "votes": 4011,
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data"
+  },
+  {
+    "name": "The Movies Dataset",
+    "slug": "rounakbanik/the-movies-dataset",
+    "category": "General",
+    "size": 238862293,
+    "votes": 3900,
+    "kaggle_url": "https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset"
+  },
+  {
+    "name": "Avocado Prices",
+    "slug": "neuromusic/avocado-prices",
+    "category": "General",
+    "size": 643781,
+    "votes": 3848,
+    "kaggle_url": "https://www.kaggle.com/datasets/neuromusic/avocado-prices"
+  },
+  {
+    "name": "Wine Reviews",
+    "slug": "zynicide/wine-reviews",
+    "category": "General",
+    "size": 53336293,
+    "votes": 3846,
+    "kaggle_url": "https://www.kaggle.com/datasets/zynicide/wine-reviews"
+  },
+  {
+    "name": "Telco Customer Churn",
+    "slug": "blastchar/telco-customer-churn",
+    "category": "General",
+    "size": 175758,
+    "votes": 3547,
+    "kaggle_url": "https://www.kaggle.com/datasets/blastchar/telco-customer-churn"
+  },
+  {
+    "name": "Stroke Prediction Dataset",
+    "slug": "fedesoriano/stroke-prediction-dataset",
+    "category": "General",
+    "size": 69007,
+    "votes": 3523,
+    "kaggle_url": "https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset"
+  },
+  {
+    "name": "Fruits-360 dataset",
+    "slug": "moltean/fruits",
+    "category": "General",
+    "size": 5820427439,
+    "votes": 3420,
+    "kaggle_url": "https://www.kaggle.com/datasets/moltean/fruits"
   },
   {
     "name": "Red Wine Quality",
     "slug": "uciml/red-wine-quality-cortez-et-al-2009",
     "category": "General",
     "size": 26176,
-    "votes": 3223,
+    "votes": 3225,
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009"
   },
   {
@@ -52,7 +228,7 @@
     "slug": "zalando-research/fashionmnist",
     "category": "General",
     "size": 72114846,
-    "votes": 3164,
+    "votes": 3166,
     "kaggle_url": "https://www.kaggle.com/datasets/zalando-research/fashionmnist"
   },
   {
@@ -68,24 +244,80 @@
     "slug": "fedesoriano/heart-failure-prediction",
     "category": "General",
     "size": 8762,
-    "votes": 3139,
+    "votes": 3143,
     "kaggle_url": "https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction"
+  },
+  {
+    "name": "New York City Airbnb Open Data",
+    "slug": "dgomonov/new-york-city-airbnb-open-data",
+    "category": "General",
+    "size": 2562692,
+    "votes": 3100,
+    "kaggle_url": "https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data"
+  },
+  {
+    "name": "Suicide Rates Overview 1985 to 2016 ",
+    "slug": "russellyates88/suicide-rates-overview-1985-to-2016",
+    "category": "General",
+    "size": 406636,
+    "votes": 3085,
+    "kaggle_url": "https://www.kaggle.com/datasets/russellyates88/suicide-rates-overview-1985-to-2016"
+  },
+  {
+    "name": "IBM HR Analytics Employee Attrition & Performance",
+    "slug": "pavansubhasht/ibm-hr-analytics-attrition-dataset",
+    "category": "General",
+    "size": 51314,
+    "votes": 2942,
+    "kaggle_url": "https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset"
+  },
+  {
+    "name": "Customer Personality Analysis",
+    "slug": "imakash3011/customer-personality-analysis",
+    "category": "General",
+    "size": 63450,
+    "votes": 2925,
+    "kaggle_url": "https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis"
+  },
+  {
+    "name": "COVID-19 Dataset",
+    "slug": "imdevskp/corona-virus-report",
+    "category": "General",
+    "size": 19921674,
+    "votes": 2799,
+    "kaggle_url": "https://www.kaggle.com/datasets/imdevskp/corona-virus-report"
   },
   {
     "name": "Pokemon with stats",
     "slug": "abcsds/pokemon",
     "category": "General",
     "size": 15234,
-    "votes": 2719,
+    "votes": 2720,
     "kaggle_url": "https://www.kaggle.com/datasets/abcsds/pokemon"
+  },
+  {
+    "name": "Hotel booking demand",
+    "slug": "jessemostipak/hotel-booking-demand",
+    "category": "General",
+    "size": 1308365,
+    "votes": 2676,
+    "kaggle_url": "https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand"
   },
   {
     "name": "Mushroom Classification",
     "slug": "uciml/mushroom-classification",
     "category": "General",
     "size": 35057,
-    "votes": 2652,
+    "votes": 2653,
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/mushroom-classification"
+  },
+  {
+    "name": "US Accidents (2016 - 2023)",
+    "slug": "sobhanmoosavi/us-accidents",
+    "category": "General",
+    "size": 684855912,
+    "votes": 2631,
+    "kaggle_url": "https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents"
   },
   {
     "name": "FitBit Fitness Tracker Data",
@@ -96,12 +328,28 @@
     "kaggle_url": "https://www.kaggle.com/datasets/arashnic/fitbit"
   },
   {
+    "name": "Global Terrorism Database",
+    "slug": "START-UMD/gtd",
+    "category": "General",
+    "size": 30077034,
+    "votes": 2619,
+    "kaggle_url": "https://www.kaggle.com/datasets/START-UMD/gtd"
+  },
+  {
     "name": "Mobile Price Classification",
     "slug": "iabhishekofficial/mobile-price-classification",
     "category": "General",
     "size": 72340,
-    "votes": 2529,
+    "votes": 2531,
     "kaggle_url": "https://www.kaggle.com/datasets/iabhishekofficial/mobile-price-classification"
+  },
+  {
+    "name": "120 years of Olympic history: athletes and results",
+    "slug": "heesoo37/120-years-of-olympic-history-athletes-and-results",
+    "category": "General",
+    "size": 5690772,
+    "votes": 2493,
+    "kaggle_url": "https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results"
   },
   {
     "name": "Heart Failure Prediction",
@@ -112,12 +360,76 @@
     "kaggle_url": "https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data"
   },
   {
+    "name": "International football results from 1872 to 2026",
+    "slug": "martj42/international-football-results-from-1872-to-2017",
+    "category": "General",
+    "size": 1260984,
+    "votes": 2457,
+    "kaggle_url": "https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017"
+  },
+  {
+    "name": "Credit Card customers",
+    "slug": "sakshigoyal7/credit-card-customers",
+    "category": "General",
+    "size": 387771,
+    "votes": 2446,
+    "kaggle_url": "https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers"
+  },
+  {
+    "name": "Climate Change: Earth Surface Temperature Data",
+    "slug": "berkeleyearth/climate-change-earth-surface-temperature-data",
+    "category": "General",
+    "size": 88843537,
+    "votes": 2444,
+    "kaggle_url": "https://www.kaggle.com/datasets/berkeleyearth/climate-change-earth-surface-temperature-data"
+  },
+  {
+    "name": "Amazon Fine Food Reviews",
+    "slug": "snap/amazon-fine-food-reviews",
+    "category": "General",
+    "size": 253873708,
+    "votes": 2430,
+    "kaggle_url": "https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews"
+  },
+  {
+    "name": "House Sales in King County, USA",
+    "slug": "harlfoxem/housesalesprediction",
+    "category": "General",
+    "size": 798275,
+    "votes": 2305,
+    "kaggle_url": "https://www.kaggle.com/datasets/harlfoxem/housesalesprediction"
+  },
+  {
+    "name": "Sentiment140 dataset with 1.6 million tweets",
+    "slug": "kazanova/sentiment140",
+    "category": "General",
+    "size": 84855679,
+    "votes": 2297,
+    "kaggle_url": "https://www.kaggle.com/datasets/kazanova/sentiment140"
+  },
+  {
     "name": "Skin Cancer MNIST: HAM10000",
     "slug": "kmader/skin-cancer-mnist-ham10000",
     "category": "General",
     "size": 5582914511,
     "votes": 2277,
     "kaggle_url": "https://www.kaggle.com/datasets/kmader/skin-cancer-mnist-ham10000"
+  },
+  {
+    "name": "Formula 1 World Championship (1950 - 2024)",
+    "slug": "rohanrao/formula-1-world-championship-1950-2020",
+    "category": "General",
+    "size": 6585538,
+    "votes": 2240,
+    "kaggle_url": "https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020"
+  },
+  {
+    "name": "COVID-19 World Vaccination Progress",
+    "slug": "gpreda/covid-world-vaccination-progress",
+    "category": "General",
+    "size": 2034736,
+    "votes": 2236,
+    "kaggle_url": "https://www.kaggle.com/datasets/gpreda/covid-world-vaccination-progress"
   },
   {
     "name": "Date Fruit Datasets",
@@ -136,36 +448,132 @@
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/student-alcohol-consumption"
   },
   {
+    "name": "COVID-19 in India",
+    "slug": "sudalairajkumar/covid19-in-india",
+    "category": "General",
+    "size": 776022,
+    "votes": 2101,
+    "kaggle_url": "https://www.kaggle.com/datasets/sudalairajkumar/covid19-in-india"
+  },
+  {
     "name": "E-Commerce Data",
     "slug": "carrie1/ecommerce-data",
     "category": "General",
     "size": 7548686,
-    "votes": 2096,
+    "votes": 2100,
     "kaggle_url": "https://www.kaggle.com/datasets/carrie1/ecommerce-data"
+  },
+  {
+    "name": "Flowers Recognition",
+    "slug": "alxmamaev/flowers-recognition",
+    "category": "General",
+    "size": 235663188,
+    "votes": 2060,
+    "kaggle_url": "https://www.kaggle.com/datasets/alxmamaev/flowers-recognition"
   },
   {
     "name": "Mall Customer Segmentation Data",
     "slug": "vjchoudhary7/customer-segmentation-tutorial-in-python",
     "category": "General",
     "size": 1583,
-    "votes": 2039,
+    "votes": 2040,
     "kaggle_url": "https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python"
+  },
+  {
+    "name": "Most Streamed Spotify Songs 2023 ",
+    "slug": "nelgiriyewithana/top-spotify-songs-2023",
+    "category": "General",
+    "size": 48187,
+    "votes": 2010,
+    "kaggle_url": "https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023"
   },
   {
     "name": "Rice Image Dataset",
     "slug": "muratkokludataset/rice-image-dataset",
     "category": "General",
     "size": 230059472,
-    "votes": 1982,
+    "votes": 1983,
     "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/rice-image-dataset"
+  },
+  {
+    "name": "Goodreads-books",
+    "slug": "jealousleopard/goodreadsbooks",
+    "category": "General",
+    "size": 637338,
+    "votes": 1982,
+    "kaggle_url": "https://www.kaggle.com/datasets/jealousleopard/goodreadsbooks"
+  },
+  {
+    "name": "Face Mask Detection",
+    "slug": "andrewmvd/face-mask-detection",
+    "category": "General",
+    "size": 416968083,
+    "votes": 1967,
+    "kaggle_url": "https://www.kaggle.com/datasets/andrewmvd/face-mask-detection"
+  },
+  {
+    "name": "Graduate Admission 2 ",
+    "slug": "mohansacharya/graduate-admissions",
+    "category": "General",
+    "size": 9867,
+    "votes": 1947,
+    "kaggle_url": "https://www.kaggle.com/datasets/mohansacharya/graduate-admissions"
+  },
+  {
+    "name": "Titanic",
+    "slug": "heptapod/titanic",
+    "category": "General",
+    "size": 11090,
+    "votes": 1933,
+    "kaggle_url": "https://www.kaggle.com/datasets/heptapod/titanic"
+  },
+  {
+    "name": "Rain in Australia",
+    "slug": "jsphyg/weather-dataset-rattle-package",
+    "category": "General",
+    "size": 4020790,
+    "votes": 1870,
+    "kaggle_url": "https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package"
   },
   {
     "name": "SMS Spam Collection Dataset",
     "slug": "uciml/sms-spam-collection-dataset",
     "category": "General",
     "size": 215934,
-    "votes": 1860,
+    "votes": 1863,
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset"
+  },
+  {
+    "name": "CelebFaces Attributes (CelebA) Dataset",
+    "slug": "jessicali9530/celeba-dataset",
+    "category": "General",
+    "size": 1427750792,
+    "votes": 1825,
+    "kaggle_url": "https://www.kaggle.com/datasets/jessicali9530/celeba-dataset"
+  },
+  {
+    "name": "FER-2013",
+    "slug": "msambare/fer2013",
+    "category": "General",
+    "size": 63252113,
+    "votes": 1814,
+    "kaggle_url": "https://www.kaggle.com/datasets/msambare/fer2013"
+  },
+  {
+    "name": "Titanic dataset",
+    "slug": "brendan45774/test-file",
+    "category": "General",
+    "size": 11514,
+    "votes": 1775,
+    "kaggle_url": "https://www.kaggle.com/datasets/brendan45774/test-file"
+  },
+  {
+    "name": "Yelp Dataset",
+    "slug": "yelp-dataset/yelp-dataset",
+    "category": "General",
+    "size": 4374983563,
+    "votes": 1774,
+    "kaggle_url": "https://www.kaggle.com/datasets/yelp-dataset/yelp-dataset"
   },
   {
     "name": "mlcourse.ai",
@@ -176,12 +584,36 @@
     "kaggle_url": "https://www.kaggle.com/datasets/kashnitsky/mlcourse"
   },
   {
+    "name": "Melbourne Housing Snapshot",
+    "slug": "dansbecker/melbourne-housing-snapshot",
+    "category": "General",
+    "size": 461423,
+    "votes": 1748,
+    "kaggle_url": "https://www.kaggle.com/datasets/dansbecker/melbourne-housing-snapshot"
+  },
+  {
     "name": "Acoustic Extinguisher Fire Dataset",
     "slug": "muratkokludataset/acoustic-extinguisher-fire-dataset",
     "category": "General",
     "size": 635619,
     "votes": 1717,
     "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/acoustic-extinguisher-fire-dataset"
+  },
+  {
+    "name": "Diabetes Dataset",
+    "slug": "akshaydattatraykhare/diabetes-dataset",
+    "category": "General",
+    "size": 9128,
+    "votes": 1701,
+    "kaggle_url": "https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset"
+  },
+  {
+    "name": "Heart Disease Dataset",
+    "slug": "johnsmith88/heart-disease-dataset",
+    "category": "General",
+    "size": 6325,
+    "votes": 1696,
+    "kaggle_url": "https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset"
   },
   {
     "name": "Pistachio Image Dataset",
@@ -192,19 +624,107 @@
     "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/pistachio-image-dataset"
   },
   {
+    "name": "World Development Indicators",
+    "slug": "kaggle/world-development-indicators",
+    "category": "General",
+    "size": 387054886,
+    "votes": 1692,
+    "kaggle_url": "https://www.kaggle.com/datasets/kaggle/world-development-indicators"
+  },
+  {
     "name": "Sign Language MNIST",
     "slug": "datamunge/sign-language-mnist",
     "category": "General",
     "size": 65633206,
-    "votes": 1687,
+    "votes": 1688,
     "kaggle_url": "https://www.kaggle.com/datasets/datamunge/sign-language-mnist"
+  },
+  {
+    "name": "Sleep Health and Lifestyle Dataset",
+    "slug": "uom190346a/sleep-health-and-lifestyle-dataset",
+    "category": "General",
+    "size": 2604,
+    "votes": 1686,
+    "kaggle_url": "https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset"
+  },
+  {
+    "name": "Water Quality",
+    "slug": "adityakadiwal/water-potability",
+    "category": "General",
+    "size": 256729,
+    "votes": 1679,
+    "kaggle_url": "https://www.kaggle.com/datasets/adityakadiwal/water-potability"
+  },
+  {
+    "name": "Intel Image Classification",
+    "slug": "puneet6060/intel-image-classification",
+    "category": "General",
+    "size": 363152213,
+    "votes": 1663,
+    "kaggle_url": "https://www.kaggle.com/datasets/puneet6060/intel-image-classification"
+  },
+  {
+    "name": "Daily News for Stock Market Prediction",
+    "slug": "aaron7sun/stocknews",
+    "category": "General",
+    "size": 6097730,
+    "votes": 1656,
+    "kaggle_url": "https://www.kaggle.com/datasets/aaron7sun/stocknews"
+  },
+  {
+    "name": "New Plant Diseases Dataset",
+    "slug": "vipoooool/new-plant-diseases-dataset",
+    "category": "General",
+    "size": 2897709187,
+    "votes": 1654,
+    "kaggle_url": "https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset"
+  },
+  {
+    "name": "IMDB Dataset of 50K Movie Reviews",
+    "slug": "lakshmi25npathi/imdb-dataset-of-50k-movie-reviews",
+    "category": "General",
+    "size": 26962657,
+    "votes": 1650,
+    "kaggle_url": "https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews"
+  },
+  {
+    "name": "Data Science Job Salaries",
+    "slug": "ruchi798/data-science-job-salaries",
+    "category": "General",
+    "size": 7542,
+    "votes": 1647,
+    "kaggle_url": "https://www.kaggle.com/datasets/ruchi798/data-science-job-salaries"
+  },
+  {
+    "name": "Kickstarter Projects",
+    "slug": "kemical/kickstarter-projects",
+    "category": "General",
+    "size": 38571084,
+    "votes": 1645,
+    "kaggle_url": "https://www.kaggle.com/datasets/kemical/kickstarter-projects"
+  },
+  {
+    "name": "[NeurIPS 2020] Data Science for COVID-19 (DS4C)",
+    "slug": "kimjihoo/coronavirusdataset",
+    "category": "General",
+    "size": 7338354,
+    "votes": 1632,
+    "kaggle_url": "https://www.kaggle.com/datasets/kimjihoo/coronavirusdataset"
+  },
+  {
+    "name": "Used Cars Dataset",
+    "slug": "austinreese/craigslist-carstrucks-data",
+    "category": "General",
+    "size": 275237598,
+    "votes": 1632,
+    "kaggle_url": "https://www.kaggle.com/datasets/austinreese/craigslist-carstrucks-data"
   },
   {
     "name": "California Housing Prices",
     "slug": "camnugent/california-housing-prices",
     "category": "General",
     "size": 409382,
-    "votes": 1624,
+    "votes": 1626,
     "kaggle_url": "https://www.kaggle.com/datasets/camnugent/california-housing-prices"
   },
   {
@@ -216,12 +736,68 @@
     "kaggle_url": "https://www.kaggle.com/datasets/Cornell-University/arxiv"
   },
   {
+    "name": "Brain MRI Images for Brain Tumor Detection",
+    "slug": "navoneel/brain-mri-images-for-brain-tumor-detection",
+    "category": "General",
+    "size": 15828590,
+    "votes": 1607,
+    "kaggle_url": "https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection"
+  },
+  {
+    "name": "Synthetic Financial Datasets For Fraud Detection",
+    "slug": "ealaxi/paysim1",
+    "category": "General",
+    "size": 186385561,
+    "votes": 1576,
+    "kaggle_url": "https://www.kaggle.com/datasets/ealaxi/paysim1"
+  },
+  {
+    "name": "Data Science Salaries 2023 \ud83d\udcb8",
+    "slug": "arnabchaki/data-science-salaries-2023",
+    "category": "General",
+    "size": 26034,
+    "votes": 1563,
+    "kaggle_url": "https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023"
+  },
+  {
+    "name": "Cat and Dog",
+    "slug": "tongpython/cat-and-dog",
+    "category": "General",
+    "size": 228487605,
+    "votes": 1556,
+    "kaggle_url": "https://www.kaggle.com/datasets/tongpython/cat-and-dog"
+  },
+  {
+    "name": "NIH Chest X-rays",
+    "slug": "nih-chest-xrays/data",
+    "category": "General",
+    "size": 45096150231,
+    "votes": 1554,
+    "kaggle_url": "https://www.kaggle.com/datasets/nih-chest-xrays/data"
+  },
+  {
+    "name": "Grapevine Leaves Image Dataset",
+    "slug": "muratkokludataset/grapevine-leaves-image-dataset",
+    "category": "General",
+    "size": 113980250,
+    "votes": 1551,
+    "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/grapevine-leaves-image-dataset"
+  },
+  {
     "name": "Pumpkin Seeds Dataset",
     "slug": "muratkokludataset/pumpkin-seeds-dataset",
     "category": "General",
     "size": 402721,
     "votes": 1533,
     "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/pumpkin-seeds-dataset"
+  },
+  {
+    "name": "Reddit Vaccine Myths",
+    "slug": "gpreda/reddit-vaccine-myths",
+    "category": "General",
+    "size": 242965,
+    "votes": 1526,
+    "kaggle_url": "https://www.kaggle.com/datasets/gpreda/reddit-vaccine-myths"
   },
   {
     "name": "Pistachio Dataset",
@@ -248,12 +824,60 @@
     "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/raisin-dataset"
   },
   {
+    "name": "Amazon Sales Dataset",
+    "slug": "karkavelrajaj/amazon-sales-dataset",
+    "category": "General",
+    "size": 2043633,
+    "votes": 1485,
+    "kaggle_url": "https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset"
+  },
+  {
+    "name": "Netflix Prize data",
+    "slug": "netflix-inc/netflix-prize-data",
+    "category": "General",
+    "size": 716193814,
+    "votes": 1482,
+    "kaggle_url": "https://www.kaggle.com/datasets/netflix-inc/netflix-prize-data"
+  },
+  {
+    "name": "Durum Wheat Dataset",
+    "slug": "muratkokludataset/durum-wheat-dataset",
+    "category": "General",
+    "size": 1030866718,
+    "votes": 1481,
+    "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/durum-wheat-dataset"
+  },
+  {
     "name": "Rice MSC Dataset",
     "slug": "muratkokludataset/rice-msc-dataset",
     "category": "General",
     "size": 106750106,
     "votes": 1469,
     "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/rice-msc-dataset"
+  },
+  {
+    "name": "Big Data Certification KR",
+    "slug": "agileteam/bigdatacertificationkr",
+    "category": "General",
+    "size": 284195,
+    "votes": 1467,
+    "kaggle_url": "https://www.kaggle.com/datasets/agileteam/bigdatacertificationkr"
+  },
+  {
+    "name": "Chess Game Dataset (Lichess)",
+    "slug": "datasnaek/chess",
+    "category": "General",
+    "size": 2903760,
+    "votes": 1459,
+    "kaggle_url": "https://www.kaggle.com/datasets/datasnaek/chess"
+  },
+  {
+    "name": "Anime Recommendations Database",
+    "slug": "CooperUnion/anime-recommendations-database",
+    "category": "General",
+    "size": 26259955,
+    "votes": 1454,
+    "kaggle_url": "https://www.kaggle.com/datasets/CooperUnion/anime-recommendations-database"
   },
   {
     "name": "Rice Dataset Commeo and Osmancik",
@@ -264,12 +888,124 @@
     "kaggle_url": "https://www.kaggle.com/datasets/muratkokludataset/rice-dataset-commeo-and-osmancik"
   },
   {
+    "name": "1.88 Million US Wildfires",
+    "slug": "rtatman/188-million-us-wildfires",
+    "category": "General",
+    "size": 176270559,
+    "votes": 1425,
+    "kaggle_url": "https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires"
+  },
+  {
+    "name": "Zomato Bangalore Restaurants",
+    "slug": "himanshupoddar/zomato-bangalore-restaurants",
+    "category": "General",
+    "size": 93341357,
+    "votes": 1420,
+    "kaggle_url": "https://www.kaggle.com/datasets/himanshupoddar/zomato-bangalore-restaurants"
+  },
+  {
+    "name": "HR Analytics: Job Change of Data Scientists",
+    "slug": "arashnic/hr-analytics-job-change-of-data-scientists",
+    "category": "General",
+    "size": 301600,
+    "votes": 1417,
+    "kaggle_url": "https://www.kaggle.com/datasets/arashnic/hr-analytics-job-change-of-data-scientists"
+  },
+  {
+    "name": "World Happiness Report 2021",
+    "slug": "ajaypalsinghlo/world-happiness-report-2021",
+    "category": "General",
+    "size": 56531,
+    "votes": 1414,
+    "kaggle_url": "https://www.kaggle.com/datasets/ajaypalsinghlo/world-happiness-report-2021"
+  },
+  {
+    "name": "New York Stock Exchange",
+    "slug": "dgawlik/nyse",
+    "category": "General",
+    "size": 32148316,
+    "votes": 1401,
+    "kaggle_url": "https://www.kaggle.com/datasets/dgawlik/nyse"
+  },
+  {
+    "name": "Cardiovascular Disease dataset",
+    "slug": "sulianova/cardiovascular-disease-dataset",
+    "category": "General",
+    "size": 760066,
+    "votes": 1390,
+    "kaggle_url": "https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset"
+  },
+  {
+    "name": "Life Expectancy (WHO)",
+    "slug": "kumarajarshi/life-expectancy-who",
+    "category": "General",
+    "size": 121472,
+    "votes": 1363,
+    "kaggle_url": "https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who"
+  },
+  {
+    "name": "UNCOVER COVID-19 Challenge",
+    "slug": "roche-data-science-coalition/uncover",
+    "category": "General",
+    "size": 268726266,
+    "votes": 1354,
+    "kaggle_url": "https://www.kaggle.com/datasets/roche-data-science-coalition/uncover"
+  },
+  {
+    "name": "Malaria Cell Images Dataset",
+    "slug": "iarunava/cell-images-for-detecting-malaria",
+    "category": "General",
+    "size": 708172590,
+    "votes": 1326,
+    "kaggle_url": "https://www.kaggle.com/datasets/iarunava/cell-images-for-detecting-malaria"
+  },
+  {
+    "name": "GTSRB - German Traffic Sign Recognition Benchmark",
+    "slug": "meowmeowmeowmeowmeow/gtsrb-german-traffic-sign",
+    "category": "General",
+    "size": 641568792,
+    "votes": 1313,
+    "kaggle_url": "https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign"
+  },
+  {
+    "name": "Chicago Crime",
+    "slug": "chicago/chicago-crime",
+    "category": "General",
+    "size": 0,
+    "votes": 1293,
+    "kaggle_url": "https://www.kaggle.com/datasets/chicago/chicago-crime"
+  },
+  {
+    "name": "Uber Data Analytics Dashboard",
+    "slug": "yashdevladdha/uber-ride-analytics-dashboard",
+    "category": "General",
+    "size": 17324552,
+    "votes": 1288,
+    "kaggle_url": "https://www.kaggle.com/datasets/yashdevladdha/uber-ride-analytics-dashboard"
+  },
+  {
     "name": "Open Food Facts",
     "slug": "openfoodfacts/world-food-facts",
     "category": "General",
     "size": 114050691,
-    "votes": 1282,
+    "votes": 1286,
     "kaggle_url": "https://www.kaggle.com/datasets/openfoodfacts/world-food-facts"
+  },
+  {
+    "name": "The Complete Pokemon Dataset",
+    "slug": "rounakbanik/pokemon",
+    "category": "General",
+    "size": 47750,
+    "votes": 1251,
+    "kaggle_url": "https://www.kaggle.com/datasets/rounakbanik/pokemon"
+  },
+  {
+    "name": "2021 Olympics in Tokyo",
+    "slug": "arjunprasadsarkhel/2021-olympics-in-tokyo",
+    "category": "General",
+    "size": 356012,
+    "votes": 1249,
+    "kaggle_url": "https://www.kaggle.com/datasets/arjunprasadsarkhel/2021-olympics-in-tokyo"
   },
   {
     "name": "Win-Go, Color_Prediction",
@@ -280,12 +1016,68 @@
     "kaggle_url": "https://www.kaggle.com/datasets/najeedosmani/wingo-color-prediction"
   },
   {
+    "name": "ASL Alphabet",
+    "slug": "grassknoted/asl-alphabet",
+    "category": "General",
+    "size": 1100887034,
+    "votes": 1241,
+    "kaggle_url": "https://www.kaggle.com/datasets/grassknoted/asl-alphabet"
+  },
+  {
+    "name": "Mobile App Store ( 7200 apps)",
+    "slug": "ramamet4/app-store-apple-data-set-10k-apps",
+    "category": "General",
+    "size": 5905027,
+    "votes": 1232,
+    "kaggle_url": "https://www.kaggle.com/datasets/ramamet4/app-store-apple-data-set-10k-apps"
+  },
+  {
+    "name": "Brain Tumor MRI Dataset",
+    "slug": "masoudnickparvar/brain-tumor-mri-dataset",
+    "category": "General",
+    "size": 164670110,
+    "votes": 1228,
+    "kaggle_url": "https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset"
+  },
+  {
+    "name": "Sample Sales Data",
+    "slug": "kyanyoga/sample-sales-data",
+    "category": "General",
+    "size": 79402,
+    "votes": 1227,
+    "kaggle_url": "https://www.kaggle.com/datasets/kyanyoga/sample-sales-data"
+  },
+  {
+    "name": "Mental Health in Tech Survey",
+    "slug": "osmi/mental-health-in-tech-survey",
+    "category": "General",
+    "size": 49930,
+    "votes": 1225,
+    "kaggle_url": "https://www.kaggle.com/datasets/osmi/mental-health-in-tech-survey"
+  },
+  {
     "name": "(MBTI) Myers-Briggs Personality Type Dataset",
     "slug": "datasnaek/mbti-type",
     "category": "General",
     "size": 25621004,
     "votes": 1219,
     "kaggle_url": "https://www.kaggle.com/datasets/datasnaek/mbti-type"
+  },
+  {
+    "name": "Chocolate Bar Ratings",
+    "slug": "rtatman/chocolate-bar-ratings",
+    "category": "General",
+    "size": 31056,
+    "votes": 1215,
+    "kaggle_url": "https://www.kaggle.com/datasets/rtatman/chocolate-bar-ratings"
+  },
+  {
+    "name": "Cryptocurrency Historical Prices",
+    "slug": "sudalairajkumar/cryptocurrencypricehistory",
+    "category": "General",
+    "size": 1782192,
+    "votes": 1214,
+    "kaggle_url": "https://www.kaggle.com/datasets/sudalairajkumar/cryptocurrencypricehistory"
   },
   {
     "name": "Human Resources Data Set",
@@ -304,12 +1096,180 @@
     "kaggle_url": "https://www.kaggle.com/datasets/nehalbirla/vehicle-dataset-from-cardekho"
   },
   {
+    "name": "Animals-10",
+    "slug": "alessiocorrado99/animals10",
+    "category": "General",
+    "size": 614087302,
+    "votes": 1194,
+    "kaggle_url": "https://www.kaggle.com/datasets/alessiocorrado99/animals10"
+  },
+  {
+    "name": "COVID-19 Radiography Database",
+    "slug": "tawsifurrahman/covid19-radiography-database",
+    "category": "General",
+    "size": 816029038,
+    "votes": 1182,
+    "kaggle_url": "https://www.kaggle.com/datasets/tawsifurrahman/covid19-radiography-database"
+  },
+  {
+    "name": "Student Performance Factors",
+    "slug": "lainguyn123/student-performance-factors",
+    "category": "General",
+    "size": 96178,
+    "votes": 1180,
+    "kaggle_url": "https://www.kaggle.com/datasets/lainguyn123/student-performance-factors"
+  },
+  {
+    "name": "Women's E-Commerce Clothing Reviews",
+    "slug": "nicapotato/womens-ecommerce-clothing-reviews",
+    "category": "General",
+    "size": 2924120,
+    "votes": 1159,
+    "kaggle_url": "https://www.kaggle.com/datasets/nicapotato/womens-ecommerce-clothing-reviews"
+  },
+  {
+    "name": "Twitter US Airline Sentiment",
+    "slug": "crowdflower/twitter-airline-sentiment",
+    "category": "General",
+    "size": 2678605,
+    "votes": 1158,
+    "kaggle_url": "https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment"
+  },
+  {
+    "name": "2015 Flight Delays and Cancellations",
+    "slug": "usdot/flight-delays",
+    "category": "General",
+    "size": 200067268,
+    "votes": 1155,
+    "kaggle_url": "https://www.kaggle.com/datasets/usdot/flight-delays"
+  },
+  {
+    "name": "World University Rankings",
+    "slug": "mylesoneill/world-university-rankings",
+    "category": "General",
+    "size": 1482192,
+    "votes": 1152,
+    "kaggle_url": "https://www.kaggle.com/datasets/mylesoneill/world-university-rankings"
+  },
+  {
+    "name": "Meta Kaggle",
+    "slug": "kaggle/meta-kaggle",
+    "category": "General",
+    "size": 10263217814,
+    "votes": 1151,
+    "kaggle_url": "https://www.kaggle.com/datasets/kaggle/meta-kaggle"
+  },
+  {
+    "name": "Stanford Dogs Dataset",
+    "slug": "jessicali9530/stanford-dogs-dataset",
+    "category": "General",
+    "size": 786955428,
+    "votes": 1141,
+    "kaggle_url": "https://www.kaggle.com/datasets/jessicali9530/stanford-dogs-dataset"
+  },
+  {
+    "name": "2022 Russia Ukraine War",
+    "slug": "piterfm/2022-ukraine-russian-war",
+    "category": "General",
+    "size": 51668,
+    "votes": 1131,
+    "kaggle_url": "https://www.kaggle.com/datasets/piterfm/2022-ukraine-russian-war"
+  },
+  {
+    "name": "Mobile Price Range",
+    "slug": "ybifoundation/mobile-price-range",
+    "category": "General",
+    "size": 48067,
+    "votes": 1121,
+    "kaggle_url": "https://www.kaggle.com/datasets/ybifoundation/mobile-price-range"
+  },
+  {
+    "name": "Breast Histopathology Images",
+    "slug": "paultimothymooney/breast-histopathology-images",
+    "category": "General",
+    "size": 3326820824,
+    "votes": 1120,
+    "kaggle_url": "https://www.kaggle.com/datasets/paultimothymooney/breast-histopathology-images"
+  },
+  {
+    "name": "S&P 500 stock data",
+    "slug": "camnugent/sandp500",
+    "category": "General",
+    "size": 20283917,
+    "votes": 1120,
+    "kaggle_url": "https://www.kaggle.com/datasets/camnugent/sandp500"
+  },
+  {
+    "name": "Diamonds",
+    "slug": "shivam2503/diamonds",
+    "category": "General",
+    "size": 750893,
+    "votes": 1119,
+    "kaggle_url": "https://www.kaggle.com/datasets/shivam2503/diamonds"
+  },
+  {
+    "name": "Hourly Energy Consumption",
+    "slug": "robikscube/hourly-energy-consumption",
+    "category": "General",
+    "size": 11979477,
+    "votes": 1119,
+    "kaggle_url": "https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption"
+  },
+  {
+    "name": "Retail Data Analytics",
+    "slug": "manjeetsingh/retaildataset",
+    "category": "General",
+    "size": 3258525,
+    "votes": 1110,
+    "kaggle_url": "https://www.kaggle.com/datasets/manjeetsingh/retaildataset"
+  },
+  {
+    "name": "Amazon Top 50 Bestselling Books 2009 - 2019",
+    "slug": "sootersaalu/amazon-top-50-bestselling-books-2009-2019",
+    "category": "General",
+    "size": 14857,
+    "votes": 1107,
+    "kaggle_url": "https://www.kaggle.com/datasets/sootersaalu/amazon-top-50-bestselling-books-2009-2019"
+  },
+  {
+    "name": "Medical Appointment No Shows",
+    "slug": "joniarroba/noshowappointments",
+    "category": "General",
+    "size": 2514014,
+    "votes": 1106,
+    "kaggle_url": "https://www.kaggle.com/datasets/joniarroba/noshowappointments"
+  },
+  {
+    "name": "PlantVillage Dataset",
+    "slug": "emmarex/plantdisease",
+    "category": "General",
+    "size": 689512690,
+    "votes": 1104,
+    "kaggle_url": "https://www.kaggle.com/datasets/emmarex/plantdisease"
+  },
+  {
     "name": "Video Game Sales with Ratings",
     "slug": "rush4ratio/video-game-sales-with-ratings",
     "category": "General",
     "size": 487609,
     "votes": 1100,
     "kaggle_url": "https://www.kaggle.com/datasets/rush4ratio/video-game-sales-with-ratings"
+  },
+  {
+    "name": "A Large Scale Fish Dataset",
+    "slug": "crowww/a-large-scale-fish-dataset",
+    "category": "General",
+    "size": 3482438117,
+    "votes": 1100,
+    "kaggle_url": "https://www.kaggle.com/datasets/crowww/a-large-scale-fish-dataset"
+  },
+  {
+    "name": "Superstore Dataset",
+    "slug": "vivek468/superstore-dataset-final",
+    "category": "General",
+    "size": 562846,
+    "votes": 1100,
+    "kaggle_url": "https://www.kaggle.com/datasets/vivek468/superstore-dataset-final"
   },
   {
     "name": "Data Science for Good: Kiva Crowdfunding",
@@ -324,8 +1284,16 @@
     "slug": "arshid/iris-flower-dataset",
     "category": "General",
     "size": 1010,
-    "votes": 1089,
+    "votes": 1092,
     "kaggle_url": "https://www.kaggle.com/datasets/arshid/iris-flower-dataset"
+  },
+  {
+    "name": "Amazon Reviews for Sentiment Analysis",
+    "slug": "bittlingmayer/amazonreviews",
+    "category": "General",
+    "size": 517080965,
+    "votes": 1086,
+    "kaggle_url": "https://www.kaggle.com/datasets/bittlingmayer/amazonreviews"
   },
   {
     "name": "2018 Kaggle Machine Learning & Data Science Survey",
@@ -336,12 +1304,28 @@
     "kaggle_url": "https://www.kaggle.com/datasets/kaggle/kaggle-survey-2018"
   },
   {
+    "name": "IPL Complete Dataset (2008-2024)",
+    "slug": "patrickb1912/ipl-complete-dataset-20082020",
+    "category": "General",
+    "size": 1910090,
+    "votes": 1059,
+    "kaggle_url": "https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020"
+  },
+  {
     "name": "Best Artworks of All Time",
     "slug": "ikarus777/best-artworks-of-all-time",
     "category": "General",
     "size": 2460161668,
-    "votes": 1051,
+    "votes": 1053,
     "kaggle_url": "https://www.kaggle.com/datasets/ikarus777/best-artworks-of-all-time"
+  },
+  {
+    "name": "FIFA World Cup",
+    "slug": "abecklas/fifa-world-cup",
+    "category": "General",
+    "size": 357710,
+    "votes": 1050,
+    "kaggle_url": "https://www.kaggle.com/datasets/abecklas/fifa-world-cup"
   },
   {
     "name": "News Headlines Dataset For Sarcasm Detection",
@@ -352,12 +1336,92 @@
     "kaggle_url": "https://www.kaggle.com/datasets/rmisra/news-headlines-dataset-for-sarcasm-detection"
   },
   {
+    "name": "Brain MRI segmentation",
+    "slug": "mateuszbuda/lgg-mri-segmentation",
+    "category": "General",
+    "size": 748584920,
+    "votes": 1036,
+    "kaggle_url": "https://www.kaggle.com/datasets/mateuszbuda/lgg-mri-segmentation"
+  },
+  {
+    "name": "Solar Power Generation Data",
+    "slug": "anikannal/solar-power-generation-data",
+    "category": "General",
+    "size": 1988756,
+    "votes": 1030,
+    "kaggle_url": "https://www.kaggle.com/datasets/anikannal/solar-power-generation-data"
+  },
+  {
     "name": "Default of Credit Card Clients Dataset",
     "slug": "uciml/default-of-credit-card-clients-dataset",
     "category": "General",
     "size": 1025318,
     "votes": 1029,
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset"
+  },
+  {
+    "name": "Airline Passenger Satisfaction",
+    "slug": "teejmahal20/airline-passenger-satisfaction",
+    "category": "General",
+    "size": 2841945,
+    "votes": 1027,
+    "kaggle_url": "https://www.kaggle.com/datasets/teejmahal20/airline-passenger-satisfaction"
+  },
+  {
+    "name": "Campus Recruitment",
+    "slug": "benroshan/factors-affecting-campus-placement",
+    "category": "General",
+    "size": 4615,
+    "votes": 1024,
+    "kaggle_url": "https://www.kaggle.com/datasets/benroshan/factors-affecting-campus-placement"
+  },
+  {
+    "name": "ECG Heartbeat Categorization Dataset",
+    "slug": "shayanfazeli/heartbeat",
+    "category": "General",
+    "size": 103633768,
+    "votes": 1021,
+    "kaggle_url": "https://www.kaggle.com/datasets/shayanfazeli/heartbeat"
+  },
+  {
+    "name": "Indian Startup Funding",
+    "slug": "sudalairajkumar/indian-startup-funding",
+    "category": "General",
+    "size": 122812,
+    "votes": 1019,
+    "kaggle_url": "https://www.kaggle.com/datasets/sudalairajkumar/indian-startup-funding"
+  },
+  {
+    "name": "Superstore Sales Dataset",
+    "slug": "rohitsahoo/sales-forecasting",
+    "category": "General",
+    "size": 491942,
+    "votes": 981,
+    "kaggle_url": "https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting"
+  },
+  {
+    "name": "Top 50 Spotify Songs - 2019",
+    "slug": "leonardopena/top50spotify2019",
+    "category": "General",
+    "size": 2365,
+    "votes": 976,
+    "kaggle_url": "https://www.kaggle.com/datasets/leonardopena/top50spotify2019"
+  },
+  {
+    "name": "Ramen Ratings",
+    "slug": "residentmario/ramen-ratings",
+    "category": "General",
+    "size": 40762,
+    "votes": 976,
+    "kaggle_url": "https://www.kaggle.com/datasets/residentmario/ramen-ratings"
+  },
+  {
+    "name": "100,000 UK Used Car Data set",
+    "slug": "adityadesai13/used-car-dataset-ford-and-mercedes",
+    "category": "General",
+    "size": 1152744,
+    "votes": 968,
+    "kaggle_url": "https://www.kaggle.com/datasets/adityadesai13/used-car-dataset-ford-and-mercedes"
   },
   {
     "name": "Indicators of Heart Disease (2022 UPDATE)",
@@ -380,16 +1444,72 @@
     "slug": "prasad22/healthcare-dataset",
     "category": "General",
     "size": 3054550,
-    "votes": 943,
+    "votes": 944,
     "kaggle_url": "https://www.kaggle.com/datasets/prasad22/healthcare-dataset"
+  },
+  {
+    "name": "SF Salaries",
+    "slug": "kaggle/sf-salaries",
+    "category": "General",
+    "size": 12036742,
+    "votes": 943,
+    "kaggle_url": "https://www.kaggle.com/datasets/kaggle/sf-salaries"
+  },
+  {
+    "name": "MNIST in CSV",
+    "slug": "oddrationale/mnist-in-csv",
+    "category": "General",
+    "size": 15970596,
+    "votes": 941,
+    "kaggle_url": "https://www.kaggle.com/datasets/oddrationale/mnist-in-csv"
+  },
+  {
+    "name": "Diabetes Dataset",
+    "slug": "mathchi/diabetes-data-set",
+    "category": "General",
+    "size": 9128,
+    "votes": 940,
+    "kaggle_url": "https://www.kaggle.com/datasets/mathchi/diabetes-data-set"
+  },
+  {
+    "name": "Titanic Dataset",
+    "slug": "yasserh/titanic-dataset",
+    "category": "General",
+    "size": 22564,
+    "votes": 940,
+    "kaggle_url": "https://www.kaggle.com/datasets/yasserh/titanic-dataset"
   },
   {
     "name": "GTZAN Dataset - Music Genre Classification",
     "slug": "andradaolteanu/gtzan-dataset-music-genre-classification",
     "category": "General",
     "size": 1301492495,
-    "votes": 932,
+    "votes": 933,
     "kaggle_url": "https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification"
+  },
+  {
+    "name": "Indian Premier League (Cricket)",
+    "slug": "manasgarg/ipl",
+    "category": "General",
+    "size": 1060442,
+    "votes": 933,
+    "kaggle_url": "https://www.kaggle.com/datasets/manasgarg/ipl"
+  },
+  {
+    "name": "Sign Language Digits Dataset",
+    "slug": "ardamavi/sign-language-digits-dataset",
+    "category": "General",
+    "size": 17623806,
+    "votes": 932,
+    "kaggle_url": "https://www.kaggle.com/datasets/ardamavi/sign-language-digits-dataset"
+  },
+  {
+    "name": "Cats-vs-Dogs",
+    "slug": "shaunthesheep/microsoft-catsvsdogs-dataset",
+    "category": "General",
+    "size": 825979578,
+    "votes": 928,
+    "kaggle_url": "https://www.kaggle.com/datasets/shaunthesheep/microsoft-catsvsdogs-dataset"
   },
   {
     "name": "Credit Card Approval Prediction",
@@ -400,28 +1520,68 @@
     "kaggle_url": "https://www.kaggle.com/datasets/rikdifos/credit-card-approval-prediction"
   },
   {
+    "name": "Game of Thrones",
+    "slug": "mylesoneill/game-of-thrones",
+    "category": "General",
+    "size": 67721,
+    "votes": 922,
+    "kaggle_url": "https://www.kaggle.com/datasets/mylesoneill/game-of-thrones"
+  },
+  {
     "name": "PlantVillage Dataset",
     "slug": "abdallahalidev/plantvillage-dataset",
     "category": "General",
     "size": 4371949460,
-    "votes": 914,
+    "votes": 919,
     "kaggle_url": "https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset"
+  },
+  {
+    "name": "UFC-Fight historical data from 1993 to 2021",
+    "slug": "rajeevw/ufcdata",
+    "category": "General",
+    "size": 3876811,
+    "votes": 917,
+    "kaggle_url": "https://www.kaggle.com/datasets/rajeevw/ufcdata"
+  },
+  {
+    "name": "Global YouTube Statistics 2023",
+    "slug": "nelgiriyewithana/global-youtube-statistics-2023",
+    "category": "General",
+    "size": 61533,
+    "votes": 911,
+    "kaggle_url": "https://www.kaggle.com/datasets/nelgiriyewithana/global-youtube-statistics-2023"
   },
   {
     "name": "NIFTY-50 Stock Market Data (2000 - 2021)",
     "slug": "rohanrao/nifty50-stock-market-data",
     "category": "General",
     "size": 19302363,
-    "votes": 908,
+    "votes": 909,
     "kaggle_url": "https://www.kaggle.com/datasets/rohanrao/nifty50-stock-market-data"
+  },
+  {
+    "name": "Blood Cell Images",
+    "slug": "paultimothymooney/blood-cells",
+    "category": "General",
+    "size": 113386997,
+    "votes": 907,
+    "kaggle_url": "https://www.kaggle.com/datasets/paultimothymooney/blood-cells"
   },
   {
     "name": "Diabetes Health Indicators Dataset",
     "slug": "alexteboul/diabetes-health-indicators-dataset",
     "category": "General",
     "size": 6324278,
-    "votes": 904,
+    "votes": 905,
     "kaggle_url": "https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset"
+  },
+  {
+    "name": "Cat Dataset",
+    "slug": "crawford/cat-dataset",
+    "category": "General",
+    "size": 4334050736,
+    "votes": 903,
+    "kaggle_url": "https://www.kaggle.com/datasets/crawford/cat-dataset"
   },
   {
     "name": "2017 Kaggle Machine Learning & Data Science Survey",
@@ -462,6 +1622,14 @@
     "size": 27829769,
     "votes": 867,
     "kaggle_url": "https://www.kaggle.com/datasets/rmisra/news-category-dataset"
+  },
+  {
+    "name": "Kepler Exoplanet Search Results",
+    "slug": "nasa/kepler-exoplanet-search-results",
+    "category": "General",
+    "size": 1215549,
+    "votes": 852,
+    "kaggle_url": "https://www.kaggle.com/datasets/nasa/kepler-exoplanet-search-results"
   },
   {
     "name": "Diabetes prediction dataset",
@@ -632,6 +1800,14 @@
     "kaggle_url": "https://www.kaggle.com/datasets/wkirgsn/electric-motor-temperature"
   },
   {
+    "name": "TeoMeWhy Loyalty System",
+    "slug": "teocalvo/teomewhy-loyalty-system",
+    "category": "General",
+    "size": 55855829,
+    "votes": 569,
+    "kaggle_url": "https://www.kaggle.com/datasets/teocalvo/teomewhy-loyalty-system"
+  },
+  {
     "name": "Respiratory Sound Database",
     "slug": "vbookshelf/respiratory-sound-database",
     "category": "General",
@@ -694,6 +1870,14 @@
     "size": 17049423,
     "votes": 510,
     "kaggle_url": "https://www.kaggle.com/datasets/datafiniti/consumer-reviews-of-amazon-products"
+  },
+  {
+    "name": "US Public Food Assistance 1 - WIC",
+    "slug": "jpmiller/publicassistance",
+    "category": "General",
+    "size": 304041,
+    "votes": 505,
+    "kaggle_url": "https://www.kaggle.com/datasets/jpmiller/publicassistance"
   },
   {
     "name": "Ships in Satellite Imagery",
@@ -792,11 +1976,2427 @@
     "kaggle_url": "https://www.kaggle.com/datasets/uciml/electric-power-consumption-data-set"
   },
   {
+    "name": "18,393 Pitchfork Reviews",
+    "slug": "nolanbconaway/pitchfork-data",
+    "category": "General",
+    "size": 34891456,
+    "votes": 452,
+    "kaggle_url": "https://www.kaggle.com/datasets/nolanbconaway/pitchfork-data"
+  },
+  {
     "name": "The Depression Dataset",
     "slug": "arashnic/the-depression-dataset",
     "category": "General",
     "size": 5223126,
     "votes": 451,
     "kaggle_url": "https://www.kaggle.com/datasets/arashnic/the-depression-dataset"
+  },
+  {
+    "name": "powerlifting-database",
+    "slug": "dansbecker/powerlifting-database",
+    "category": "General",
+    "size": 9277600,
+    "votes": 379,
+    "kaggle_url": "https://www.kaggle.com/datasets/dansbecker/powerlifting-database"
+  },
+  {
+    "name": "Things on Reddit",
+    "slug": "residentmario/things-on-reddit",
+    "category": "General",
+    "size": 16773230,
+    "votes": 317,
+    "kaggle_url": "https://www.kaggle.com/datasets/residentmario/things-on-reddit"
+  },
+  {
+    "name": "home data for ml course",
+    "slug": "dansbecker/home-data-for-ml-course",
+    "category": "General",
+    "size": 96211,
+    "votes": 310,
+    "kaggle_url": "https://www.kaggle.com/datasets/dansbecker/home-data-for-ml-course"
+  },
+  {
+    "name": "Amazon_Sales_Dataset",
+    "slug": "aliiihussain/amazon-sales-dataset",
+    "category": "General",
+    "size": 1297759,
+    "votes": 200,
+    "kaggle_url": "https://www.kaggle.com/datasets/aliiihussain/amazon-sales-dataset"
+  },
+  {
+    "name": "Student Exam Performance Dataset Analysis",
+    "slug": "grandmaster07/student-exam-performance-dataset-analysis",
+    "category": "General",
+    "size": 96178,
+    "votes": 184,
+    "kaggle_url": "https://www.kaggle.com/datasets/grandmaster07/student-exam-performance-dataset-analysis"
+  },
+  {
+    "name": "List of PyPI Packages",
+    "slug": "rtatman/list-of-pypi-packages",
+    "category": "General",
+    "size": 6420422,
+    "votes": 170,
+    "kaggle_url": "https://www.kaggle.com/datasets/rtatman/list-of-pypi-packages"
+  },
+  {
+    "name": "Chocolate Sales Dataset 2023 - 2024",
+    "slug": "ssssws/chocolate-sales-dataset-2023-2024",
+    "category": "General",
+    "size": 24420255,
+    "votes": 115,
+    "kaggle_url": "https://www.kaggle.com/datasets/ssssws/chocolate-sales-dataset-2023-2024"
+  },
+  {
+    "name": "TeoMeWhy Education Platform",
+    "slug": "teocalvo/teomewhy-education-platform",
+    "category": "General",
+    "size": 2793262,
+    "votes": 87,
+    "kaggle_url": "https://www.kaggle.com/datasets/teocalvo/teomewhy-education-platform"
+  },
+  {
+    "name": "Heart Disease Prediction Using Machine Learning",
+    "slug": "algozee/heart-decices",
+    "category": "General",
+    "size": 10070453,
+    "votes": 77,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/heart-decices"
+  },
+  {
+    "name": "Job Salary Prediction Dataset",
+    "slug": "nalisha/job-salary-prediction-dataset",
+    "category": "General",
+    "size": 3144815,
+    "votes": 73,
+    "kaggle_url": "https://www.kaggle.com/datasets/nalisha/job-salary-prediction-dataset"
+  },
+  {
+    "name": "Student Productivity & Behavior Dataset (20K)",
+    "slug": "algozee/student-productivity-and-behavior-dataset-20k",
+    "category": "General",
+    "size": 631991,
+    "votes": 71,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/student-productivity-and-behavior-dataset-20k"
+  },
+  {
+    "name": "CKD-NHANES 2021-2023: Staged Kidney Disease",
+    "slug": "alitaqishah/ckd-nhanes-2021-2023-staged-kidney-disease",
+    "category": "General",
+    "size": 381422,
+    "votes": 65,
+    "kaggle_url": "https://www.kaggle.com/datasets/alitaqishah/ckd-nhanes-2021-2023-staged-kidney-disease"
+  },
+  {
+    "name": "Global E-Commerce Sales & Customer Data",
+    "slug": "muhammadaammartufail/global-e-commerce-sales-and-customer-data",
+    "category": "General",
+    "size": 62340,
+    "votes": 64,
+    "kaggle_url": "https://www.kaggle.com/datasets/muhammadaammartufail/global-e-commerce-sales-and-customer-data"
+  },
+  {
+    "name": "SuperStore Sales Analytics",
+    "slug": "thuandao/superstore-sales-analytics",
+    "category": "General",
+    "size": 2283450,
+    "votes": 63,
+    "kaggle_url": "https://www.kaggle.com/datasets/thuandao/superstore-sales-analytics"
+  },
+  {
+    "name": "AI Jobs Market 2025-2026 | Salaries",
+    "slug": "alitaqishah/ai-jobs-market-2025-2026-salaries",
+    "category": "General",
+    "size": 62669,
+    "votes": 63,
+    "kaggle_url": "https://www.kaggle.com/datasets/alitaqishah/ai-jobs-market-2025-2026-salaries"
+  },
+  {
+    "name": "AI & Data Science Job Market Dataset (2020\u20132026)",
+    "slug": "shree0910/ai-and-data-science-job-market-dataset-20202026",
+    "category": "General",
+    "size": 188367,
+    "votes": 62,
+    "kaggle_url": "https://www.kaggle.com/datasets/shree0910/ai-and-data-science-job-market-dataset-20202026"
+  },
+  {
+    "name": "Starbucks Customer Ordering Patterns",
+    "slug": "likithagedipudi/starbucks-customer-ordering-patterns",
+    "category": "General",
+    "size": 2789356,
+    "votes": 57,
+    "kaggle_url": "https://www.kaggle.com/datasets/likithagedipudi/starbucks-customer-ordering-patterns"
+  },
+  {
+    "name": "Spotify Wrapped 2025 | Top Songs & Artists",
+    "slug": "alitaqishah/spotify-wrapped-2025-top-songs-and-artists",
+    "category": "General",
+    "size": 8564,
+    "votes": 54,
+    "kaggle_url": "https://www.kaggle.com/datasets/alitaqishah/spotify-wrapped-2025-top-songs-and-artists"
+  },
+  {
+    "name": "Amazon Sales Analysis- Cleaned Data",
+    "slug": "litonislam/amazon-sales-analysis-cleaned-data",
+    "category": "General",
+    "size": 1519934,
+    "votes": 54,
+    "kaggle_url": "https://www.kaggle.com/datasets/litonislam/amazon-sales-analysis-cleaned-data"
+  },
+  {
+    "name": "Student Productivity & Digital Distraction Dataset",
+    "slug": "sehaj1104/student-productivity-and-digital-distraction-dataset",
+    "category": "General",
+    "size": 631991,
+    "votes": 53,
+    "kaggle_url": "https://www.kaggle.com/datasets/sehaj1104/student-productivity-and-digital-distraction-dataset"
+  },
+  {
+    "name": "divvy-tripdata",
+    "slug": "raymondmutyaba/divvytripdata",
+    "category": "General",
+    "size": 192604160,
+    "votes": 52,
+    "kaggle_url": "https://www.kaggle.com/datasets/raymondmutyaba/divvytripdata"
+  },
+  {
+    "name": "Human Resource Data Set (The Company)",
+    "slug": "koluit/human-resource-data-set-the-company",
+    "category": "General",
+    "size": 401322,
+    "votes": 52,
+    "kaggle_url": "https://www.kaggle.com/datasets/koluit/human-resource-data-set-the-company"
+  },
+  {
+    "name": "\ud83d\udcc4 Student Dropout Prediction Dataset",
+    "slug": "meharshanali/student-dropout-prediction-dataset",
+    "category": "General",
+    "size": 260641,
+    "votes": 52,
+    "kaggle_url": "https://www.kaggle.com/datasets/meharshanali/student-dropout-prediction-dataset"
+  },
+  {
+    "name": "arXiv AI Research Papers Dataset",
+    "slug": "umerhaddii/arxiv-ai-research-papers-dataset",
+    "category": "General",
+    "size": 236821920,
+    "votes": 52,
+    "kaggle_url": "https://www.kaggle.com/datasets/umerhaddii/arxiv-ai-research-papers-dataset"
+  },
+  {
+    "name": "Coca-Cola (KO) Stock Prices 1980\u20132026",
+    "slug": "ibrahimshahrukh/coca-cola-ko-stock-prices-19802026",
+    "category": "General",
+    "size": 737221,
+    "votes": 52,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimshahrukh/coca-cola-ko-stock-prices-19802026"
+  },
+  {
+    "name": "Iran War Oil Shock 2026 | Brent & Gas Tracker",
+    "slug": "alitaqishah/iran-war-oil-shock-2026-brent-and-gas-tracker",
+    "category": "General",
+    "size": 5216,
+    "votes": 50,
+    "kaggle_url": "https://www.kaggle.com/datasets/alitaqishah/iran-war-oil-shock-2026-brent-and-gas-tracker"
+  },
+  {
+    "name": "Student Placement Prediction Dataset",
+    "slug": "suhanigupta04/student-placement-prediction-dataset",
+    "category": "General",
+    "size": 1873115,
+    "votes": 49,
+    "kaggle_url": "https://www.kaggle.com/datasets/suhanigupta04/student-placement-prediction-dataset"
+  },
+  {
+    "name": "E-Commerce Product Reviews - Dataset for ML",
+    "slug": "furkangozukara/turkish-product-reviews",
+    "category": "General",
+    "size": 580369522,
+    "votes": 48,
+    "kaggle_url": "https://www.kaggle.com/datasets/furkangozukara/turkish-product-reviews"
+  },
+  {
+    "name": "\ud83c\udf7f Netflix User Watching Behavior Dataset",
+    "slug": "rhythmghai/netflix-user-watching-behavior-dataset",
+    "category": "General",
+    "size": 1149386,
+    "votes": 46,
+    "kaggle_url": "https://www.kaggle.com/datasets/rhythmghai/netflix-user-watching-behavior-dataset"
+  },
+  {
+    "name": "Gold Price Dynamics",
+    "slug": "krupalpatel07/gold-price-dynamics",
+    "category": "General",
+    "size": 85982,
+    "votes": 46,
+    "kaggle_url": "https://www.kaggle.com/datasets/krupalpatel07/gold-price-dynamics"
+  },
+  {
+    "name": "US Domestic Airline Airfare Dataset 2008\u20132025",
+    "slug": "aliafzal9323/us-domestic-airline-airfare-dataset-20082025",
+    "category": "General",
+    "size": 2683781,
+    "votes": 46,
+    "kaggle_url": "https://www.kaggle.com/datasets/aliafzal9323/us-domestic-airline-airfare-dataset-20082025"
+  },
+  {
+    "name": "Urban Street Food Vendor Survival Dataset (India)",
+    "slug": "sinanshereef/urban-street-food-vendor-survival-dataset-india",
+    "category": "General",
+    "size": 740321,
+    "votes": 45,
+    "kaggle_url": "https://www.kaggle.com/datasets/sinanshereef/urban-street-food-vendor-survival-dataset-india"
+  },
+  {
+    "name": "\ud83e\ude78 Blood Cell Anomaly Detection 2025",
+    "slug": "alitaqishah/blood-cell-anomaly-detection-2025",
+    "category": "General",
+    "size": 389095,
+    "votes": 45,
+    "kaggle_url": "https://www.kaggle.com/datasets/alitaqishah/blood-cell-anomaly-detection-2025"
+  },
+  {
+    "name": "Financial Transaction Fraud Dataset",
+    "slug": "algozee/financial-transaction-fraud-dataset",
+    "category": "General",
+    "size": 2365539,
+    "votes": 45,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/financial-transaction-fraud-dataset"
+  },
+  {
+    "name": "Steam Games Dataset (SteamSpy API)",
+    "slug": "muhammadaqeelkabir/steam-games-dataset-steamspy-api",
+    "category": "General",
+    "size": 444796,
+    "votes": 44,
+    "kaggle_url": "https://www.kaggle.com/datasets/muhammadaqeelkabir/steam-games-dataset-steamspy-api"
+  },
+  {
+    "name": "Top 100 Cities by Population 2026",
+    "slug": "mafaqbhatti/top-100-cities-by-population-2026",
+    "category": "General",
+    "size": 2067,
+    "votes": 44,
+    "kaggle_url": "https://www.kaggle.com/datasets/mafaqbhatti/top-100-cities-by-population-2026"
+  },
+  {
+    "name": "2000+ Assets (Stock & FX) Historical Price",
+    "slug": "benjaminpo/sp500-spx-components-stock-price",
+    "category": "General",
+    "size": 434123783,
+    "votes": 43,
+    "kaggle_url": "https://www.kaggle.com/datasets/benjaminpo/sp500-spx-components-stock-price"
+  },
+  {
+    "name": "Sleep, Screen Time and Stress Analysis",
+    "slug": "jayjoshi37/sleep-screen-time-and-stress-analysis",
+    "category": "General",
+    "size": 310158,
+    "votes": 43,
+    "kaggle_url": "https://www.kaggle.com/datasets/jayjoshi37/sleep-screen-time-and-stress-analysis"
+  },
+  {
+    "name": "ICC Men's T20 World Cup 2026 - Complete Dataset",
+    "slug": "ibrahimqasimi/icc-mens-t20-world-cup-2026-complete-dataset",
+    "category": "General",
+    "size": 11241,
+    "votes": 43,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/icc-mens-t20-world-cup-2026-complete-dataset"
+  },
+  {
+    "name": "Online Learning Student Dropout Dataset",
+    "slug": "mohamedasak/online-learning-student-dropout-dataset",
+    "category": "General",
+    "size": 95374,
+    "votes": 42,
+    "kaggle_url": "https://www.kaggle.com/datasets/mohamedasak/online-learning-student-dropout-dataset"
+  },
+  {
+    "name": "Tech Layoffs 2026 | AI Job Cuts Tracker",
+    "slug": "alitaqishah/tech-layoffs-2026-ai-job-cuts-tracker",
+    "category": "General",
+    "size": 3477,
+    "votes": 41,
+    "kaggle_url": "https://www.kaggle.com/datasets/alitaqishah/tech-layoffs-2026-ai-job-cuts-tracker"
+  },
+  {
+    "name": "Caterpillar Vs Volvo Group Stock Data 2026",
+    "slug": "umerhaddii/caterpillar-vs-volvo-group-stock-data-2026",
+    "category": "General",
+    "size": 499420,
+    "votes": 41,
+    "kaggle_url": "https://www.kaggle.com/datasets/umerhaddii/caterpillar-vs-volvo-group-stock-data-2026"
+  },
+  {
+    "name": "Smartphone Usage and Addiction Analysis Dataset",
+    "slug": "algozee/smartphone-usage-and-addiction-analysis-dataset",
+    "category": "General",
+    "size": 182295,
+    "votes": 40,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/smartphone-usage-and-addiction-analysis-dataset"
+  },
+  {
+    "name": "NVIDIA Stock Data (1999\u20132026) | The AI Mega Stock",
+    "slug": "alitaqishah/nvidia-stock-data-19992026-the-ai-mega-stock",
+    "category": "General",
+    "size": 241455,
+    "votes": 40,
+    "kaggle_url": "https://www.kaggle.com/datasets/alitaqishah/nvidia-stock-data-19992026-the-ai-mega-stock"
+  },
+  {
+    "name": "Porsche AG Historical Stock Prices (2022-2026)",
+    "slug": "sanaijlalshahrukh/porsche-ag-historical-stock-prices-2022-2026",
+    "category": "General",
+    "size": 29012,
+    "votes": 40,
+    "kaggle_url": "https://www.kaggle.com/datasets/sanaijlalshahrukh/porsche-ag-historical-stock-prices-2022-2026"
+  },
+  {
+    "name": "Adidas Global Catalogue 2026 (10 countries)",
+    "slug": "bsthere/adidas-global-catalogue-2026",
+    "category": "General",
+    "size": 1718834,
+    "votes": 39,
+    "kaggle_url": "https://www.kaggle.com/datasets/bsthere/adidas-global-catalogue-2026"
+  },
+  {
+    "name": "Netflix Content Analysis",
+    "slug": "algozee/netflix-content-analysis",
+    "category": "General",
+    "size": 1400865,
+    "votes": 39,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/netflix-content-analysis"
+  },
+  {
+    "name": "Global Minimum Wage Data \u2013 170+ Countries",
+    "slug": "mafaqbhatti/global-minimum-wage-data-170-countries",
+    "category": "General",
+    "size": 4193,
+    "votes": 39,
+    "kaggle_url": "https://www.kaggle.com/datasets/mafaqbhatti/global-minimum-wage-data-170-countries"
+  },
+  {
+    "name": "SMH VanEck Semiconductor Daily ETF (2000-2026)",
+    "slug": "aliafzal9323/smh-vaneck-semiconductor-daily-etf-2000-2026",
+    "category": "General",
+    "size": 119288,
+    "votes": 39,
+    "kaggle_url": "https://www.kaggle.com/datasets/aliafzal9323/smh-vaneck-semiconductor-daily-etf-2000-2026"
+  },
+  {
+    "name": "Uber SQL database",
+    "slug": "rockyt07/uber-sql-database",
+    "category": "General",
+    "size": 3203171,
+    "votes": 37,
+    "kaggle_url": "https://www.kaggle.com/datasets/rockyt07/uber-sql-database"
+  },
+  {
+    "name": "MSFT Stock Data 1986\u20132026",
+    "slug": "omarshahrukh/msft-stock-data-19862026",
+    "category": "General",
+    "size": 622541,
+    "votes": 37,
+    "kaggle_url": "https://www.kaggle.com/datasets/omarshahrukh/msft-stock-data-19862026"
+  },
+  {
+    "name": "Bank Transactions Dataset for Fraud Detection",
+    "slug": "thuandao/bank-transactions-dataset-for-fraud-detection",
+    "category": "General",
+    "size": 1602954,
+    "votes": 37,
+    "kaggle_url": "https://www.kaggle.com/datasets/thuandao/bank-transactions-dataset-for-fraud-detection"
+  },
+  {
+    "name": "NVIDIA Financial & Stock Dataset (1999\u20132026)",
+    "slug": "anadiskt/nvidia-financial-and-stock-dataset-19992026",
+    "category": "General",
+    "size": 883500,
+    "votes": 37,
+    "kaggle_url": "https://www.kaggle.com/datasets/anadiskt/nvidia-financial-and-stock-dataset-19992026"
+  },
+  {
+    "name": "US Corn Production by State (2000\u20132025)",
+    "slug": "ibrahimqasimi/us-corn-production-by-state-20002025",
+    "category": "General",
+    "size": 65167,
+    "votes": 37,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/us-corn-production-by-state-20002025"
+  },
+  {
+    "name": "Traffic Violation Detection Dataset",
+    "slug": "guisahanes/traffic-violation-detection-dataset",
+    "category": "General",
+    "size": 192110560,
+    "votes": 37,
+    "kaggle_url": "https://www.kaggle.com/datasets/guisahanes/traffic-violation-detection-dataset"
+  },
+  {
+    "name": "\ud83c\udfae Video Game Sales & Industry Data (1980 - 2024)",
+    "slug": "bhushandivekar/video-game-sales-and-industry-data-1980-2024",
+    "category": "General",
+    "size": 2437021,
+    "votes": 36,
+    "kaggle_url": "https://www.kaggle.com/datasets/bhushandivekar/video-game-sales-and-industry-data-1980-2024"
+  },
+  {
+    "name": "Spotify User Behavior And Pattern",
+    "slug": "sahilislam007/spotify-user-behavior-and-pattern",
+    "category": "General",
+    "size": 1045077,
+    "votes": 36,
+    "kaggle_url": "https://www.kaggle.com/datasets/sahilislam007/spotify-user-behavior-and-pattern"
+  },
+  {
+    "name": "College Students Habits & Performance",
+    "slug": "sharmajicoder/college-students-habits-and-performance",
+    "category": "General",
+    "size": 151684222,
+    "votes": 36,
+    "kaggle_url": "https://www.kaggle.com/datasets/sharmajicoder/college-students-habits-and-performance"
+  },
+  {
+    "name": "global-employment-unemployment-rates-1991-2025",
+    "slug": "lucalullo/global-employment-unemployment-rates-1991-2025",
+    "category": "General",
+    "size": 737046,
+    "votes": 35,
+    "kaggle_url": "https://www.kaggle.com/datasets/lucalullo/global-employment-unemployment-rates-1991-2025"
+  },
+  {
+    "name": "Student Mental Health and Burnout Dataset",
+    "slug": "sehaj1104/student-mental-health-and-burnout-dataset",
+    "category": "General",
+    "size": 3395059,
+    "votes": 35,
+    "kaggle_url": "https://www.kaggle.com/datasets/sehaj1104/student-mental-health-and-burnout-dataset"
+  },
+  {
+    "name": "World University Rankings 2026 | QS & THE & ARWU",
+    "slug": "alitaqishah/world-university-rankings-2026-qs-and-the-and-arwu",
+    "category": "General",
+    "size": 3679,
+    "votes": 35,
+    "kaggle_url": "https://www.kaggle.com/datasets/alitaqishah/world-university-rankings-2026-qs-and-the-and-arwu"
+  },
+  {
+    "name": "Comic Books Dataset (10,000 entries)",
+    "slug": "rudrakumargupta/comic-books-dataset-10000-entries",
+    "category": "General",
+    "size": 432800,
+    "votes": 35,
+    "kaggle_url": "https://www.kaggle.com/datasets/rudrakumargupta/comic-books-dataset-10000-entries"
+  },
+  {
+    "name": "Nykaa Marketing Campaign Performance Dataset",
+    "slug": "nalisha/nykaa-marketing-campaign-performance-dataset",
+    "category": "General",
+    "size": 2036108,
+    "votes": 35,
+    "kaggle_url": "https://www.kaggle.com/datasets/nalisha/nykaa-marketing-campaign-performance-dataset"
+  },
+  {
+    "name": "Hourly Crypto Market Data",
+    "slug": "adrianjuliusaluoch/hourly-crypto-stocks-market-data",
+    "category": "General",
+    "size": 2289902,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/adrianjuliusaluoch/hourly-crypto-stocks-market-data"
+  },
+  {
+    "name": "Indiana Real Estate Data 2026",
+    "slug": "kanchana1990/indiana-real-estate-data-2026",
+    "category": "General",
+    "size": 4077696,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/indiana-real-estate-data-2026"
+  },
+  {
+    "name": "Global Petrol Prices \u2014 Impact of 2026 US-Iran War",
+    "slug": "zkskhurram/global-petrol-prices-impact-of-2026-us-iran-war",
+    "category": "General",
+    "size": 8233,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/zkskhurram/global-petrol-prices-impact-of-2026-us-iran-war"
+  },
+  {
+    "name": "Global Clinical Trial Intelligence 2024\u20132026",
+    "slug": "kanchana1990/global-clinical-trial-intelligence-20242026",
+    "category": "General",
+    "size": 1971857,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/global-clinical-trial-intelligence-20242026"
+  },
+  {
+    "name": "NOAA Global Tsunami Events Database",
+    "slug": "ibrahimqasimi/noaa-global-tsunami-events-database",
+    "category": "General",
+    "size": 104782,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/noaa-global-tsunami-events-database"
+  },
+  {
+    "name": "Weather dataset",
+    "slug": "syedaeman2212/weather-dataset",
+    "category": "General",
+    "size": 61064,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/syedaeman2212/weather-dataset"
+  },
+  {
+    "name": "Brain Tumor Risk & Treatment Dataset",
+    "slug": "algozee/brain-tumor-risk-and-treatment-dataset",
+    "category": "General",
+    "size": 6924,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/brain-tumor-risk-and-treatment-dataset"
+  },
+  {
+    "name": "Global Life Expectancy Dataset",
+    "slug": "mafaqbhatti/life-expectancy-by-country-dataset",
+    "category": "General",
+    "size": 4231,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/mafaqbhatti/life-expectancy-by-country-dataset"
+  },
+  {
+    "name": "Hospital Patient Readmission Dataset",
+    "slug": "mohamedasak/hospital-patient-readmission-dataset",
+    "category": "General",
+    "size": 130924,
+    "votes": 34,
+    "kaggle_url": "https://www.kaggle.com/datasets/mohamedasak/hospital-patient-readmission-dataset"
+  },
+  {
+    "name": "Global Fuel Price Trends (1970\u20132026)",
+    "slug": "minahilfatima12328/global-fuel-price-trends-19702026",
+    "category": "General",
+    "size": 4527,
+    "votes": 33,
+    "kaggle_url": "https://www.kaggle.com/datasets/minahilfatima12328/global-fuel-price-trends-19702026"
+  },
+  {
+    "name": "\u2615 Global Coffee Sales vs Weather & Dynamic Pricing",
+    "slug": "moezalikhan/global-coffee-shop-sales-dataset",
+    "category": "General",
+    "size": 593371,
+    "votes": 33,
+    "kaggle_url": "https://www.kaggle.com/datasets/moezalikhan/global-coffee-shop-sales-dataset"
+  },
+  {
+    "name": "E-Commerce Marketing & Sales Revenue Prediction",
+    "slug": "amineipad/e-commerce-marketing-and-sales-revenue-prediction",
+    "category": "General",
+    "size": 1051226,
+    "votes": 33,
+    "kaggle_url": "https://www.kaggle.com/datasets/amineipad/e-commerce-marketing-and-sales-revenue-prediction"
+  },
+  {
+    "name": "WDC Western Digital Daily Stock Data (1978-2026)",
+    "slug": "aliafzal9323/wdc-western-digital-daily-stock-data-1978-2026",
+    "category": "General",
+    "size": 188766,
+    "votes": 33,
+    "kaggle_url": "https://www.kaggle.com/datasets/aliafzal9323/wdc-western-digital-daily-stock-data-1978-2026"
+  },
+  {
+    "name": "New Hampshire Real Estate Data 2026",
+    "slug": "kanchana1990/new-hampshire-real-estate-data-2026",
+    "category": "General",
+    "size": 1806227,
+    "votes": 33,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/new-hampshire-real-estate-data-2026"
+  },
+  {
+    "name": "\ud83e\udde0Employee Mental Health & Burnout Dataset",
+    "slug": "suhanigupta04/employee-mental-health-and-burnout-dataset",
+    "category": "General",
+    "size": 4143629,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/suhanigupta04/employee-mental-health-and-burnout-dataset"
+  },
+  {
+    "name": "\ud83c\udf0a\ud83e\udde0 Refined Aquaculture Water Suitability Signals",
+    "slug": "sandhyapalaniappan/refined-aquaculture-water-suitability-signals",
+    "category": "General",
+    "size": 176023,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/sandhyapalaniappan/refined-aquaculture-water-suitability-signals"
+  },
+  {
+    "name": "Marketing_Sales_Dataset",
+    "slug": "abdelfattahibrahim/marketing-sales-dataset",
+    "category": "General",
+    "size": 10860081,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/abdelfattahibrahim/marketing-sales-dataset"
+  },
+  {
+    "name": "UNESCO World Heritage Sites",
+    "slug": "ibrahimqasimi/unesco-world-heritage-sites",
+    "category": "General",
+    "size": 5799440,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/unesco-world-heritage-sites"
+  },
+  {
+    "name": "Volume of goods transported by sea",
+    "slug": "fareselgohary003/volume-of-goods-transported-by-sea",
+    "category": "General",
+    "size": 31934,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/fareselgohary003/volume-of-goods-transported-by-sea"
+  },
+  {
+    "name": "Smartphone Usage & Addiction Prediction",
+    "slug": "jayjoshi37/smartphone-usage-and-addiction-prediction",
+    "category": "General",
+    "size": 182295,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/jayjoshi37/smartphone-usage-and-addiction-prediction"
+  },
+  {
+    "name": "User Listen Time: Music Streaming History",
+    "slug": "thedatasetengineer/user-listen-time-music-streaming-history",
+    "category": "General",
+    "size": 10499,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/thedatasetengineer/user-listen-time-music-streaming-history"
+  },
+  {
+    "name": "Greenhouse Crop Yields (IoT & AgriTech)",
+    "slug": "moezalikhan/greenhouse-crop-yields-dataset",
+    "category": "General",
+    "size": 378330,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/moezalikhan/greenhouse-crop-yields-dataset"
+  },
+  {
+    "name": "\ud83e\udec1 Lung Cancer Clinical Dataset (2015\u20132025)",
+    "slug": "zkskhurram/lung-cancer-clinical-dataset-20152025",
+    "category": "General",
+    "size": 56530,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/zkskhurram/lung-cancer-clinical-dataset-20152025"
+  },
+  {
+    "name": "\ud83d\udcca US Inflation & Unemployment Dataset (2018\u20132026)",
+    "slug": "abidhussai512/us-inflation-and-unemployment-dataset-20182026",
+    "category": "General",
+    "size": 6512,
+    "votes": 32,
+    "kaggle_url": "https://www.kaggle.com/datasets/abidhussai512/us-inflation-and-unemployment-dataset-20182026"
+  },
+  {
+    "name": "Iran\u2013US Tensions & Oil Markets (2000\u20132026)",
+    "slug": "algozee/iranus-tensions-and-oil-markets-20002026",
+    "category": "General",
+    "size": 1119,
+    "votes": 31,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/iranus-tensions-and-oil-markets-20002026"
+  },
+  {
+    "name": "100K GitHub Issues Labeled By Type",
+    "slug": "mirzayasirabdullah07/100k-github-issues-labeled-by-type",
+    "category": "General",
+    "size": 12354900,
+    "votes": 31,
+    "kaggle_url": "https://www.kaggle.com/datasets/mirzayasirabdullah07/100k-github-issues-labeled-by-type"
+  },
+  {
+    "name": "AI and Human Text Dataset",
+    "slug": "hasanyiitakbulut/ai-and-human-text-dataset",
+    "category": "General",
+    "size": 2488505,
+    "votes": 31,
+    "kaggle_url": "https://www.kaggle.com/datasets/hasanyiitakbulut/ai-and-human-text-dataset"
+  },
+  {
+    "name": "PSI Invesco Semiconductors ETF Daily (2005-2026)",
+    "slug": "aliafzal9323/psi-invesco-semiconductors-etf-daily-2005-2026",
+    "category": "General",
+    "size": 80997,
+    "votes": 31,
+    "kaggle_url": "https://www.kaggle.com/datasets/aliafzal9323/psi-invesco-semiconductors-etf-daily-2005-2026"
+  },
+  {
+    "name": "Ronaldo CR7 All Goals GOAT",
+    "slug": "sigmaborov/ronaldo-cr7-all-goals-goat",
+    "category": "General",
+    "size": 17094,
+    "votes": 31,
+    "kaggle_url": "https://www.kaggle.com/datasets/sigmaborov/ronaldo-cr7-all-goals-goat"
+  },
+  {
+    "name": "Lok Sabha Questions - Indian Parliament Questions",
+    "slug": "sammitjain/lok-sabha-questions",
+    "category": "General",
+    "size": 57580182,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/sammitjain/lok-sabha-questions"
+  },
+  {
+    "name": "Spotify Global Hits and Artist Analytics",
+    "slug": "emanfatima2/spotify-global-hits-and-artist-analytics",
+    "category": "General",
+    "size": 8564,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/emanfatima2/spotify-global-hits-and-artist-analytics"
+  },
+  {
+    "name": "Central Bank Rates Intelligence 1945\u20132026",
+    "slug": "kanchana1990/central-bank-rates-intelligence-19452026",
+    "category": "General",
+    "size": 625247,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/central-bank-rates-intelligence-19452026"
+  },
+  {
+    "name": "Connecticut Real Estate Data 2026",
+    "slug": "kanchana1990/connecticut-real-estate-data-2026",
+    "category": "General",
+    "size": 2840349,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/connecticut-real-estate-data-2026"
+  },
+  {
+    "name": "UFC Dataset (1994 - 2026)",
+    "slug": "jossilva3110/ufc-dataset-1994-2026",
+    "category": "General",
+    "size": 732321,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/jossilva3110/ufc-dataset-1994-2026"
+  },
+  {
+    "name": "global-suicide-rates-by-country-2000-2021",
+    "slug": "lucalullo/global-suicide-rates-by-country-2000-2021",
+    "category": "General",
+    "size": 179429,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/lucalullo/global-suicide-rates-by-country-2000-2021"
+  },
+  {
+    "name": "Global AI Adoption & Workforce Impact Dataset",
+    "slug": "mohankrishnathalla/global-ai-adoption-and-workforce-impact-dataset",
+    "category": "General",
+    "size": 9803408,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/mohankrishnathalla/global-ai-adoption-and-workforce-impact-dataset"
+  },
+  {
+    "name": "\u2708\ufe0f Global Civil Aviation Disruption2026 IranUS War",
+    "slug": "zkskhurram/global-civil-aviation-disruption2026-iranus-war",
+    "category": "General",
+    "size": 33595,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/zkskhurram/global-civil-aviation-disruption2026-iranus-war"
+  },
+  {
+    "name": "World Bank Commodity Price Intelligence 1960\u20132026",
+    "slug": "kanchana1990/world-bank-commodity-price-intelligence-19602026",
+    "category": "General",
+    "size": 2231883,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/world-bank-commodity-price-intelligence-19602026"
+  },
+  {
+    "name": "Video Games Sales (from Zenodo)",
+    "slug": "abhishekgupta56447/video-games-sales-from-zenodo",
+    "category": "General",
+    "size": 390286,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/abhishekgupta56447/video-games-sales-from-zenodo"
+  },
+  {
+    "name": "Top 100 Universities in the world",
+    "slug": "syedaeman2212/top-100-universities",
+    "category": "General",
+    "size": 2864,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/syedaeman2212/top-100-universities"
+  },
+  {
+    "name": "Global Fuel Prices Analysis & 2026 Forecasting",
+    "slug": "abdulmaliklodhra/global-fuel-prices-analysis-and-2026-forecasting",
+    "category": "General",
+    "size": 4527,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/abdulmaliklodhra/global-fuel-prices-analysis-and-2026-forecasting"
+  },
+  {
+    "name": "Steam Games Dataset 2025",
+    "slug": "abhishekgupta56447/steam-games-dataset-2025",
+    "category": "General",
+    "size": 323126121,
+    "votes": 30,
+    "kaggle_url": "https://www.kaggle.com/datasets/abhishekgupta56447/steam-games-dataset-2025"
+  },
+  {
+    "name": " GOOGLE Stock Financial News: 2000\u2013Today",
+    "slug": "emrekaany/google-googl-financial-news-from-2000-to-today",
+    "category": "General",
+    "size": 38888,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/emrekaany/google-googl-financial-news-from-2000-to-today"
+  },
+  {
+    "name": "Global Job Markets: Trends & Projections",
+    "slug": "algozee/global123445",
+    "category": "General",
+    "size": 737046,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/global123445"
+  },
+  {
+    "name": "Employee Salary Prediction Dataset",
+    "slug": "algozee/employee-salary-prediction-dataset",
+    "category": "General",
+    "size": 3144815,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/employee-salary-prediction-dataset"
+  },
+  {
+    "name": "Heart Disease Prediction Using Machine Learning",
+    "slug": "aminasalamt/heart-disease-prediction-using-machine-learning",
+    "category": "General",
+    "size": 2916157,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/aminasalamt/heart-disease-prediction-using-machine-learning"
+  },
+  {
+    "name": "Hacker News: Tech Trend Velocity & NLP",
+    "slug": "kanchana1990/hacker-news-tech-trend-velocity-and-nlp",
+    "category": "General",
+    "size": 397473,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/hacker-news-tech-trend-velocity-and-nlp"
+  },
+  {
+    "name": "Wisconsin Real Estate Data 2026",
+    "slug": "kanchana1990/wisconsin-real-estate-data-2026",
+    "category": "General",
+    "size": 3067832,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/wisconsin-real-estate-data-2026"
+  },
+  {
+    "name": "SNDK Sandisk Corporation Daily Stock (2025-2026)",
+    "slug": "aliafzal9323/sndk-sandisk-corporation-daily-stock-2025-2026",
+    "category": "General",
+    "size": 4632,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/aliafzal9323/sndk-sandisk-corporation-daily-stock-2025-2026"
+  },
+  {
+    "name": "Mall Customer Segmentation Dataset",
+    "slug": "hosseinbadrnezhad/mall-customer-segmentation-dataset",
+    "category": "General",
+    "size": 7499,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/hosseinbadrnezhad/mall-customer-segmentation-dataset"
+  },
+  {
+    "name": "Global War & Battle Deaths Dataset (1946\u20132025)",
+    "slug": "abidhussai512/global-war-and-battle-deaths-dataset-19462025",
+    "category": "General",
+    "size": 38657,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/abidhussai512/global-war-and-battle-deaths-dataset-19462025"
+  },
+  {
+    "name": "US 119th Congress Bill Intelligence 2025\u20132026",
+    "slug": "kanchana1990/us-119th-congress-bill-intelligence-20252026",
+    "category": "General",
+    "size": 704728,
+    "votes": 29,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/us-119th-congress-bill-intelligence-20252026"
+  },
+  {
+    "name": "CDnet 2014",
+    "slug": "vafaeii/cdnet-2014-change-detection-benchmark-dataset",
+    "category": "General",
+    "size": 3918158680,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/vafaeii/cdnet-2014-change-detection-benchmark-dataset"
+  },
+  {
+    "name": "Student Social Media & Brain Rot Dataset",
+    "slug": "nitikachandel95/student-social-media-impact-dataset",
+    "category": "General",
+    "size": 142220499,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/nitikachandel95/student-social-media-impact-dataset"
+  },
+  {
+    "name": "Kentucky Real Estate Data 2026",
+    "slug": "kanchana1990/kentucky-real-estate-data-2026",
+    "category": "General",
+    "size": 2476861,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/kentucky-real-estate-data-2026"
+  },
+  {
+    "name": "EV Charging & Grid Optimization Data",
+    "slug": "mjawad17/ev-charging-and-grid-optimization-data",
+    "category": "General",
+    "size": 651721,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/mjawad17/ev-charging-and-grid-optimization-data"
+  },
+  {
+    "name": "Student Mental Health and Burnout",
+    "slug": "sharmajicoder/student-mental-health-and-burnout",
+    "category": "General",
+    "size": 137596875,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/sharmajicoder/student-mental-health-and-burnout"
+  },
+  {
+    "name": "Ferrari Stock Data 2015-2026",
+    "slug": "alehcleal/ferrari-stock-data-2015-2026",
+    "category": "General",
+    "size": 99595,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/alehcleal/ferrari-stock-data-2015-2026"
+  },
+  {
+    "name": "Software Developer Salary Prediction Dataset",
+    "slug": "nudratabbas/software-developer-salary-prediction-dataset",
+    "category": "General",
+    "size": 630932,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/nudratabbas/software-developer-salary-prediction-dataset"
+  },
+  {
+    "name": "\ud83d\udcbc Resume Screening Dataset (200K Candidates)",
+    "slug": "rhythmghai/resume-screening-dataset-200k-candidates",
+    "category": "General",
+    "size": 3750840,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/rhythmghai/resume-screening-dataset-200k-candidates"
+  },
+  {
+    "name": "Historical Global Population Data",
+    "slug": "algozee/historical-global-population-data",
+    "category": "General",
+    "size": 113297,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/historical-global-population-data"
+  },
+  {
+    "name": "BIS Global Debt Securities Intelligence 1962\u20132025",
+    "slug": "kanchana1990/bis-global-debt-securities-intelligence-19622025",
+    "category": "General",
+    "size": 28925723,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/bis-global-debt-securities-intelligence-19622025"
+  },
+  {
+    "name": "Tech Jobs, Salaries, and Skills Dataset",
+    "slug": "mjawad17/tech-jobs-salaries-and-skills-dataset",
+    "category": "General",
+    "size": 8829,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/mjawad17/tech-jobs-salaries-and-skills-dataset"
+  },
+  {
+    "name": "Movie vs Emotional Attachment Survey",
+    "slug": "andrewdevila/movie-vs-emotional-attachment-survey",
+    "category": "General",
+    "size": 233858,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/andrewdevila/movie-vs-emotional-attachment-survey"
+  },
+  {
+    "name": "Global Oil Prices & Geopolitical Events(2010-2026)",
+    "slug": "kavyadhyani/global-oil-prices-and-geopolitical-events",
+    "category": "General",
+    "size": 409062,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/kavyadhyani/global-oil-prices-and-geopolitical-events"
+  },
+  {
+    "name": "SQL Practice Dataset 1 (Easy) + Queries",
+    "slug": "nudratabbas/sql-practice-dataset-1-easy-queries",
+    "category": "General",
+    "size": 51567,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/nudratabbas/sql-practice-dataset-1-easy-queries"
+  },
+  {
+    "name": "Startup Funding and Outcome Dataset",
+    "slug": "dhrubangtalukdar/startup-funding-and-outcome-dataset",
+    "category": "General",
+    "size": 3968395,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/dhrubangtalukdar/startup-funding-and-outcome-dataset"
+  },
+  {
+    "name": "FIFA World Cup",
+    "slug": "samyakrajbayar/fifa-world-cup",
+    "category": "General",
+    "size": 5208,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/samyakrajbayar/fifa-world-cup"
+  },
+  {
+    "name": "Global Volcano Eruption Intelligence",
+    "slug": "kanchana1990/global-volcano-eruption-intelligence",
+    "category": "General",
+    "size": 64217,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/global-volcano-eruption-intelligence"
+  },
+  {
+    "name": "Python OSV Vulnerabilities & CVSS Features",
+    "slug": "kanchana1990/open-source-cyber-debt-the-contagion-graph",
+    "category": "General",
+    "size": 2703977,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/open-source-cyber-debt-the-contagion-graph"
+  },
+  {
+    "name": "The Movie Database (TMDB) Comprehensive Dataset",
+    "slug": "rishabhkumar2003/the-movie-database-tmdb-comprehensive-dataset",
+    "category": "General",
+    "size": 15358869,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/rishabhkumar2003/the-movie-database-tmdb-comprehensive-dataset"
+  },
+  {
+    "name": "Food Delivery Dataset",
+    "slug": "zkyfauzi/food-delivery-dataset",
+    "category": "General",
+    "size": 213159,
+    "votes": 28,
+    "kaggle_url": "https://www.kaggle.com/datasets/zkyfauzi/food-delivery-dataset"
+  },
+  {
+    "name": "Peer-to-Peer Boliviano (BOB) Exchange Data",
+    "slug": "andreschirinos/p2p-bob-exchange",
+    "category": "General",
+    "size": 37057105,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/andreschirinos/p2p-bob-exchange"
+  },
+  {
+    "name": "Nike Global Catalogue 2026 (45 countries)",
+    "slug": "bsthere/nike-global-catalogue-2026",
+    "category": "General",
+    "size": 236936515,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/bsthere/nike-global-catalogue-2026"
+  },
+  {
+    "name": "Mental Health Risk Prediction Dataset",
+    "slug": "guriya79/mental-health-disorder",
+    "category": "General",
+    "size": 529558,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/guriya79/mental-health-disorder"
+  },
+  {
+    "name": "AI vs Human Text Dataset",
+    "slug": "muqaddasejaz/ai-vs-human-text-dataset",
+    "category": "General",
+    "size": 366594744,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/muqaddasejaz/ai-vs-human-text-dataset"
+  },
+  {
+    "name": "UMKM Dataset",
+    "slug": "zkyfauzi/umkm-dataset",
+    "category": "General",
+    "size": 5387046,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/zkyfauzi/umkm-dataset"
+  },
+  {
+    "name": "China Tech Development Data (2010\u20132026)",
+    "slug": "algozee/china-tech-development-data-20102026",
+    "category": "General",
+    "size": 770,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/china-tech-development-data-20102026"
+  },
+  {
+    "name": "AI-Driven Global Market Intelligence Dataset",
+    "slug": "algozee/ai-driven-global-market-intelligence-dataset",
+    "category": "General",
+    "size": 9479038,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/algozee/ai-driven-global-market-intelligence-dataset"
+  },
+  {
+    "name": "US Alcohol Consumption by State 1977\u20132023",
+    "slug": "sanaijlalshahrukh/us-alcohol-consumption-by-state-19772023",
+    "category": "General",
+    "size": 49393,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/sanaijlalshahrukh/us-alcohol-consumption-by-state-19772023"
+  },
+  {
+    "name": "Top-anime.csv",
+    "slug": "muhammadaqeelkabir/top-anime-csv",
+    "category": "General",
+    "size": 220660,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/muhammadaqeelkabir/top-anime-csv"
+  },
+  {
+    "name": "BMW Cars Market Dataset",
+    "slug": "tahaberkterekli/bmw-cars-market-dataset",
+    "category": "General",
+    "size": 242103,
+    "votes": 27,
+    "kaggle_url": "https://www.kaggle.com/datasets/tahaberkterekli/bmw-cars-market-dataset"
+  },
+  {
+    "name": "Amazon Bestsellers: Price vs User Rating  Analysis",
+    "slug": "obaidhere/amazon-bestsellers-price-vs-user-rating-analysis",
+    "category": "General",
+    "size": 14857,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/obaidhere/amazon-bestsellers-price-vs-user-rating-analysis"
+  },
+  {
+    "name": "Messy E-Commerce Sales Dataset",
+    "slug": "kandeelai22/messy-e-commerce-sales-dataset",
+    "category": "General",
+    "size": 3153,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/kandeelai22/messy-e-commerce-sales-dataset"
+  },
+  {
+    "name": "Online Learning Engagement Dataset",
+    "slug": "ssssws/online-learning-engagement-dataset",
+    "category": "General",
+    "size": 2927550,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/ssssws/online-learning-engagement-dataset"
+  },
+  {
+    "name": "PyPI AI/ML Packages: Daily Downloads 2025\u20132026",
+    "slug": "kanchana1990/pypi-aiml-packages-daily-downloads-20252026",
+    "category": "General",
+    "size": 1102925,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/pypi-aiml-packages-daily-downloads-20252026"
+  },
+  {
+    "name": "\ud83c\udf0d Middle East Economy & Oil Prices (1990\u20132024)",
+    "slug": "meharshanali/middle-east-economy-and-oil-prices-19902024",
+    "category": "General",
+    "size": 32716,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/meharshanali/middle-east-economy-and-oil-prices-19902024"
+  },
+  {
+    "name": "Digital Habits & Smartphone Addiction Dataset",
+    "slug": "guriya79/smart-phone",
+    "category": "General",
+    "size": 182295,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/guriya79/smart-phone"
+  },
+  {
+    "name": "global-co2-emissions-by-country-1950-2024",
+    "slug": "lucalullo/global-co2-emissions-by-country-1950-2024",
+    "category": "General",
+    "size": 655347,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/lucalullo/global-co2-emissions-by-country-1950-2024"
+  },
+  {
+    "name": "Historical Pandemic Epidemic",
+    "slug": "strsheraz/historical-pandemic-epidemic",
+    "category": "General",
+    "size": 2973,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/strsheraz/historical-pandemic-epidemic"
+  },
+  {
+    "name": "Online Shoppers Purchasing Dataset",
+    "slug": "thuandao/online-shoppers-purchasing-dataset",
+    "category": "General",
+    "size": 57136189,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/thuandao/online-shoppers-purchasing-dataset"
+  },
+  {
+    "name": "Zomato Cart Add-On Sessions Dataset",
+    "slug": "abdullahsafwan333/zomato-cart-add-on-sessions-dataset",
+    "category": "General",
+    "size": 17612318,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/abdullahsafwan333/zomato-cart-add-on-sessions-dataset"
+  },
+  {
+    "name": "Antarctic Penguin Tracking & Colony Data",
+    "slug": "ibrahimqasimi/antarctic-penguin-tracking-and-colony-data",
+    "category": "General",
+    "size": 960234,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/antarctic-penguin-tracking-and-colony-data"
+  },
+  {
+    "name": "FIFA & Football Complete Dataset (1930\u20132022)",
+    "slug": "zkskhurram/fifa-and-football-complete-dataset-19302022",
+    "category": "General",
+    "size": 3304,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/zkskhurram/fifa-and-football-complete-dataset-19302022"
+  },
+  {
+    "name": "Emotions Simplified Dataset - 28 classes from Text",
+    "slug": "sadamumer/emotions-simplified-dataset-28-classes-from-text",
+    "category": "General",
+    "size": 1751854,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/sadamumer/emotions-simplified-dataset-28-classes-from-text"
+  },
+  {
+    "name": "S&P 500 Complete Historical Dataset (50+ Years)",
+    "slug": "samyakrajbayar/s-and-p-500-complete-historical-dataset-50-years",
+    "category": "General",
+    "size": 408102272,
+    "votes": 26,
+    "kaggle_url": "https://www.kaggle.com/datasets/samyakrajbayar/s-and-p-500-complete-historical-dataset-50-years"
+  },
+  {
+    "name": "Advanced ML from scratch",
+    "slug": "rajat95gupta/advanced-ml-from-scratch",
+    "category": "General",
+    "size": 1893041,
+    "votes": 25,
+    "kaggle_url": "https://www.kaggle.com/datasets/rajat95gupta/advanced-ml-from-scratch"
+  },
+  {
+    "name": "Student Academic Performance Dataset for ML",
+    "slug": "dhruvb2028/student-academic-performance-dataset-for-ml",
+    "category": "General",
+    "size": 27086,
+    "votes": 25,
+    "kaggle_url": "https://www.kaggle.com/datasets/dhruvb2028/student-academic-performance-dataset-for-ml"
+  },
+  {
+    "name": "YouTube Shorts: Engagement & Growth Velocity \ud83d\udcc8",
+    "slug": "kanchana1990/youtube-shorts-engagement-and-growth-velocity",
+    "category": "General",
+    "size": 62637,
+    "votes": 25,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/youtube-shorts-engagement-and-growth-velocity"
+  },
+  {
+    "name": "\u2615\ud83c\udf80 Kenya Coffee Economics Dataset",
+    "slug": "sandhyapalaniappan/kenya-coffee-economics-dataset",
+    "category": "General",
+    "size": 4066,
+    "votes": 25,
+    "kaggle_url": "https://www.kaggle.com/datasets/sandhyapalaniappan/kenya-coffee-economics-dataset"
+  },
+  {
+    "name": "Job Board Effectiveness for College Students",
+    "slug": "likithagedipudi/job-board-effectiveness-for-college-students",
+    "category": "General",
+    "size": 1669465,
+    "votes": 25,
+    "kaggle_url": "https://www.kaggle.com/datasets/likithagedipudi/job-board-effectiveness-for-college-students"
+  },
+  {
+    "name": "Car Fuel Efficiency & CO\u2082 Emissions Dataset",
+    "slug": "ibrahimshahrukh/car-fuel-efficiency-and-co-emissions-dataset",
+    "category": "General",
+    "size": 24549,
+    "votes": 25,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimshahrukh/car-fuel-efficiency-and-co-emissions-dataset"
+  },
+  {
+    "name": "\ud83d\udcb0 250K Job Salary Prediction Dataset",
+    "slug": "rhythmghai/250k-job-salary-prediction-dataset",
+    "category": "General",
+    "size": 3144815,
+    "votes": 25,
+    "kaggle_url": "https://www.kaggle.com/datasets/rhythmghai/250k-job-salary-prediction-dataset"
+  },
+  {
+    "name": "Pakistan House Prices & Property Listings",
+    "slug": "sarcasmos/pakistan-house-prices-and-property-listings",
+    "category": "General",
+    "size": 7851113,
+    "votes": 25,
+    "kaggle_url": "https://www.kaggle.com/datasets/sarcasmos/pakistan-house-prices-and-property-listings"
+  },
+  {
+    "name": "Titanic Dataset",
+    "slug": "smirkxd/titanic-dataset",
+    "category": "General",
+    "size": 22491,
+    "votes": 24,
+    "kaggle_url": "https://www.kaggle.com/datasets/smirkxd/titanic-dataset"
+  },
+  {
+    "name": "Goldman Sachs (GS) Stock Data (1999\u20132026)",
+    "slug": "anadiskt/goldman-sachs-gs-stock-data-19992026",
+    "category": "General",
+    "size": 1481314,
+    "votes": 24,
+    "kaggle_url": "https://www.kaggle.com/datasets/anadiskt/goldman-sachs-gs-stock-data-19992026"
+  },
+  {
+    "name": "\u2708\ufe0f Airline Ticket Prices vs Oil & Fuel Costs",
+    "slug": "zkskhurram/airline-ticket-prices-vs-oil-and-fuel-costs",
+    "category": "General",
+    "size": 688424,
+    "votes": 24,
+    "kaggle_url": "https://www.kaggle.com/datasets/zkskhurram/airline-ticket-prices-vs-oil-and-fuel-costs"
+  },
+  {
+    "name": "European Aviation CO\u2082 Emissions by State 2010\u20132025",
+    "slug": "aliafzal9323/european-aviation-co-emissions-by-state-20102025",
+    "category": "General",
+    "size": 627438,
+    "votes": 24,
+    "kaggle_url": "https://www.kaggle.com/datasets/aliafzal9323/european-aviation-co-emissions-by-state-20102025"
+  },
+  {
+    "name": "Semantic Segmentation - BEV",
+    "slug": "sakshaymahna/semantic-segmentation-bev",
+    "category": "General",
+    "size": 2155380825,
+    "votes": 23,
+    "kaggle_url": "https://www.kaggle.com/datasets/sakshaymahna/semantic-segmentation-bev"
+  },
+  {
+    "name": "\ud83c\udf93 300K Student Performance Prediction Dataset",
+    "slug": "rhythmghai/300k-student-performance-prediction-dataset",
+    "category": "General",
+    "size": 39438274,
+    "votes": 23,
+    "kaggle_url": "https://www.kaggle.com/datasets/rhythmghai/300k-student-performance-prediction-dataset"
+  },
+  {
+    "name": "Food Ordering Behavior (India, 50K Orders)",
+    "slug": "rhythmghai/food-ordering-behavior-india-50k-orders",
+    "category": "General",
+    "size": 1009783,
+    "votes": 22,
+    "kaggle_url": "https://www.kaggle.com/datasets/rhythmghai/food-ordering-behavior-india-50k-orders"
+  },
+  {
+    "name": "Credit Card Fraud Detection",
+    "slug": "kaushalnandania/credit-card-fraud-detection",
+    "category": "General",
+    "size": 211766642,
+    "votes": 22,
+    "kaggle_url": "https://www.kaggle.com/datasets/kaushalnandania/credit-card-fraud-detection"
+  },
+  {
+    "name": "global-economic-inequality-and-poverty-1980-2024",
+    "slug": "lucalullo/global-economic-inequality-and-poverty-1980-2024",
+    "category": "General",
+    "size": 232436,
+    "votes": 22,
+    "kaggle_url": "https://www.kaggle.com/datasets/lucalullo/global-economic-inequality-and-poverty-1980-2024"
+  },
+  {
+    "name": "Shopee TH: Customer Journey & Operations Dataset",
+    "slug": "hninshwezinhlaing/shopee-th-customer-journey-and-operations-dataset",
+    "category": "General",
+    "size": 74353242,
+    "votes": 22,
+    "kaggle_url": "https://www.kaggle.com/datasets/hninshwezinhlaing/shopee-th-customer-journey-and-operations-dataset"
+  },
+  {
+    "name": "European Top Football Leagues Player Stats 25-26",
+    "slug": "kaanyorgun/european-top-leagues-player-stats-25-26",
+    "category": "General",
+    "size": 170197,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/kaanyorgun/european-top-leagues-player-stats-25-26"
+  },
+  {
+    "name": "Global AI Index (2015\u20132026): Readiness & Rankings",
+    "slug": "abidhussai512/global-ai-index-20152026-readiness-and-rankings",
+    "category": "General",
+    "size": 17817,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/abidhussai512/global-ai-index-20152026-readiness-and-rankings"
+  },
+  {
+    "name": "global-homicide-rates-by-country",
+    "slug": "lucalullo/global-homicide-rates-by-country",
+    "category": "General",
+    "size": 179462,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/lucalullo/global-homicide-rates-by-country"
+  },
+  {
+    "name": "PUBG Players",
+    "slug": "jawadaahmed/pubg-players",
+    "category": "General",
+    "size": 5361,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/jawadaahmed/pubg-players"
+  },
+  {
+    "name": "global-mean-temperature-by-country-1950-2024",
+    "slug": "lucalullo/global-mean-temperature-by-country-1950-2024",
+    "category": "General",
+    "size": 70306,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/lucalullo/global-mean-temperature-by-country-1950-2024"
+  },
+  {
+    "name": "Antenna Performance and Fault Detection Dataset",
+    "slug": "amineipad/antenna-performance-and-fault-detection-dataset",
+    "category": "General",
+    "size": 76910,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/amineipad/antenna-performance-and-fault-detection-dataset"
+  },
+  {
+    "name": "Telehealth Appointment Outcomes",
+    "slug": "madisonwilson123/telehealth-appointment-outcomes",
+    "category": "General",
+    "size": 27858,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/madisonwilson123/telehealth-appointment-outcomes"
+  },
+  {
+    "name": "Gold Futures 5 year dataset",
+    "slug": "suhanigupta04/gold-futures-5-year-dataset",
+    "category": "General",
+    "size": 67602,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/suhanigupta04/gold-futures-5-year-dataset"
+  },
+  {
+    "name": "Israel\u2013Iran Strike Events Dataset",
+    "slug": "stealthtechnologies/israeliran-strike-events-dataset",
+    "category": "General",
+    "size": 1798,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/stealthtechnologies/israeliran-strike-events-dataset"
+  },
+  {
+    "name": "final-byt5",
+    "slug": "assiaben/final-byt5",
+    "category": "General",
+    "size": 2156295459,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/assiaben/final-byt5"
+  },
+  {
+    "name": "F1 Aerodynamic Stability & Porpoising (150k Samp)",
+    "slug": "igormerlinicomposer/f1-aerodynamic-stability-and-porpoising-150k-samp",
+    "category": "General",
+    "size": 1994154,
+    "votes": 21,
+    "kaggle_url": "https://www.kaggle.com/datasets/igormerlinicomposer/f1-aerodynamic-stability-and-porpoising-150k-samp"
+  },
+  {
+    "name": "alrIEEEna26 - ML Challenge by IEEE SB GEHU",
+    "slug": "ieeesbgehu/alrieeena26-ml-challenge-by-ieee-sb-gehu",
+    "category": "General",
+    "size": 22514375802,
+    "votes": 20,
+    "kaggle_url": "https://www.kaggle.com/datasets/ieeesbgehu/alrieeena26-ml-challenge-by-ieee-sb-gehu"
+  },
+  {
+    "name": "Global Women\u2019s Marriage Rights Dataset",
+    "slug": "mdmahfuzsumon/global-womens-marriage-rights-dataset",
+    "category": "General",
+    "size": 39182,
+    "votes": 19,
+    "kaggle_url": "https://www.kaggle.com/datasets/mdmahfuzsumon/global-womens-marriage-rights-dataset"
+  },
+  {
+    "name": "Apple AAPL Full Stock Financial Dataset 1980-2026",
+    "slug": "anadiskt/apple-aapl-full-stock-financial-dataset-1980-2026",
+    "category": "General",
+    "size": 892838,
+    "votes": 17,
+    "kaggle_url": "https://www.kaggle.com/datasets/anadiskt/apple-aapl-full-stock-financial-dataset-1980-2026"
+  },
+  {
+    "name": "Protenix-v1-adjusted",
+    "slug": "qiweiyin/protenix-v1-adjusted",
+    "category": "General",
+    "size": 3527657168,
+    "votes": 17,
+    "kaggle_url": "https://www.kaggle.com/datasets/qiweiyin/protenix-v1-adjusted"
+  },
+  {
+    "name": "Kaggle User Competition Medal Data",
+    "slug": "nlztrk/kaggle-user-competition-medal-data",
+    "category": "General",
+    "size": 48433330,
+    "votes": 15,
+    "kaggle_url": "https://www.kaggle.com/datasets/nlztrk/kaggle-user-competition-medal-data"
+  },
+  {
+    "name": "Nim Nimble Pkgs",
+    "slug": "hugosenari/nim-nimble-pkgs",
+    "category": "General",
+    "size": 131667,
+    "votes": 14,
+    "kaggle_url": "https://www.kaggle.com/datasets/hugosenari/nim-nimble-pkgs"
+  },
+  {
+    "name": "\ud83d\udcca BTCUSDT 4H + Fear & Greed Index | 4H Updates",
+    "slug": "metalgrey/btc-usdt-4h-ohlc-fgi-daily-2020",
+    "category": "General",
+    "size": 197121,
+    "votes": 13,
+    "kaggle_url": "https://www.kaggle.com/datasets/metalgrey/btc-usdt-4h-ohlc-fgi-daily-2020"
+  },
+  {
+    "name": "Predict Customer Churn | Vault",
+    "slug": "anthonytherrien/predict-customer-churn-vault",
+    "category": "General",
+    "size": 5942425,
+    "votes": 13,
+    "kaggle_url": "https://www.kaggle.com/datasets/anthonytherrien/predict-customer-churn-vault"
+  },
+  {
+    "name": "Ancient Chinese books",
+    "slug": "jiaminggogogo/ancient-chinese-books",
+    "category": "General",
+    "size": 2331966336,
+    "votes": 13,
+    "kaggle_url": "https://www.kaggle.com/datasets/jiaminggogogo/ancient-chinese-books"
+  },
+  {
+    "name": "YoloR_Git",
+    "slug": "chenjiexu/yolor-git",
+    "category": "General",
+    "size": 1907316,
+    "votes": 13,
+    "kaggle_url": "https://www.kaggle.com/datasets/chenjiexu/yolor-git"
+  },
+  {
+    "name": "Bank Customer Churn",
+    "slug": "abbas829/bank-customer-churn",
+    "category": "General",
+    "size": 240438,
+    "votes": 12,
+    "kaggle_url": "https://www.kaggle.com/datasets/abbas829/bank-customer-churn"
+  },
+  {
+    "name": "Mahanagar Yatayat Transport Dataset",
+    "slug": "nischallal/mahanagar-yatayat-dataset",
+    "category": "General",
+    "size": 27117532,
+    "votes": 11,
+    "kaggle_url": "https://www.kaggle.com/datasets/nischallal/mahanagar-yatayat-dataset"
+  },
+  {
+    "name": "Indian Mutual Funds - TER [Total Expense Ratios]",
+    "slug": "neeeeeemo/indian-mutual-funds-ter-total-expense-ratios",
+    "category": "General",
+    "size": 919553,
+    "votes": 10,
+    "kaggle_url": "https://www.kaggle.com/datasets/neeeeeemo/indian-mutual-funds-ter-total-expense-ratios"
+  },
+  {
+    "name": "Vehicle Volumes",
+    "slug": "andrewsevignyopmod/vehicle-volumes",
+    "category": "General",
+    "size": 1559,
+    "votes": 10,
+    "kaggle_url": "https://www.kaggle.com/datasets/andrewsevignyopmod/vehicle-volumes"
+  },
+  {
+    "name": "Crypto Prices Historical Data",
+    "slug": "paveljurke/crypto-prices-historical-data",
+    "category": "General",
+    "size": 1877808,
+    "votes": 10,
+    "kaggle_url": "https://www.kaggle.com/datasets/paveljurke/crypto-prices-historical-data"
+  },
+  {
+    "name": "Japan Cherry Blossom Observation",
+    "slug": "hideos/japan-cherry-blossom-observation",
+    "category": "General",
+    "size": 97543,
+    "votes": 10,
+    "kaggle_url": "https://www.kaggle.com/datasets/hideos/japan-cherry-blossom-observation"
+  },
+  {
+    "name": "Cricket Ball by Ball Dataset",
+    "slug": "sahiltailor/cricket-ball-by-ball-dataset",
+    "category": "General",
+    "size": 2160232,
+    "votes": 9,
+    "kaggle_url": "https://www.kaggle.com/datasets/sahiltailor/cricket-ball-by-ball-dataset"
+  },
+  {
+    "name": "IPL Player Performance Dataset (2016\u20132025)",
+    "slug": "sunnyyadav754/ipl-player-performance-dataset-20162025",
+    "category": "General",
+    "size": 229781,
+    "votes": 9,
+    "kaggle_url": "https://www.kaggle.com/datasets/sunnyyadav754/ipl-player-performance-dataset-20162025"
+  },
+  {
+    "name": "Predict Autism Spectrum Disorder (ASD)",
+    "slug": "stealthtechnologies/predict-autism-spectrum-disorder-asd",
+    "category": "General",
+    "size": 7480,
+    "votes": 9,
+    "kaggle_url": "https://www.kaggle.com/datasets/stealthtechnologies/predict-autism-spectrum-disorder-asd"
+  },
+  {
+    "name": "\ud83d\udee2\ufe0f Weekly Fuel Prices in Vietnam",
+    "slug": "suthcong/fuel-prices-in-vietnam",
+    "category": "General",
+    "size": 9368,
+    "votes": 8,
+    "kaggle_url": "https://www.kaggle.com/datasets/suthcong/fuel-prices-in-vietnam"
+  },
+  {
+    "name": "Mutual Fund Historic NAV Data",
+    "slug": "tharunreddy2911/mutual-fund-historic-nav-data",
+    "category": "General",
+    "size": 125420660,
+    "votes": 8,
+    "kaggle_url": "https://www.kaggle.com/datasets/tharunreddy2911/mutual-fund-historic-nav-data"
+  },
+  {
+    "name": "Global Power Plants Database (WRI)",
+    "slug": "ibrahimqasimi/global-power-plants-database-wri",
+    "category": "General",
+    "size": 1967009,
+    "votes": 8,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/global-power-plants-database-wri"
+  },
+  {
+    "name": "IPL Player Statistics (2016\u20132025) \u2013 From Cricsheet",
+    "slug": "sunnyyadav754/ipl-player-statistics-20162025-from-cricsheet",
+    "category": "General",
+    "size": 2183949,
+    "votes": 8,
+    "kaggle_url": "https://www.kaggle.com/datasets/sunnyyadav754/ipl-player-statistics-20162025-from-cricsheet"
+  },
+  {
+    "name": "Global Infrastructure Index 2017 X DHI 2020",
+    "slug": "rodrigogaluppo/global-infrastructure-index-2017-x-dhi-2020",
+    "category": "General",
+    "size": 7084756,
+    "votes": 7,
+    "kaggle_url": "https://www.kaggle.com/datasets/rodrigogaluppo/global-infrastructure-index-2017-x-dhi-2020"
+  },
+  {
+    "name": "\ud83c\uddf5\ud83c\udded Philippine Major Cities Weather Data 2026",
+    "slug": "bwandowando/philippine-major-cities-weather-data-2026",
+    "category": "General",
+    "size": 8247297,
+    "votes": 7,
+    "kaggle_url": "https://www.kaggle.com/datasets/bwandowando/philippine-major-cities-weather-data-2026"
+  },
+  {
+    "name": "\ud83c\uddf5\ud83c\udded Philippine Cities Air Quality Index Data 2026",
+    "slug": "bwandowando/philippine-cities-air-quality-index-data-2026",
+    "category": "General",
+    "size": 5757947,
+    "votes": 6,
+    "kaggle_url": "https://www.kaggle.com/datasets/bwandowando/philippine-cities-air-quality-index-data-2026"
+  },
+  {
+    "name": "COVID 19",
+    "slug": "lucasm99/our-world-in-data-covid19-dataset",
+    "category": "General",
+    "size": 8270,
+    "votes": 6,
+    "kaggle_url": "https://www.kaggle.com/datasets/lucasm99/our-world-in-data-covid19-dataset"
+  },
+  {
+    "name": "Water levels of rivers in Vietnam",
+    "slug": "suthcong/water-levels-of-rivers-in-vietnam",
+    "category": "General",
+    "size": 83081,
+    "votes": 5,
+    "kaggle_url": "https://www.kaggle.com/datasets/suthcong/water-levels-of-rivers-in-vietnam"
+  },
+  {
+    "name": "Web UI Sketch Dataset ",
+    "slug": "alaalsanea/sketch-web-ui-dataset",
+    "category": "General",
+    "size": 23262896,
+    "votes": 5,
+    "kaggle_url": "https://www.kaggle.com/datasets/alaalsanea/sketch-web-ui-dataset"
+  },
+  {
+    "name": "USalign",
+    "slug": "metric/usalign",
+    "category": "General",
+    "size": 384635,
+    "votes": 5,
+    "kaggle_url": "https://www.kaggle.com/datasets/metric/usalign"
+  },
+  {
+    "name": "TestMTG",
+    "slug": "nathanforyou/testmtg",
+    "category": "General",
+    "size": 172852704,
+    "votes": 4,
+    "kaggle_url": "https://www.kaggle.com/datasets/nathanforyou/testmtg"
+  },
+  {
+    "name": "Cristiano Ronaldo YouTube Stats Data (Daily Pull)",
+    "slug": "ahmad03038/cristiano-ronaldo-youtube-stats-data-daily-pull",
+    "category": "General",
+    "size": 13296,
+    "votes": 4,
+    "kaggle_url": "https://www.kaggle.com/datasets/ahmad03038/cristiano-ronaldo-youtube-stats-data-daily-pull"
+  },
+  {
+    "name": "Cricket_International_Matches_PlayerStat_2000-2024",
+    "slug": "sunnyyadav754/cricket-international-matches-playerstat-2000-2025",
+    "category": "General",
+    "size": 60584715,
+    "votes": 4,
+    "kaggle_url": "https://www.kaggle.com/datasets/sunnyyadav754/cricket-international-matches-playerstat-2000-2025"
+  },
+  {
+    "name": "Global Internet Users by Country",
+    "slug": "mafaqbhatti/global-internet-users-by-country",
+    "category": "General",
+    "size": 2004,
+    "votes": 4,
+    "kaggle_url": "https://www.kaggle.com/datasets/mafaqbhatti/global-internet-users-by-country"
+  },
+  {
+    "name": "Brazil SELIC and Inflation (IPCA) Rates History",
+    "slug": "hssiqueira/brazil-interest-rate-history-selic",
+    "category": "General",
+    "size": 7516,
+    "votes": 3,
+    "kaggle_url": "https://www.kaggle.com/datasets/hssiqueira/brazil-interest-rate-history-selic"
+  },
+  {
+    "name": "\ud83c\uddf5\ud83c\udded PH FinTech Apps Google Daily Stats",
+    "slug": "bwandowando/ph-fintech-apps-google-daily-stats-2025",
+    "category": "General",
+    "size": 1287533,
+    "votes": 3,
+    "kaggle_url": "https://www.kaggle.com/datasets/bwandowando/ph-fintech-apps-google-daily-stats-2025"
+  },
+  {
+    "name": "xssgmn2",
+    "slug": "ady5215758/xssgmn2",
+    "category": "General",
+    "size": 883124426,
+    "votes": 3,
+    "kaggle_url": "https://www.kaggle.com/datasets/ady5215758/xssgmn2"
+  },
+  {
+    "name": "Biomedical Research Abstracts 2024\u20132026",
+    "slug": "kanchana1990/biomedical-research-abstracts-20242026",
+    "category": "General",
+    "size": 84037167,
+    "votes": 3,
+    "kaggle_url": "https://www.kaggle.com/datasets/kanchana1990/biomedical-research-abstracts-20242026"
+  },
+  {
+    "name": "xsacsgmn2",
+    "slug": "ady5215758/xsacsgmn2",
+    "category": "General",
+    "size": 933049671,
+    "votes": 3,
+    "kaggle_url": "https://www.kaggle.com/datasets/ady5215758/xsacsgmn2"
+  },
+  {
+    "name": "biopython-cp312",
+    "slug": "kami1976/biopython-cp312",
+    "category": "General",
+    "size": 3161912,
+    "votes": 3,
+    "kaggle_url": "https://www.kaggle.com/datasets/kami1976/biopython-cp312"
+  },
+  {
+    "name": "test-dataset-prod",
+    "slug": "colabprober/test-dataset-prod",
+    "category": "General",
+    "size": 162,
+    "votes": 2,
+    "kaggle_url": "https://www.kaggle.com/datasets/colabprober/test-dataset-prod"
+  },
+  {
+    "name": "agg-log-dataset",
+    "slug": "adaluodaa/agg-log-dataset",
+    "category": "General",
+    "size": 265262714,
+    "votes": 2,
+    "kaggle_url": "https://www.kaggle.com/datasets/adaluodaa/agg-log-dataset"
+  },
+  {
+    "name": "US Baby Names 1880-2024",
+    "slug": "ibrahimqasimi/us-baby-names-1880-2024",
+    "category": "General",
+    "size": 9395543,
+    "votes": 2,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/us-baby-names-1880-2024"
+  },
+  {
+    "name": "Global Stock Market Indices 2000-2026",
+    "slug": "ibrahimqasimi/global-stock-market-indices-2000-2026",
+    "category": "General",
+    "size": 1959950,
+    "votes": 2,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/global-stock-market-indices-2000-2026"
+  },
+  {
+    "name": "World Capitals Daily Weather 2015-2025",
+    "slug": "ibrahimqasimi/world-capitals-daily-weather-2015-2025",
+    "category": "General",
+    "size": 1486026,
+    "votes": 2,
+    "kaggle_url": "https://www.kaggle.com/datasets/ibrahimqasimi/world-capitals-daily-weather-2015-2025"
+  },
+  {
+    "name": "Top Rated Movies Dataset",
+    "slug": "tejastajane/top-rated-movies-dataset",
+    "category": "General",
+    "size": 330474,
+    "votes": 2,
+    "kaggle_url": "https://www.kaggle.com/datasets/tejastajane/top-rated-movies-dataset"
+  },
+  {
+    "name": "Indonesia E-Commerce Sales",
+    "slug": "zkyfauzi/indonesia-ecommerce-sales",
+    "category": "General",
+    "size": 468847,
+    "votes": 2,
+    "kaggle_url": "https://www.kaggle.com/datasets/zkyfauzi/indonesia-ecommerce-sales"
+  },
+  {
+    "name": "test-dataset-sandbox",
+    "slug": "colabprober/test-dataset-sandbox",
+    "category": "General",
+    "size": 162,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/colabprober/test-dataset-sandbox"
+  },
+  {
+    "name": "Daily FX: EUR/USD",
+    "slug": "hideos/daily-fx-eur-usd",
+    "category": "General",
+    "size": 349080,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/hideos/daily-fx-eur-usd"
+  },
+  {
+    "name": "Daily FX: USD/JPY",
+    "slug": "hideos/daily-fx-usd-jpy",
+    "category": "General",
+    "size": 471762,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/hideos/daily-fx-usd-jpy"
+  },
+  {
+    "name": "perch-cache",
+    "slug": "mattiaangeli/perch-cache",
+    "category": "General",
+    "size": 226668089,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/mattiaangeli/perch-cache"
+  },
+  {
+    "name": "Iran Economy Sanctions &ML Forecasting (1980\u20132026)",
+    "slug": "abdulmaliklodhra/iran-economy-and-sanctions-forecast-19802026",
+    "category": "General",
+    "size": 4015,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/abdulmaliklodhra/iran-economy-and-sanctions-forecast-19802026"
+  },
+  {
+    "name": "Russian Weather 1980-2023",
+    "slug": "geopod/russian-weather-1980-2023",
+    "category": "General",
+    "size": 69752717,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/geopod/russian-weather-1980-2023"
+  },
+  {
+    "name": "StubHub Ticket Marketplace Dataset",
+    "slug": "rebrowser/stubhub-dataset",
+    "category": "General",
+    "size": 1845367,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/stubhub-dataset"
+  },
+  {
+    "name": "SiriusXM Channels & Airplay Dataset",
+    "slug": "rebrowser/siriusxm-dataset",
+    "category": "General",
+    "size": 56823860,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/siriusxm-dataset"
+  },
+  {
+    "name": "Shopee Product Listings Dataset",
+    "slug": "rebrowser/shopee-dataset",
+    "category": "General",
+    "size": 42840975,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/shopee-dataset"
+  },
+  {
+    "name": "SeatGeek Events & Ticket Listings Dataset",
+    "slug": "rebrowser/seatgeek-dataset",
+    "category": "General",
+    "size": 630938,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/seatgeek-dataset"
+  },
+  {
+    "name": "iHeart Radio Stations & Airplay Dataset",
+    "slug": "rebrowser/iheart-dataset",
+    "category": "General",
+    "size": 72025442,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/iheart-dataset"
+  },
+  {
+    "name": "IAAI Insurance Auto Auction Dataset",
+    "slug": "rebrowser/iaai-dataset",
+    "category": "General",
+    "size": 4270225,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/iaai-dataset"
+  },
+  {
+    "name": "Gametime Last-Minute Tickets & Event Listings Data",
+    "slug": "rebrowser/gametime-dataset",
+    "category": "General",
+    "size": 4425813,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/gametime-dataset"
+  },
+  {
+    "name": "Copart Salvage Vehicle Auction Dataset",
+    "slug": "rebrowser/copart-dataset",
+    "category": "General",
+    "size": 4068348,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/copart-dataset"
+  },
+  {
+    "name": "Cars.com Vehicle Listings Dataset",
+    "slug": "rebrowser/carscom-dataset",
+    "category": "General",
+    "size": 3958406,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/carscom-dataset"
+  },
+  {
+    "name": "CarGurus.com US Vehicle Listings Dataset",
+    "slug": "rebrowser/carguruscom-dataset",
+    "category": "General",
+    "size": 49500645,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/carguruscom-dataset"
+  },
+  {
+    "name": "Carfax Used Car Listings & Dealer Inventory Datase",
+    "slug": "rebrowser/carfax-dataset",
+    "category": "General",
+    "size": 44209575,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/carfax-dataset"
+  },
+  {
+    "name": "AutoTrader Vehicle Listings Dataset",
+    "slug": "rebrowser/autotrader-dataset",
+    "category": "General",
+    "size": 33595474,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rebrowser/autotrader-dataset"
+  },
+  {
+    "name": "shouldiwalktest",
+    "slug": "junesdata/should-i-walk-hm",
+    "category": "General",
+    "size": 31115,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/junesdata/should-i-walk-hm"
+  },
+  {
+    "name": "SALUN_YOLO",
+    "slug": "leminhphuc/salun-yolo",
+    "category": "General",
+    "size": 37477687,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/leminhphuc/salun-yolo"
+  },
+  {
+    "name": "theme1_dataset",
+    "slug": "katherinennpham/theme1-dataset",
+    "category": "General",
+    "size": 3913229430,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/katherinennpham/theme1-dataset"
+  },
+  {
+    "name": "QOR ARC-AGI-3 Agent",
+    "slug": "ravikaash/qor-arc3-agent",
+    "category": "General",
+    "size": 2613575,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/ravikaash/qor-arc3-agent"
+  },
+  {
+    "name": "International T20 Cricket Dataset All Players Stat",
+    "slug": "sunnyyadav754/international-t20-cricket-dataset-all-players-stat",
+    "category": "General",
+    "size": 2172544,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/sunnyyadav754/international-t20-cricket-dataset-all-players-stat"
+  },
+  {
+    "name": "Smart City and Smart Sensor Data 2026",
+    "slug": "rauffauzanrambe/smart-city-smart-data-2026",
+    "category": "General",
+    "size": 19626,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/rauffauzanrambe/smart-city-smart-data-2026"
+  },
+  {
+    "name": "Consumer Shopping Trends Analysis",
+    "slug": "minahilfatima12328/consumer-shopping-trends-analysis",
+    "category": "General",
+    "size": 354898,
+    "votes": 1,
+    "kaggle_url": "https://www.kaggle.com/datasets/minahilfatima12328/consumer-shopping-trends-analysis"
+  },
+  {
+    "name": "jhhffhf",
+    "slug": "zahnyatefejoseph/jhhffhf",
+    "category": "General",
+    "size": 148026,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/zahnyatefejoseph/jhhffhf"
+  },
+  {
+    "name": "AI vs Human Text - Cleaned & Balanced",
+    "slug": "rutumane333/ai-vs-human-text-cleaned-and-balanced",
+    "category": "General",
+    "size": 0,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/rutumane333/ai-vs-human-text-cleaned-and-balanced"
+  },
+  {
+    "name": "Egyptian Startups & FoundersEducational Background",
+    "slug": "somiafight/egyptian-startups-and-founderseducational-background",
+    "category": "General",
+    "size": 15081,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/somiafight/egyptian-startups-and-founderseducational-background"
+  },
+  {
+    "name": "\ud83d\ude80 AI Tools Usage & Trends Dataset (2026)",
+    "slug": "abidhussai512/ai-tools-usage-and-trends-dataset-2026",
+    "category": "General",
+    "size": 350190,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/abidhussai512/ai-tools-usage-and-trends-dataset-2026"
+  },
+  {
+    "name": "\ud83c\udfed\ud83d\udcca Sparse Industrial Machine Time Series Dataset",
+    "slug": "sdeogade/sparse-industrial-machine-time-series-dataset",
+    "category": "General",
+    "size": 4706996,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/sdeogade/sparse-industrial-machine-time-series-dataset"
+  },
+  {
+    "name": "EV Factory Energy Consumption",
+    "slug": "varmilkakadiya/ev-factory-energy-consumption",
+    "category": "General",
+    "size": 14313,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/varmilkakadiya/ev-factory-energy-consumption"
+  },
+  {
+    "name": "moe-prog",
+    "slug": "liuarmy/moe-prog",
+    "category": "General",
+    "size": 1488882136,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/liuarmy/moe-prog"
+  },
+  {
+    "name": "LAWM Code",
+    "slug": "alterralaniakea/lawm-code",
+    "category": "General",
+    "size": 212380,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/alterralaniakea/lawm-code"
+  },
+  {
+    "name": "Object and Crack detection underwater dataset",
+    "slug": "samarth27112004/object-and-crack-detection-underwater-dataset",
+    "category": "General",
+    "size": 0,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/samarth27112004/object-and-crack-detection-underwater-dataset"
+  },
+  {
+    "name": "HAG-Desktop Build 4.0: Sovereign AI System",
+    "slug": "hichambedrani/hag-desktop-v4",
+    "category": "General",
+    "size": 66056,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/hichambedrani/hag-desktop-v4"
+  },
+  {
+    "name": "INLP_TASK2",
+    "slug": "karthiknallala1234/inlp-task2",
+    "category": "General",
+    "size": 6365099,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/karthiknallala1234/inlp-task2"
+  },
+  {
+    "name": "Professional Padel Player Earnings 2022-2026",
+    "slug": "bashogeveen/professional-padel-player-earnings-2022-2026",
+    "category": "General",
+    "size": 17916,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/bashogeveen/professional-padel-player-earnings-2022-2026"
+  },
+  {
+    "name": "Project What Horse",
+    "slug": "natthaweehanpumpipat/project-what-horse",
+    "category": "General",
+    "size": 8029435,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/natthaweehanpumpipat/project-what-horse"
+  },
+  {
+    "name": "Spearhead",
+    "slug": "ayushiv611/spearhead",
+    "category": "General",
+    "size": 18454174,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/ayushiv611/spearhead"
+  },
+  {
+    "name": "Autaris",
+    "slug": "alleennn/autaris",
+    "category": "General",
+    "size": 57004,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/alleennn/autaris"
+  },
+  {
+    "name": "B-Free",
+    "slug": "emirhanbilgic/b-free",
+    "category": "General",
+    "size": 321899960,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/emirhanbilgic/b-free"
+  },
+  {
+    "name": "performance_people_analytics",
+    "slug": "pablolglv/performance-people-analytics",
+    "category": "General",
+    "size": 6521,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/pablolglv/performance-people-analytics"
+  },
+  {
+    "name": "GA_pseudocode_boolean_functions",
+    "slug": "evangeloslykakis/ga-pseudocode-boolean-functions",
+    "category": "General",
+    "size": 3189,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/evangeloslykakis/ga-pseudocode-boolean-functions"
+  },
+  {
+    "name": "Weather_Data",
+    "slug": "malakmohamed777/weather-data",
+    "category": "General",
+    "size": 369,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/malakmohamed777/weather-data"
+  },
+  {
+    "name": "ThIRED",
+    "slug": "guilloth3b3st/thired",
+    "category": "General",
+    "size": 33683812,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/guilloth3b3st/thired"
+  },
+  {
+    "name": "Daily FX: GBP/USD",
+    "slug": "hideos/daily-fx-gbp-usd",
+    "category": "General",
+    "size": 467668,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/hideos/daily-fx-gbp-usd"
+  },
+  {
+    "name": "Weather_Dataset",
+    "slug": "malakmohamed777/weather-dataset",
+    "category": "General",
+    "size": 8152,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/malakmohamed777/weather-dataset"
+  },
+  {
+    "name": "BirdNet : Multi-Source Bird Species Image Dataset",
+    "slug": "samyakrajbayar/birdnet-multi-source-bird-species-image-dataset",
+    "category": "General",
+    "size": 1473740845,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/samyakrajbayar/birdnet-multi-source-bird-species-image-dataset"
+  },
+  {
+    "name": "brmd-checkpoints",
+    "slug": "litoketis/brmd-checkpoints",
+    "category": "General",
+    "size": 6379288409,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/litoketis/brmd-checkpoints"
+  },
+  {
+    "name": "AvianNet : Multi-Source Bird Species Image Dataset",
+    "slug": "samyakrajbayar/aviannet-multi-source-bird-species-image-dataset",
+    "category": "General",
+    "size": 1473740845,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/samyakrajbayar/aviannet-multi-source-bird-species-image-dataset"
+  },
+  {
+    "name": "Dataset for ICPE-639",
+    "slug": "piyalong/dataset-for-icpe-639",
+    "category": "General",
+    "size": 949806879,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/piyalong/dataset-for-icpe-639"
+  },
+  {
+    "name": "Global Public Holidays Dataset (2021\u20132040)",
+    "slug": "komalkomal7/global-public-holidays-dataset-20212040",
+    "category": "General",
+    "size": 115342,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/komalkomal7/global-public-holidays-dataset-20212040"
+  },
+  {
+    "name": "SpotifyData-IDA-HCMUS",
+    "slug": "cieldt/spotifydata-ida-hcmus",
+    "category": "General",
+    "size": 45174642,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/cieldt/spotifydata-ida-hcmus"
+  },
+  {
+    "name": "original_datasetsss",
+    "slug": "arun8ovfjfdr6/original-datasetsss",
+    "category": "General",
+    "size": 175758,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/arun8ovfjfdr6/original-datasetsss"
+  },
+  {
+    "name": "FOMC Meeting Minutes (auto-updated)",
+    "slug": "ganghyeoklee/fomc-meeting-minutes-auto-updated",
+    "category": "General",
+    "size": 3416112,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/ganghyeoklee/fomc-meeting-minutes-auto-updated"
+  },
+  {
+    "name": "FOMC Meeting Statements (auto-updated)",
+    "slug": "ganghyeoklee/fomc-meeting-statements-auto-updated",
+    "category": "General",
+    "size": 51186,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/ganghyeoklee/fomc-meeting-statements-auto-updated"
+  },
+  {
+    "name": "Byte Pairs Encoding",
+    "slug": "eminpolat/byte-pairs-encoding",
+    "category": "General",
+    "size": 118739,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/eminpolat/byte-pairs-encoding"
+  },
+  {
+    "name": "center-4px-224-checkpoints",
+    "slug": "patakijagoda/center-4px-224-checkpoints",
+    "category": "General",
+    "size": 679378545,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/patakijagoda/center-4px-224-checkpoints"
+  },
+  {
+    "name": "Causonyx AlphaGenome Wheelhouse Linux",
+    "slug": "tylerattwood/causonyx-alphagenome-wheelhouse-linux",
+    "category": "General",
+    "size": 162564931,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/tylerattwood/causonyx-alphagenome-wheelhouse-linux"
+  },
+  {
+    "name": "Byte Pair Encoding",
+    "slug": "eminpolat/byte-pair-encoding",
+    "category": "General",
+    "size": 3492,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/eminpolat/byte-pair-encoding"
+  },
+  {
+    "name": "Dataset for recommendation",
+    "slug": "fahadsaleem216/dataset-for-recommendation",
+    "category": "General",
+    "size": 472160,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/fahadsaleem216/dataset-for-recommendation"
+  },
+  {
+    "name": "_02_Cleaned_Data.csv",
+    "slug": "bendata555/02-cleaned-data-csv",
+    "category": "General",
+    "size": 3471017,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/bendata555/02-cleaned-data-csv"
+  },
+  {
+    "name": "Traffic signs Vietnam",
+    "slug": "nguyenthanhtr/traffic-signs-vietnam",
+    "category": "General",
+    "size": 14739373415,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/nguyenthanhtr/traffic-signs-vietnam"
+  },
+  {
+    "name": "PS-s6e3-714",
+    "slug": "nina2025/ps-s6e3-714",
+    "category": "General",
+    "size": 23818341,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/nina2025/ps-s6e3-714"
+  },
+  {
+    "name": "Opoku Dennis Owusu",
+    "slug": "owusudennis/opoku-dennis-owusu",
+    "category": "General",
+    "size": 16425,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/owusudennis/opoku-dennis-owusu"
+  },
+  {
+    "name": "DatasetOCR",
+    "slug": "ghtgfuiss123/datasetocr",
+    "category": "General",
+    "size": 1987449261,
+    "votes": 0,
+    "kaggle_url": "https://www.kaggle.com/datasets/ghtgfuiss123/datasetocr"
   }
 ]

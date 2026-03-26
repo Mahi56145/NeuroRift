@@ -243,9 +243,8 @@ function CompareInner() {
   const winA = scoreA > scoreB, winB = scoreB > scoreA, tie = scoreA === scoreB && !!dsA && !!dsB;
 
   const comps = isReady ? [
-    { label: "Quality Score", a: scoreA, b: scoreB, max: 100, suffix: "/100" },
-    { label: "Rows", a: dsA!.rows_count ?? 0, b: dsB!.rows_count ?? 0, max: Math.max(dsA!.rows_count ?? 1, dsB!.rows_count ?? 1) },
-    { label: "Columns", a: dsA!.columns_count ?? 0, b: dsB!.columns_count ?? 0, max: Math.max(dsA!.columns_count ?? 1, dsB!.columns_count ?? 1) },
+    { label: "AI Score", a: scoreA, b: scoreB, max: 100, suffix: "/100" },
+    { label: "Votes", a: dsA!.votes ?? 0, b: dsB!.votes ?? 0, max: Math.max(dsA!.votes ?? 1, dsB!.votes ?? 1) },
     { label: "Use Cases", a: enrichA!.use_cases?.length ?? 0, b: enrichB!.use_cases?.length ?? 0, max: Math.max(enrichA!.use_cases?.length ?? 1, enrichB!.use_cases?.length ?? 1) + 1 },
     { label: "Tags", a: enrichA!.tags?.length ?? 0, b: enrichB!.tags?.length ?? 0, max: Math.max(enrichA!.tags?.length ?? 1, enrichB!.tags?.length ?? 1) + 1 },
     { label: "Completeness", a: enrichA?.completeness ?? 70, b: enrichB?.completeness ?? 70, max: 100, suffix: "%" },
