@@ -2,12 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ""
-);
+import { supabase } from "@/lib/supabase";
+import { computeDatasetScore } from "@/lib/dataset-score";
+import { trackRecentDataset } from "@/lib/user-tracking";
 
 interface Dataset {
   id: string;
@@ -20,10 +17,25 @@ interface Dataset {
   kaggle_url?: string;
   rows_count?: number;
   columns_count?: number;
-  score: number;
+  score?: number;
   created_at: string;
   file_type?: string;
   description?: string;
+  tags?: string[] | string;
+  source?: "kaggle" | "upload";
+}
+
+interface DatasetAnalysisResponse {
+  description?: string;
+  score?: number;
+  tags?: string[];
+  use_cases?: string[];
+}
+
+function parseTags(tags: string[] | string | undefined): string[] {
+  if (!tags) return [];
+  if (Array.isArray(tags)) return tags.filter(Boolean);
+  try { return JSON.parse(tags); } catch { return String(tags).split(",").map(t => t.trim()).filter(Boolean); }
 }
 
 function sc(s: number) {
@@ -37,6 +49,28 @@ function fmtDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
+function computeDifficulty(score: number): { level: string; color: string; label: "Easy" | "Medium" | "Hard" } {
+  if (score > 80) return { level: "Easy", color: "#4ade80", label: "Easy" };
+  if (score > 60) return { level: "Medium", color: "#fbbf24", label: "Medium" };
+  return { level: "Hard", color: "#f87171", label: "Hard" };
+}
+
+function computePreprocessingEffort(
+  score: number,
+  rows?: number | null,
+  cols?: number | null
+): { effort: string; icon: string; time: string } {
+  const hasLowRows = !rows || rows < 500;
+  const hasHighRows = (rows ?? 0) > 100000;
+  const hasHighCols = (cols ?? 0) > 50;
+
+  if (hasHighRows || hasHighRows || hasHighCols) return { effort: "High", icon: "⬆", time: "2-4 days" };
+  if (hasLowRows) return { effort: "High", icon: "⬆", time: "1-2 days" };
+  if (score > 80) return { effort: "Low", icon: "↓", time: "< 2 hours" };
+  if (score > 60) return { effort: "Medium", icon: "→", time: "4-12 hours" };
+  return { effort: "High", icon: "⬆", time: "1-3 days" };
+}
+
 function getBreakdown(score: number) {
   const seed = (score ?? 0) / 100;
   return [
@@ -48,23 +82,33 @@ function getBreakdown(score: number) {
   ];
 }
 
-const USE_CASES: Record<string, string[]> = {
-  Healthcare:      ["Disease Prediction", "Clinical NLP", "Medical Imaging", "Patient Outcome Modeling", "Drug Discovery"],
-  "Computer Vision": ["Object Detection", "Image Classification", "Segmentation", "Visual Q&A", "Anomaly Detection"],
-  NLP:             ["Sentiment Analysis", "Text Classification", "LLM Fine-tuning", "Named Entity Recognition", "Summarization"],
-  Finance:         ["Fraud Detection", "Stock Forecasting", "Credit Scoring", "Risk Modeling", "Algorithmic Trading"],
-  Business:        ["Churn Prediction", "Customer Segmentation", "Sales Forecasting", "Marketing Attribution"],
-  General:         ["Supervised Learning", "Feature Engineering", "Exploratory Analysis", "Regression", "Classification"],
-};
+function buildUseCases(dataset: Dataset | null, tags: string[], aiUseCases: string[] | null): string[] {
+  if (aiUseCases && aiUseCases.length > 0) return aiUseCases.slice(0, 5);
+  if (!dataset) return ["exploratory analysis", "baseline modeling", "feature engineering"];
 
-const ALSO_EXPLORE: Record<string, string[]> = {
-  Healthcare:      ["WHO Disease Stats", "NIH Clinical Trials", "MIMIC-III", "PhysioNet ECG"],
-  "Computer Vision": ["COCO 2017", "ImageNet-1K", "Open Images V7", "CIFAR-100"],
-  NLP:             ["Common Crawl", "WikiText-103", "SQuAD 2.0", "IMDB Reviews"],
-  Finance:         ["S&P 500 Historical", "Kaggle Credit Risk", "FRED Economics"],
-  Business:        ["Superstore Sales", "E-Commerce Reviews", "Customer LTV"],
-  General:         ["UCI ML Repository", "OpenML Datasets", "Hugging Face"],
-};
+  const candidates = [
+    dataset.category ? `${dataset.category} modeling` : null,
+    (dataset.rows_count ?? 0) > 50000 ? "large-scale training" : "rapid prototyping",
+    (dataset.columns_count ?? 0) > 20 ? "feature selection" : "baseline classification",
+    tags[0] ? `${tags[0]} analytics` : null,
+    tags[1] ? `${tags[1]} prediction` : null,
+  ].filter(Boolean) as string[];
+
+  return Array.from(new Set(candidates)).slice(0, 5);
+}
+
+function buildExploreSuggestions(dataset: Dataset | null, tags: string[], related: Dataset[]): string[] {
+  const relatedNames = related.slice(0, 3).map((r) => r.name).filter(Boolean);
+  const tagNames = tags.slice(0, 3).map((t) => `${t} datasets`);
+
+  const generated = [
+    ...relatedNames,
+    ...tagNames,
+    dataset?.category ? `${dataset.category} benchmarks` : null,
+  ].filter(Boolean) as string[];
+
+  return Array.from(new Set(generated)).slice(0, 6);
+}
 
 function ScoreRing({ score }: { score: number }) {
   const s = score ?? 0;
@@ -101,6 +145,10 @@ export default function DatasetDetailPage() {
   const [insightVisible,  setInsightVisible]  = useState(false);
   const [dlCount,         setDlCount]         = useState(0);
   const [related,         setRelated]         = useState<Dataset[]>([]);
+  const [enriching,       setEnriching]       = useState(false);
+  const [aiUseCases,      setAiUseCases]      = useState<string[] | null>(null);
+  const [aiAnalysis,      setAiAnalysis]      = useState<DatasetAnalysisResponse | null>(null);
+  const [enrichedData,     setEnrichedData]    = useState<{ pros: string[]; cons: string[]; difficulty: string; preprocessingEffort: string } | null>(null);
 
   const fetchDataset = useCallback(async () => {
     setLoading(true); setError(null);
@@ -108,14 +156,84 @@ export default function DatasetDetailPage() {
       const { data, error: e } = await supabase.from("datasets").select("*").eq("id", id).single();
       if (e) throw e;
       setDataset(data);
+      trackRecentDataset(data.id, data.name);
+      setAiUseCases(null);
+      setAiAnalysis(null);
+      setEnrichedData(null);
       setTimeout(() => setInsightVisible(true), 400);
-      const { count } = await supabase.from("downloads").select("*", { count: "exact", head: true }).eq("dataset_id", id);
-      setDlCount(count ?? 0);
-      if (data?.category) {
-        const { data: rel } = await supabase.from("datasets").select("*")
-          .eq("category", data.category).neq("id", id).limit(6).order("score", { ascending: false });
-        setRelated(rel ?? []);
+
+      // Fetch enrichment data from Supabase
+      const { data: enrichmentData } = await supabase
+        .from("dataset_enrichment")
+        .select("pros,cons,difficulty,preprocessing_effort")
+        .eq("dataset_id", id)
+        .single();
+
+      if (enrichmentData) {
+        setEnrichedData({
+          pros: enrichmentData.pros || [],
+          cons: enrichmentData.cons || [],
+          difficulty: enrichmentData.difficulty || "Medium",
+          preprocessingEffort: enrichmentData.preprocessing_effort || "Medium",
+        });
       }
+
+      // Parallel: download count + related datasets
+      const [{ count }, relRes] = await Promise.all([
+        supabase.from("downloads").select("*", { count: "exact", head: true }).eq("dataset_id", id),
+        data?.category
+          ? supabase.from("datasets").select("*").eq("category", data.category).neq("id", id).limit(6).order("score", { ascending: false })
+          : Promise.resolve({ data: [] }),
+      ]);
+      setDlCount(count ?? 0);
+      setRelated((relRes as { data: Dataset[] | null }).data ?? []);
+
+      // Always refresh analysis so detail insights are dynamic.
+      setEnriching(true);
+      fetch("/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:     data.name,
+          category: data.category,
+          rows:     data.rows_count,
+          cols:     data.columns_count,
+          size:     data.size,
+          votes:    data.votes,
+          datasetId: data.id,
+        }),
+      })
+        .then(r => r.ok ? r.json() : null)
+        .then(async (analysis: DatasetAnalysisResponse | null) => {
+          if (!analysis) return;
+          setAiAnalysis(analysis);
+
+          const hasMissingDescription = !data?.description;
+          const hasMissingScore = !data?.score || data.score === 0;
+          const hasMissingTags = !parseTags(data?.tags).length;
+
+          // Persist enrichment only when core fields are missing.
+          if (hasMissingDescription || hasMissingScore || hasMissingTags) {
+            await supabase.from("datasets").update({
+              description: hasMissingDescription ? analysis.description : data.description,
+              score:       hasMissingScore ? analysis.score : data.score,
+              tags:        hasMissingTags ? analysis.tags : data.tags,
+            }).eq("id", id);
+          }
+
+          setDataset(prev => prev ? {
+            ...prev,
+            description: prev.description || analysis.description,
+            score:       prev.score && prev.score > 0 ? prev.score : analysis.score,
+            tags:        parseTags(prev.tags).length > 0 ? prev.tags : analysis.tags,
+          } : prev);
+
+          if (Array.isArray(analysis.use_cases) && analysis.use_cases.length > 0) {
+            setAiUseCases(analysis.use_cases.map(String).slice(0, 5));
+          }
+        })
+        .catch(() => { /* silent — enrichment is best-effort */ })
+        .finally(() => setEnriching(false));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Dataset not found.");
     } finally { setLoading(false); }
@@ -139,27 +257,46 @@ export default function DatasetDetailPage() {
 
   const showToast = (msg: string, type: "success" | "error") => { setToast({ msg, type }); setTimeout(() => setToast(null), 3500); };
 
-  const score     = dataset?.score ?? 0;
+  const rawScore  = dataset?.score ?? 0;
+  const score     = rawScore > 0
+    ? rawScore
+    : computeDatasetScore({
+        source: dataset?.source,
+        votes: dataset?.votes,
+        rows: dataset?.rows_count,
+        cols: dataset?.columns_count,
+        size: dataset?.size,
+        name: dataset?.name,
+        category: dataset?.category,
+      });
   const c         = sc(score);
   const breakdown = dataset ? getBreakdown(score) : [];
-  const useCases  = USE_CASES[dataset?.category ?? "General"] ?? USE_CASES.General;
-  const alsoExpl  = ALSO_EXPLORE[dataset?.category ?? "General"] ?? ALSO_EXPLORE.General;
+  const tags      = parseTags(dataset?.tags);
+  const useCases  = buildUseCases(dataset, tags, aiUseCases);
+  const alsoExpl  = buildExploreSuggestions(dataset, tags, related);
   const activeUrl = dataset?.file_url || dataset?.kaggle_url || "";
   const isKaggle  = !dataset?.file_url && !!dataset?.kaggle_url;
+  const sourceHost = activeUrl ? (() => {
+    try { return new URL(activeUrl).hostname.replace(/^www\./, ""); }
+    catch { return "external source"; }
+  })() : "external source";
 
-  const insights = dataset ? [
+  const difficulty = dataset ? computeDifficulty(score) : null;
+  const preprocessing = dataset ? computePreprocessingEffort(score, dataset.rows_count, dataset.columns_count) : null;
+
+  const insights = dataset && aiAnalysis ? [
     { icon: "🧠", title: "Quality Assessment", color: c.fg, bg: c.bg, border: c.border,
-      text: score > 80 ? `Score ${score}/100 — production-ready. Minimal preprocessing needed.`
-          : score > 60 ? `Score ${score}/100 — moderate cleaning recommended. Handle nulls and outliers before training.`
-          : `Score ${score}/100 — significant preprocessing required. Validate schema and remove noise.` },
-    { icon: "📊", title: "Data Profile", color: "#a78bfa", bg: "rgba(124,58,237,0.1)", border: "rgba(124,58,237,0.25)",
-      text: `Categorized under ${dataset.category}.${dataset.votes ? ` Voted by ${dataset.votes.toLocaleString()} Kaggle community members.` : ""}${dataset.size ? ` Dataset size: ${dataset.size}.` : ""} Best for ${useCases.slice(0,2).join(" and ")}.` },
-    { icon: "⚡", title: "Pipeline Compatibility", color: "#38bdf8", bg: "rgba(56,189,248,0.1)", border: "rgba(56,189,248,0.25)",
-      text: `Compatible with scikit-learn, PyTorch, TensorFlow, and Hugging Face. ${dataset.category === "NLP" ? "Tokenization preprocessing required." : dataset.category === "Computer Vision" ? "GPU acceleration strongly recommended." : "Standard tabular pipelines apply."}` },
+      text: `Score ${score}/100 based on community trust (${dataset.votes?.toLocaleString() || 0} votes), data volume (${(dataset.rows_count ?? 0).toLocaleString()} rows × ${dataset.columns_count || 0} columns), and recency.` },
+    { icon: difficulty?.level === "Easy" ? "✓" : difficulty?.level === "Medium" ? "◎" : "⚠", title: `Difficulty: ${difficulty?.level}`, color: difficulty?.color || "#e2d9f3", bg: `${difficulty?.color}22`, border: `${difficulty?.color}44`,
+      text: `${difficulty?.level} dataset. Preprocessing effort: ${preprocessing?.effort} (${preprocessing?.time}). ${enrichedData?.difficulty ? `AI assessment: ${enrichedData.difficulty}.` : ""}` },
+    { icon: "📊", title: "AI-Generated Description", color: "#a78bfa", bg: "rgba(124,58,237,0.1)", border: "rgba(124,58,237,0.25)",
+      text: aiAnalysis.description || `This ${dataset.category} dataset contains structured data suitable for machine learning and analytical workflows.` },
+    { icon: "⚡", title: "Semantic Tags", color: "#38bdf8", bg: "rgba(56,189,248,0.1)", border: "rgba(56,189,248,0.25)",
+      text: `Detected signals: ${[...tags.slice(0, 3), ...useCases.slice(0, 2)].filter(Boolean).join(", ") || "general purpose dataset"}.` },
     { icon: "🔗", title: "Access Method", color: "#4ade80", bg: "rgba(74,222,128,0.1)", border: "rgba(74,222,128,0.25)",
       text: isKaggle
-        ? `Hosted on Kaggle. CLI: kaggle datasets download -d ${dataset.slug ?? "owner/dataset"}. Kaggle account and API token required.`
-        : `Direct HTTP download available. Integrate the file URL directly into your data pipeline or ETL workflow.` },
+        ? `Host: ${sourceHost}. CLI: kaggle datasets download -d ${dataset.slug || "dataset-id"}. Requires Kaggle API authentication.`
+        : `Direct download available from ${sourceHost}. Use with standard data ingestion pipelines (pandas, Polars, SQL).` },
   ] : [];
 
   return (
@@ -245,15 +382,28 @@ export default function DatasetDetailPage() {
 
               <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:28,flexWrap:"wrap" }}>
                 <div style={{ flex:1,minWidth:280 }}>
-                  <div style={{ display:"flex",gap:8,flexWrap:"wrap",marginBottom:14 }}>
+                  <div style={{ display:"flex",gap:8,flexWrap:"wrap",marginBottom:14,alignItems:"center" }}>
                     <span style={{ fontSize:10,padding:"4px 12px",borderRadius:20,background:"rgba(124,58,237,0.2)",border:"1px solid rgba(124,58,237,0.35)",color:"#a78bfa",fontWeight:700 }}>{dataset.category}</span>
                     {isKaggle && <span style={{ fontSize:10,padding:"4px 12px",borderRadius:20,background:"rgba(32,168,68,0.15)",border:"1px solid rgba(32,168,68,0.3)",color:"#4ade80",fontWeight:600 }}>Kaggle</span>}
                     {dataset.file_url && <span style={{ fontSize:10,padding:"4px 12px",borderRadius:20,background:"rgba(56,189,248,0.12)",border:"1px solid rgba(56,189,248,0.25)",color:"#38bdf8",fontWeight:600 }}>Direct Download</span>}
                     <span style={{ fontSize:10,padding:"4px 12px",borderRadius:20,background:c.bg,border:`1px solid ${c.border}`,color:c.fg,fontWeight:700 }}>Score {score}/100</span>
+                    {tags.slice(0,3).map((tag,ti) => (
+                      <span key={ti} style={{ fontSize:10,padding:"4px 10px",borderRadius:20,background:"rgba(251,191,36,0.1)",border:"1px solid rgba(251,191,36,0.22)",color:"#fbbf24" }}>{tag}</span>
+                    ))}
+                    {enriching && (
+                      <span style={{ fontSize:10,padding:"4px 10px",borderRadius:20,background:"rgba(124,58,237,0.1)",border:"1px solid rgba(124,58,237,0.2)",color:"#7c3aed",display:"flex",alignItems:"center",gap:5 }}>
+                        <span style={{ width:7,height:7,borderRadius:"50%",border:"1.5px solid rgba(124,58,237,0.2)",borderTop:"1.5px solid #7c3aed",animation:"spin 0.7s linear infinite",display:"inline-block" }} />
+                        AI enriching…
+                      </span>
+                    )}
                   </div>
                   <h1 style={{ fontSize:32,fontWeight:900,margin:"0 0 12px",letterSpacing:"-0.03em",color:"#f3f0ff",lineHeight:1.1 }}>{dataset.name}</h1>
                   <p style={{ fontSize:13,color:"#9ca3af",lineHeight:1.75,margin:"0 0 20px",maxWidth:580 }}>
-                    {dataset.description || `A ${dataset.category.toLowerCase()} dataset${dataset.votes ? ` with ${dataset.votes.toLocaleString()} community votes on Kaggle` : ""}${dataset.size ? `, size ${dataset.size}` : ""}. Suitable for ${useCases.slice(0,2).join(" and ")} tasks.`}
+                    {dataset.description
+                      ? dataset.description
+                      : enriching
+                      ? "Generating AI description…"
+                      : `A ${dataset.category.toLowerCase()} dataset${dataset.votes ? ` with ${dataset.votes.toLocaleString()} community votes` : ""}${dataset.size ? `, size ${dataset.size}` : ""}. Suitable for ${useCases.slice(0,2).join(" and ")} tasks.`}
                   </p>
                   <div style={{ display:"flex",gap:12,flexWrap:"wrap" }}>
                     {[
@@ -386,8 +536,15 @@ export default function DatasetDetailPage() {
                 <div style={{ background:"rgba(16,10,30,0.82)",border:"1px solid rgba(124,58,237,0.18)",borderRadius:14,padding:"18px 20px",backdropFilter:"blur(14px)",animation:"fadeUp 0.45s ease both",animationDelay:"0.14s" }}>
                   <div style={{ fontSize:14,fontWeight:700,color:"#f3f0ff",marginBottom:12 }}>Topics</div>
                   <div style={{ display:"flex",flexWrap:"wrap",gap:7 }}>
-                    {[dataset.category,...useCases.slice(0,2),...(dataset.slug?.split("-").slice(0,3)??[])].filter(Boolean).map((tag,i) => (
-                      <span key={i} style={{ fontSize:10,padding:"4px 10px",borderRadius:20,background:"rgba(124,58,237,0.1)",border:"1px solid rgba(124,58,237,0.2)",color:"#a78bfa" }}>{tag}</span>
+                    <span style={{ fontSize:10,padding:"4px 10px",borderRadius:20,background:"rgba(124,58,237,0.1)",border:"1px solid rgba(124,58,237,0.2)",color:"#a78bfa" }}>{dataset.category}</span>
+                    {tags.map((tag,i) => (
+                      <span key={i} style={{ fontSize:10,padding:"4px 10px",borderRadius:20,background:"rgba(251,191,36,0.1)",border:"1px solid rgba(251,191,36,0.2)",color:"#fbbf24" }}>{tag}</span>
+                    ))}
+                    {useCases.slice(0,2).map((u,i) => (
+                      <span key={`uc-${i}`} style={{ fontSize:10,padding:"4px 10px",borderRadius:20,background:"rgba(56,189,248,0.07)",border:"1px solid rgba(56,189,248,0.16)",color:"#38bdf8" }}>{u}</span>
+                    ))}
+                    {(dataset.slug?.split("-").slice(0,2) ?? []).map((s,i) => (
+                      <span key={`sl-${i}`} style={{ fontSize:10,padding:"4px 10px",borderRadius:20,background:"rgba(124,58,237,0.07)",border:"1px solid rgba(124,58,237,0.14)",color:"#7c3aed" }}>{s}</span>
                     ))}
                     {isKaggle && <span style={{ fontSize:10,padding:"4px 10px",borderRadius:20,background:"rgba(74,222,128,0.1)",border:"1px solid rgba(74,222,128,0.2)",color:"#4ade80" }}>kaggle</span>}
                   </div>

@@ -357,28 +357,16 @@ export default function NeuroRiftAuth() {
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div
-      className="h-dvh text-white bg-[#110022] overflow-hidden flex flex-col relative isolate"
-      style={{ fontFamily: "'IBM Plex Mono','Fira Code',monospace", cursor: 'none' }}
+      className="h-dvh text-white overflow-hidden flex flex-col relative isolate"
+      style={{ backgroundColor: "#05020c", fontFamily: "'IBM Plex Mono','Fira Code',monospace", cursor: 'none' }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* ── Original bg image layer ──────────────────────────────────────────── */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <img
-          src="/images/bg.png"
-          alt=""
-          style={{
-            position: 'absolute', inset: 0, width: '100%', height: '100%',
-            objectFit: 'cover', transform: 'scale(1.03)',
-            filter: 'saturate(1.25) contrast(1.1) brightness(1.1)',
-          }}
-        />
-        <div className="absolute inset-0 bg-black/60 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-purple-950/30 mix-blend-hard-light" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(128,0,255,0.22),_transparent_70%)]" />
-        <div className="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/20 blur-3xl" />
-        <div className="absolute bottom-0 left-8 h-64 w-64 rounded-full bg-pink-500/15 blur-3xl" />
-        <div className="absolute top-20 right-10 h-56 w-56 rounded-full bg-violet-500/20 blur-3xl" />
+      {/* ── Clean Dashboard-Style Background ─────────────────────────────────── */}
+      <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(124,58,237,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.04) 1px,transparent 1px)", backgroundSize: "44px 44px" }} />
+      <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", top: "10%", left: "15%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle,rgba(124,58,237,0.11),transparent 70%)", filter: "blur(60px)", animation: "floatY 7s ease-in-out infinite" }} />
+        <div style={{ position: "absolute", bottom: "10%", right: "15%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle,rgba(56,189,248,0.07),transparent 70%)", filter: "blur(55px)", animation: "floatY 9s ease-in-out 3s infinite" }} />
       </div>
 
       {/* ── Custom cursor ────────────────────────────────────────────────────── */}
@@ -426,10 +414,14 @@ export default function NeuroRiftAuth() {
       }} />
 
       {/* ── Header ───────────────────────────────────────────────────────────── */}
-      <header className="fixed top-0 left-0 p-[20px_30px] z-10">
-        <span className="text-[1.5rem] font-extrabold text-white uppercase tracking-[0.1rem]">
-          Neuro<span className="text-[#00BCD4]">Rift</span>
-        </span>
+      <header className="fixed top-0 left-0 p-[20px_30px] z-[100]" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ position: "relative", width: 38, height: 38 }}>
+          <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1.5px solid #7c3aed", animation: "spinR 8s linear infinite" }} />
+          <div style={{ position: "absolute", inset: 5, borderRadius: "50%", background: "linear-gradient(135deg,#7c3aed,#a855f7)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 12, color: "#fff", boxShadow: "0 0 18px rgba(124,58,237,0.55)" }}>NR</div>
+        </div>
+        <div>
+          <div style={{ fontWeight: 900, fontSize: 14, letterSpacing: "0.14em" }}><span style={{ color: "#fff" }}>NEURO</span><span style={{ color: "#38bdf8" }}>RIFT</span></div>
+        </div>
       </header>
 
       {/* ── Main ─────────────────────────────────────────────────────────────── */}
@@ -665,7 +657,8 @@ export default function NeuroRiftAuth() {
       {/* ── Styles ───────────────────────────────────────────────────────────── */}
       <style jsx>{`
         .auth-frame { animation: frameGlow 4.5s ease-in-out infinite; }
-
+        @keyframes spinR { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+        @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
         @keyframes frameGlow {
           0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.3); }
           50%       { box-shadow: 0 0 38px rgba(245,224,80,0.52); }

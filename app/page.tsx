@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 interface Node {
   x: number; y: number; vx: number; vy: number;
@@ -187,23 +188,17 @@ export default function LandingPage() {
     setMounted(true);
 
     // Auth check
-    import("@supabase/supabase-js").then(({ createClient }) => {
-      const sb = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ""
-      );
-      sb.auth.getSession().then(({ data }) => {
-        const user = data.session?.user ?? null;
-        if (user) {
-          const name =
-            user.user_metadata?.full_name ||
-            user.user_metadata?.name ||
-            user.email?.split("@")[0] ||
-            "User";
-          setUserName(name);
-        }
-        setAuthReady(true);
-      });
+    supabase.auth.getSession().then(({ data }) => {
+      const user = data.session?.user ?? null;
+      if (user) {
+        const name =
+          user.user_metadata?.full_name ||
+          user.user_metadata?.name ||
+          user.email?.split("@")[0] ||
+          "User";
+        setUserName(name);
+      }
+      setAuthReady(true);
     });
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -261,7 +256,7 @@ export default function LandingPage() {
 
   return (
     <div
-      style={{ minHeight: "100vh", background: "#080612", color: "#e2d9f3", fontFamily: "'IBM Plex Mono','Fira Code',monospace", position: "relative", overflowX: "hidden", cursor: "none" }}
+      style={{ minHeight: "100vh", background: "#05020c", color: "#e2d9f3", fontFamily: "'IBM Plex Mono','Fira Code',monospace", position: "relative", overflowX: "hidden", cursor: "none" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -271,6 +266,7 @@ export default function LandingPage() {
         @keyframes gradText  { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
         @keyframes scanline  { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
         @keyframes glowPulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+        @keyframes spinR     { from{transform:rotate(0)} to{transform:rotate(360deg)} }
         @keyframes borderAnim{ 0%,100%{border-color:rgba(124,58,237,0.2)} 50%{border-color:rgba(124,58,237,0.5)} }
         @keyframes float1    { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-12px)} }
         @keyframes float2    { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-8px)} }
@@ -353,18 +349,14 @@ export default function LandingPage() {
           position: "sticky", top: 0, zIndex: 100,
           animation: "fadeIn 0.5s ease both",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{
-              width: 38, height: 38, borderRadius: 10,
-              background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontWeight: 900, fontSize: 17, color: "#fff",
-              boxShadow: "0 0 22px rgba(124,58,237,0.6)",
-            }}>N</div>
-            <span style={{ fontWeight: 800, fontSize: 16, letterSpacing: "0.1em" }}>
-              <span style={{ color: "#fff" }}>Neuro</span>
-              <span style={{ color: "#38bdf8" }}>Rift</span>
-            </span>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ position: "relative", width: 38, height: 38 }}>
+              <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1.5px solid #7c3aed", animation: "spinR 8s linear infinite" }} />
+              <div style={{ position: "absolute", inset: 5, borderRadius: "50%", background: "linear-gradient(135deg,#7c3aed,#a855f7)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 12, color: "#fff", boxShadow: "0 0 18px rgba(124,58,237,0.55)" }}>NR</div>
+            </div>
+            <div>
+              <div style={{ fontWeight: 900, fontSize: 14, letterSpacing: "0.14em" }}><span style={{ color: "#fff" }}>NEURO</span><span style={{ color: "#38bdf8" }}>RIFT</span></div>
+            </div>
           </div>
 
           {authReady && (
@@ -636,6 +628,48 @@ export default function LandingPage() {
                   <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.7, margin: 0 }}>
                     {f.desc}
                   </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── SAMPLE DATASETS ────────────────────────────────────────────────── */}
+        <section style={{ padding: "0 48px 100px" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            <div style={{ textAlign: "center", marginBottom: 56 }}>
+              <div style={{ fontSize: 10, color: "#38bdf8", letterSpacing: "0.22em", fontWeight: 700, marginBottom: 12 }}>
+                // TRENDING IN THE VAULT
+              </div>
+              <h2 style={{
+                fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 900,
+                letterSpacing: "-0.03em", color: "#f3f0ff", margin: 0,
+              }}>Explore High-Value Datasets</h2>
+            </div>
+            
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20 }}>
+              {[
+                { name: "Global_Epidemic_Tracker_v4.csv", category: "Healthcare", rows: "2.4M", cols: "42", score: 96, color: "#4ade80" },
+                { name: "Financial_HFT_Trades_Q2.parquet", category: "Finance", rows: "18.1M", cols: "12", score: 88, color: "#fbbf24" },
+                { name: "LLM_Instruct_Conversations.jsonl", category: "NLP", rows: "500K", cols: "3", score: 92, color: "#a78bfa" }
+              ].map((ds, i) => (
+                <div key={i} className="feat-card" style={{ background: "rgba(16,10,30,0.78)", border: "1px solid rgba(124,58,237,0.14)", borderRadius: 16, padding: "26px", position: "relative", overflow: "hidden", animation: `fadeUp 0.5s ease both ${0.2 + i * 0.1}s`, cursor: "default" }}>
+                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${ds.color}55, transparent)` }} />
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 16 }}>
+                    <div>
+                      <span style={{ padding: "3px 10px", borderRadius: 20, background: `${ds.color}15`, border: `1px solid ${ds.color}30`, color: ds.color, fontSize: 9, fontWeight: 700, letterSpacing: "0.1em" }}>{ds.category}</span>
+                      <h3 style={{ margin: "14px 0 0", fontSize: 15, fontWeight: 700, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: 220 }}>{ds.name}</h3>
+                    </div>
+                    {/* Fake score ring */}
+                    <div style={{ width: 44, height: 44, borderRadius: "50%", border: `2px solid ${ds.color}40`, display: "flex", alignItems: "center", justifyContent: "center", color: ds.color, fontWeight: 800, fontSize: 13, boxShadow: `0 0 15px ${ds.color}20` }}>{ds.score}</div>
+                  </div>
+                  <div style={{ display: "flex", gap: 20, borderTop: "1px dashed rgba(255,255,255,0.1)", paddingTop: 16 }}>
+                    <div><div style={{ fontSize: 14, fontWeight: 800, color: "#e2d9f3" }}>{ds.rows}</div><div style={{ fontSize: 9, color: "#6b7280", letterSpacing: "0.05em" }}>ROWS</div></div>
+                    <div><div style={{ fontSize: 14, fontWeight: 800, color: "#e2d9f3" }}>{ds.cols}</div><div style={{ fontSize: 9, color: "#6b7280", letterSpacing: "0.05em" }}>COLUMNS</div></div>
+                    <div style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>
+                      <button className="cta-secondary" onClick={() => router.push("/datasets")} style={{ padding: "6px 14px", borderRadius: 8, background: "rgba(124,58,237,0.1)", color: "#a78bfa", border: "1px solid rgba(124,58,237,0.3)", fontSize: 10, fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>VIEW DEEP DIVE →</button>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
