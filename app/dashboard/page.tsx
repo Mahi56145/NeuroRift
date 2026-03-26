@@ -155,14 +155,18 @@ export default function Dashboard() {
   const router = useRouter();
   const [datasets, setDatasets] = useState<Dataset[]>([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<{ name: string; email: string; id: string } | null>(null);
+  const [user, setUser] = useState<{ name: string; email: string; id: string; mobile?: string } | null>(null);
   const [tab, setTab] = useState<"uploaded" | "recent">("uploaded");
   const [streak, setStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
   const [analysesCount, setAnalysesCount] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [xpInfo, setXpInfo] = useState<ReturnType<typeof getXPLevel> | null>(null);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [editName, setEditName] = useState("");
+  const [editMobile, setEditMobile] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
@@ -173,12 +177,45 @@ export default function Dashboard() {
     const s = getStreak(), a = getAnalysesCount();
     setStreak(s); setAnalysesCount(a);
 
-    supabase.auth.getSession().then(({ data }) => {
-      const u = data.session?.user;
+    // Calculate and preserve longest streak
+    const maxS = parseInt(localStorage.getItem("nr_max_streak") || "0");
+    const updatedMax = Math.max(s, maxS);
+    setLongestStreak(updatedMax);
+    if (updatedMax > maxS) {
+      localStorage.setItem("nr_max_streak", updatedMax.toString());
+    }
+
+    supabase.auth.getUser().then(({ data }) => {
+      const u = data.user;
       if (!u) { router.push("/auth"); return; }
-      const name = u.user_metadata?.full_name || u.user_metadata?.name || u.email?.split("@")[0] || "User";
-      setUser({ name, email: u.email ?? "", id: u.id });
+      const meta = u.user_metadata || {};
+      const name = meta.full_name || meta.name || u.email?.split("@")[0] || "User";
+      const mobile = meta.mobile || "";
+      setUser({ name, email: u.email ?? "", id: u.id, mobile });
       setEditName(name);
+      setEditMobile(mobile);
+
+      // --- Cloud Sync: Analyses ---
+      const cloudAnalyses = parseInt(meta.nr_analyses || "0");
+      const trueAnalyses = Math.max(cloudAnalyses, a);
+      if (trueAnalyses > a) {
+        localStorage.setItem("nr_analyses", String(trueAnalyses));
+        setAnalysesCount(trueAnalyses);
+      }
+      if (trueAnalyses > cloudAnalyses) {
+        supabase.auth.updateUser({ data: { nr_analyses: trueAnalyses } });
+      }
+
+      // --- Cloud Sync: Max Streak ---
+      const cloudMaxStreak = parseInt(meta.nr_max_streak || "0");
+      const trueMaxStreak = Math.max(cloudMaxStreak, updatedMax);
+      if (trueMaxStreak > updatedMax) {
+        localStorage.setItem("nr_max_streak", String(trueMaxStreak));
+        setLongestStreak(trueMaxStreak);
+      }
+      if (trueMaxStreak > cloudMaxStreak) {
+        supabase.auth.updateUser({ data: { nr_max_streak: trueMaxStreak } });
+      }
     });
   }, [router]);
 
@@ -220,11 +257,24 @@ export default function Dashboard() {
 
   const handleUpdateProfile = async () => {
     if (!editName.trim() || !user) return;
+    if (newPassword && newPassword !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
     setIsUpdating(true);
-    const { error } = await supabase.auth.updateUser({ data: { full_name: editName } });
-    if (!error) setUser({ ...user, name: editName });
+    const updates: any = { data: { full_name: editName, mobile: editMobile } };
+    if (newPassword) updates.password = newPassword;
+
+    const { error } = await supabase.auth.updateUser(updates);
+    if (!error) {
+      setUser({ ...user, name: editName, mobile: editMobile });
+      setShowProfileModal(false);
+      setNewPassword("");
+      setConfirmPassword("");
+    } else {
+      alert(error.message);
+    }
     setIsUpdating(false);
-    setShowProfileModal(false);
   };
 
   const handleDeleteAccount = async () => {
@@ -251,7 +301,7 @@ export default function Dashboard() {
   const displayDatasets = tab === "uploaded" ? userUploads : recentDatasets;
 
   const navBtns = [
-    { id: "upload", label: "Upload Engine", icon: UploadCloud, color: "#38bdf8", glow: "rgba(56,189,248,0.5)", path: "/dashboard/upload", desc: "Inject raw data into the neural vault with AI-powered metadata generation." },
+    { id: "upload", label: "Contribute Engine", icon: UploadCloud, color: "#38bdf8", glow: "rgba(56,189,248,0.5)", path: "/dashboard/upload", desc: "Contribute raw data into the neural vault with AI-powered metadata generation." },
     { id: "analyse", label: "Deep Analyse", icon: BarChart3, color: "#4ade80", glow: "rgba(74,222,128,0.5)", path: "/dashboard/analyse", desc: "Groq AI dissects every dataset dimension with detailed intelligence reports." },
     { id: "compare", label: "Cross Compare", icon: Layers, color: "#fbbf24", glow: "rgba(251,191,36,0.5)", path: "/dashboard/compare", desc: "Head-to-head battle arena to benchmark quality, features, and use cases." },
   ];
@@ -299,26 +349,12 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Nav links */}
-        <div style={{ display: "flex", gap: 6 }}>
-          {[
-            { label: "Explore", path: "/datasets", color: "#a78bfa" }
-          ].map((l) => (
-            <button key={l.label} onClick={() => router.push(l.path)}
-              style={{ padding: "7px 16px", borderRadius: 50, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "#9ca3af", fontSize: 10, fontWeight: 700, fontFamily: "inherit", cursor: "pointer", letterSpacing: "0.1em", transition: "all 0.2s" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = l.color; (e.currentTarget as HTMLButtonElement).style.borderColor = l.color + "44"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#9ca3af"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.07)"; }}>
-              {l.label}
-            </button>
-          ))}
-        </div>
-
         {/* User + logout */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {user && (
             <motion.div initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }}
               style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 12px 5px 6px", background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.18)", borderRadius: 50 }}>
-              <div 
+              <div
                 onClick={() => { setEditName(user.name); setShowProfileModal(true); }}
                 title="Edit Profile"
                 style={{ width: 26, height: 26, borderRadius: "50%", background: "linear-gradient(135deg,#7c3aed,#38bdf8)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 900, color: "#fff", boxShadow: "0 0 12px rgba(124,58,237,0.5)", cursor: "pointer", transition: "transform 0.2s" }}
@@ -338,6 +374,26 @@ export default function Dashboard() {
         </div>
       </motion.header>
 
+      {/* Floating Explore Button (Below Profile) */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.8 }}
+        onClick={() => router.push("/datasets")}
+        style={{
+          position: "fixed", top: 86, right: 40, zIndex: 90,
+          padding: "10px 24px", borderRadius: 50, border: "none",
+          background: "linear-gradient(135deg, #38bdf8, #7c3aed)",
+          color: "#fff", fontWeight: 800, fontSize: 11, letterSpacing: "0.1em",
+          cursor: "pointer", display: "flex", alignItems: "center", gap: 8,
+          boxShadow: "0 0 24px rgba(56,189,248,0.45)", transition: "all 0.2s"
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+      >
+        <Database size={14} /> EXPLORE DATABASES
+      </motion.button>
+
       <main style={{ position: "relative", zIndex: 1, maxWidth: 1300, margin: "0 auto", padding: "96px 40px 80px" }}>
 
         {/* HERO */}
@@ -351,18 +407,21 @@ export default function Dashboard() {
         {/* USER STATS + STREAK ROW */}
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1.4fr", gap: 14, marginBottom: 44 }}>
           {/* Streak */}
-          <div className="shimmer-card" style={{ background: "rgba(8,4,18,0.85)", border: "1px solid rgba(251,191,36,0.2)", borderRadius: 18, padding: "20px", backdropFilter: "blur(14px)", position: "relative", overflow: "hidden" }}>
+          <div className="shimmer-card" style={{ background: "rgba(8,4,18,0.85)", border: "1px solid rgba(251,191,36,0.2)", borderRadius: 18, padding: "20px", backdropFilter: "blur(14px)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg,transparent,rgba(251,191,36,0.5),transparent)" }} />
-            <Flame size={18} color="#fbbf24" style={{ marginBottom: 12, animation: "streakFlame 1.5s ease-in-out infinite" }} />
-            <div style={{ fontSize: 28, fontWeight: 900, color: "#fbbf24", letterSpacing: "-0.02em", lineHeight: 1, textShadow: "0 0 20px rgba(251,191,36,0.5)" }}>{streak}</div>
-            <div style={{ fontSize: 9, color: "#6b7280", marginTop: 6, letterSpacing: "0.14em" }}>DAY STREAK</div>
+            <div>
+              <Flame size={18} color="#fbbf24" style={{ marginBottom: 12, animation: "streakFlame 1.5s ease-in-out infinite" }} />
+              <div style={{ fontSize: 28, fontWeight: 900, color: "#fbbf24", letterSpacing: "-0.02em", lineHeight: 1, textShadow: "0 0 20px rgba(251,191,36,0.5)" }}>{streak}</div>
+              <div style={{ fontSize: 9, color: "#6b7280", marginTop: 6, letterSpacing: "0.14em" }}>CURRENT STREAK</div>
+            </div>
+            <div style={{ fontSize: 9, color: "#fbbf24", opacity: 0.8, letterSpacing: "0.08em", fontWeight: 700, marginTop: "auto", paddingTop: 8 }}>LONGEST: {longestStreak} DAYS</div>
           </div>
-          {/* Uploads */}
+          {/* Contributions */}
           <div className="shimmer-card" style={{ background: "rgba(8,4,18,0.85)", border: "1px solid rgba(56,189,248,0.15)", borderRadius: 18, padding: "20px", backdropFilter: "blur(14px)", position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg,transparent,rgba(56,189,248,0.5),transparent)" }} />
             <UploadCloud size={18} color="#38bdf8" style={{ marginBottom: 12, filter: "drop-shadow(0 0 6px #38bdf8)" }} />
             <div style={{ fontSize: 28, fontWeight: 900, color: "#38bdf8", letterSpacing: "-0.02em", lineHeight: 1, textShadow: "0 0 20px rgba(56,189,248,0.5)" }}>{loading ? "—" : uploads}</div>
-            <div style={{ fontSize: 9, color: "#6b7280", marginTop: 6, letterSpacing: "0.14em" }}>YOUR UPLOADS</div>
+            <div style={{ fontSize: 9, color: "#6b7280", marginTop: 6, letterSpacing: "0.14em" }}>CONTRIBUTIONS</div>
           </div>
           {/* Analyses */}
           <div className="shimmer-card" style={{ background: "rgba(8,4,18,0.85)", border: "1px solid rgba(74,222,128,0.15)", borderRadius: 18, padding: "20px", backdropFilter: "blur(14px)", position: "relative", overflow: "hidden" }}>
@@ -395,7 +454,7 @@ export default function Dashboard() {
                   style={{ height: "100%", borderRadius: 6, background: "linear-gradient(90deg,#7c3aed,#fbbf24)", boxShadow: "0 0 10px rgba(251,191,36,0.5)" }} />
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 8, color: "#4b5563" }}>
-                <span>{uploads * 100}XP (uploads)</span><span>{analysesCount * 50}XP (analyses)</span>
+                <span>{uploads * 100}XP (contributions)</span><span>{analysesCount * 50}XP (analyses)</span>
               </div>
             </div>
           )}
@@ -403,7 +462,6 @@ export default function Dashboard() {
 
         {/* FLOATING 3D ACTION BUTTONS */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} style={{ marginBottom: 60 }}>
-          <div style={{ fontSize: 9, color: "#7c3aed", letterSpacing: "0.28em", fontWeight: 700, marginBottom: 22 }}>// QUICK LAUNCH</div>
           <div style={{ display: "flex", gap: 18 }}>
             {navBtns.map((btn, i) => <Float3DButton key={btn.id} btn={btn} index={i} />)}
           </div>
@@ -412,14 +470,17 @@ export default function Dashboard() {
         {/* YOUR DATASETS + TOGGLE */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
-            <div style={{ fontSize: 9, color: "#7c3aed", letterSpacing: "0.28em", fontWeight: 700 }}>// YOUR DATASETS</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ width: 8, height: 8, borderRadius: 2, background: "#7c3aed", boxShadow: "0 0 10px #7c3aed" }} />
+              <h2 style={{ fontSize: 18, fontWeight: 800, color: "#fff", margin: 0, letterSpacing: "-0.02em" }}>Recent History</h2>
+            </div>
 
             {/* Toggle */}
             <div style={{ display: "flex", background: "rgba(8,4,18,0.8)", borderRadius: 50, padding: 4, border: "1px solid rgba(124,58,237,0.15)" }}>
               {(["uploaded", "recent"] as const).map((t) => (
                 <button key={t} className="tab-btn" onClick={() => setTab(t)}
                   style={{ padding: "7px 20px", borderRadius: 50, background: tab === t ? "rgba(124,58,237,0.22)" : "transparent", border: tab === t ? "1px solid rgba(124,58,237,0.4)" : "1px solid transparent", color: tab === t ? "#a78bfa" : "#6b7280", fontSize: 10, fontWeight: 700, fontFamily: "inherit", cursor: "pointer", letterSpacing: "0.1em", display: "flex", alignItems: "center", gap: 6 }}>
-                  {t === "uploaded" ? <><UploadCloud size={11} /> UPLOADED</> : <><Eye size={11} /> RECENTLY VIEWED</>}
+                  {t === "uploaded" ? <><UploadCloud size={11} /> CONTRIBUTED</> : <><Eye size={11} /> RECENTLY VIEWED</>}
                 </button>
               ))}
             </div>
@@ -477,7 +538,13 @@ export default function Dashboard() {
                       </div>
                       {/* Actions */}
                       <div style={{ display: "flex", gap: 6 }}>
-                        <button onClick={() => { incrementAnalyses(); setAnalysesCount((c) => c + 1); router.push(`/dashboard/analyse?id=${ds.id}`); }}
+                        <button onClick={async () => {
+                          incrementAnalyses();
+                          const next = analysesCount + 1;
+                          setAnalysesCount(next);
+                          supabase.auth.updateUser({ data: { nr_analyses: next } });
+                          router.push(`/dashboard/analyse?id=${ds.id}`);
+                        }}
                           style={{ flex: 1, padding: "7px 0", borderRadius: 10, background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.18)", color: "#4ade80", fontSize: 9, fontFamily: "inherit", fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 3 }}>
                           <BarChart3 size={9} /> Analyse
                         </button>
@@ -506,14 +573,36 @@ export default function Dashboard() {
             style={{ marginTop: 48, background: "rgba(8,4,18,0.85)", border: "1px solid rgba(251,191,36,0.12)", borderRadius: 20, padding: "24px 28px", backdropFilter: "blur(14px)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
               <Calendar size={14} color="#fbbf24" />
-              <span style={{ fontSize: 9, color: "#6b7280", letterSpacing: "0.18em", fontWeight: 700 }}>ACTIVITY STREAK — {streak} DAYS</span>
+              <span style={{ fontSize: 9, color: "#6b7280", letterSpacing: "0.18em", fontWeight: 700 }}>ACTIVITY HISTORY — PAST 3 MONTHS</span>
               <span style={{ marginLeft: "auto", fontSize: 9, fontWeight: 700, color: "#fbbf24" }}>🔥 Keep it going!</span>
             </div>
-            <div style={{ display: "flex", gap: 6 }}>
-              {Array.from({ length: Math.min(streak, 14) }).map((_, i) => (
-                <motion.div key={i} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.9 + i * 0.04 }}
-                  style={{ width: 24, height: 24, borderRadius: 6, background: i === streak - 1 || i === Math.min(streak, 14) - 1 ? "rgba(251,191,36,0.3)" : "rgba(251,191,36,0.1)", border: `1px solid ${i === streak - 1 || i === Math.min(streak, 14) - 1 ? "rgba(251,191,36,0.5)" : "rgba(251,191,36,0.15)"}`, boxShadow: i === streak - 1 ? "0 0 10px rgba(251,191,36,0.4)" : "none" }} />
-              ))}
+            <div style={{ overflowX: "auto", paddingBottom: 16, scrollbarWidth: "thin" }}>
+              <div style={{ display: "flex", gap: 10, width: "fit-content", padding: "4px 8px" }}>
+                {Array.from({ length: 91 }).map((_, i) => {
+                  const daysAgo = i; // 0 is today, 90 is three months ago
+                  const d = new Date();
+                  d.setDate(d.getDate() - daysAgo);
+                  const isActive = daysAgo < streak;
+                  const dayNum = d.getDate();
+                  const monthStr = d.toLocaleDateString(undefined, { month: "short" }).toUpperCase();
+                  const yearStr = d.getFullYear();
+
+                  return (
+                    <motion.div key={i}
+                      initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.9 + i * 0.015 }}
+                      style={{
+                        flexShrink: 0, width: 54, height: 72, borderRadius: 12, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                        background: isActive ? "rgba(251,191,36,0.12)" : "rgba(8,4,18,0.5)",
+                        border: `1px solid ${isActive ? "rgba(251,191,36,0.35)" : "rgba(255,255,255,0.06)"}`,
+                        boxShadow: isActive && daysAgo === 0 ? "0 0 20px rgba(251,191,36,0.2) inset, 0 0 10px rgba(251,191,36,0.4)" : "none",
+                      }}>
+                      <div style={{ fontSize: 9, color: isActive ? "#fbbf24" : "#6b7280", fontWeight: 800, letterSpacing: "0.08em" }}>{monthStr}</div>
+                      <div style={{ fontSize: 22, color: isActive ? "#fff" : "#9ca3af", fontWeight: 900, margin: "2px 0" }}>{dayNum}</div>
+                      <div style={{ fontSize: 8, color: isActive ? "rgba(251,191,36,0.7)" : "#4b5563", letterSpacing: "0.1em" }}>{yearStr}</div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         )}
@@ -533,10 +622,10 @@ export default function Dashboard() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              style={{ width: "100%", maxWidth: 420, background: "rgba(10,5,24,0.95)", border: "1px solid rgba(124,58,237,0.3)", borderRadius: 24, padding: 32, position: "relative", overflow: "hidden", boxShadow: "0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)" }}
+              style={{ width: "100%", maxWidth: 360, background: "rgba(10,5,24,0.95)", border: "1px solid rgba(124,58,237,0.3)", borderRadius: 24, padding: "28px", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: "90vh", boxShadow: "0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)" }}
             >
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg,transparent,#7c3aed,transparent)" }} />
-              
+
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{ width: 44, height: 44, borderRadius: "50%", background: "linear-gradient(135deg,#7c3aed,#38bdf8)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 900, color: "#fff", boxShadow: "0 0 20px rgba(124,58,237,0.4)" }}>
@@ -552,21 +641,34 @@ export default function Dashboard() {
                 </button>
               </div>
 
-              <div style={{ marginBottom: 24 }}>
-                <label style={{ display: "block", fontSize: 11, fontWeight: 700, color: "#a78bfa", marginBottom: 8, letterSpacing: "0.05em" }}>DISPLAY NAME</label>
-                <input 
-                  type="text" 
-                  value={editName} 
-                  onChange={(e) => setEditName(e.target.value)}
-                  style={{ width: "100%", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(124,58,237,0.2)", borderRadius: 12, padding: "12px 16px", color: "#fff", fontFamily: "inherit", fontSize: 14, outline: "none", transition: "border-color 0.2s" }}
-                  onFocus={(e) => (e.target.style.borderColor = "rgba(124,58,237,0.6)")}
-                  onBlur={(e) => (e.target.style.borderColor = "rgba(124,58,237,0.2)")}
-                />
+              <div style={{ display: "flex", flexDirection: "column", gap: 18, marginBottom: 26, maxHeight: "55vh", overflowY: "auto", paddingRight: 6 }}>
+                <div>
+                  <label style={{ display: "block", fontSize: 10, fontWeight: 700, color: "#9ca3af", marginBottom: 6, letterSpacing: "0.05em" }}>ACCOUNT EMAIL</label>
+                  <input type="text" value={user?.email || ""} disabled style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "10px 14px", color: "#6b7280", fontFamily: "inherit", fontSize: 13, cursor: "not-allowed" }} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 10, fontWeight: 700, color: "#a78bfa", marginBottom: 6, letterSpacing: "0.05em" }}>DISPLAY NAME</label>
+                  <input type="text" value={editName} onChange={(e) => setEditName(e.target.value)} style={{ width: "100%", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(124,58,237,0.2)", borderRadius: 10, padding: "10px 14px", color: "#fff", fontFamily: "inherit", fontSize: 13, outline: "none", transition: "border-color 0.2s" }} onFocus={(e) => (e.target.style.borderColor = "rgba(124,58,237,0.6)")} onBlur={(e) => (e.target.style.borderColor = "rgba(124,58,237,0.2)")} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 10, fontWeight: 700, color: "#a78bfa", marginBottom: 6, letterSpacing: "0.05em" }}>MOBILE (OPTIONAL)</label>
+                  <input type="tel" autoComplete="off" placeholder="Mobile number" value={editMobile} onChange={(e) => setEditMobile(e.target.value)} style={{ width: "100%", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(124,58,237,0.2)", borderRadius: 10, padding: "10px 14px", color: "#fff", fontFamily: "inherit", fontSize: 13, outline: "none", transition: "border-color 0.2s" }} onFocus={(e) => (e.target.style.borderColor = "rgba(124,58,237,0.6)")} onBlur={(e) => (e.target.style.borderColor = "rgba(124,58,237,0.2)")} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 10, fontWeight: 700, color: "#38bdf8", marginBottom: 6, letterSpacing: "0.05em" }}>NEW PASSWORD (OPTIONAL)</label>
+                  <input type="password" autoComplete="new-password" placeholder="Leave blank to keep current" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={{ width: "100%", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(56,189,248,0.2)", borderRadius: 10, padding: "10px 14px", color: "#fff", fontFamily: "inherit", fontSize: 13, outline: "none", transition: "border-color 0.2s" }} onFocus={(e) => (e.target.style.borderColor = "rgba(56,189,248,0.6)")} onBlur={(e) => (e.target.style.borderColor = "rgba(56,189,248,0.2)")} />
+                </div>
+                {newPassword && (
+                  <div>
+                    <label style={{ display: "block", fontSize: 10, fontWeight: 700, color: "#38bdf8", marginBottom: 6, letterSpacing: "0.05em" }}>CONFIRM NEW PASSWORD</label>
+                    <input type="password" autoComplete="new-password" placeholder="Confirm new password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} style={{ width: "100%", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(56,189,248,0.2)", borderRadius: 10, padding: "10px 14px", color: "#fff", fontFamily: "inherit", fontSize: 13, outline: "none", transition: "border-color 0.2s" }} onFocus={(e) => (e.target.style.borderColor = "rgba(56,189,248,0.6)")} onBlur={(e) => (e.target.style.borderColor = "rgba(56,189,248,0.2)")} />
+                  </div>
+                )}
               </div>
 
               <div style={{ display: "flex", gap: 12 }}>
-                <button 
-                  onClick={handleUpdateProfile} 
+                <button
+                  onClick={handleUpdateProfile}
                   disabled={isUpdating}
                   style={{ flex: 1, padding: "12px 0", borderRadius: 12, background: "linear-gradient(135deg,#7c3aed,#a855f7)", border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: isUpdating ? "wait" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, opacity: isUpdating ? 0.7 : 1 }}
                 >
@@ -577,7 +679,7 @@ export default function Dashboard() {
               <div style={{ marginTop: 28, paddingTop: 20, borderTop: "1px solid rgba(239,68,68,0.15)" }}>
                 <h3 style={{ margin: "0 0 10px", fontSize: 12, fontWeight: 700, color: "#ef4444" }}>Danger Zone</h3>
                 <p style={{ margin: "0 0 16px", fontSize: 11, color: "#fca5a5", opacity: 0.8, lineHeight: 1.5 }}>Deleting your account is permanent. All associated datasets and metadata will be permanently lost.</p>
-                <button 
+                <button
                   onClick={handleDeleteAccount}
                   disabled={isUpdating}
                   style={{ width: "100%", padding: "12px 0", borderRadius: 12, background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", color: "#ef4444", fontWeight: 700, fontSize: 13, cursor: isUpdating ? "wait" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "all 0.2s" }}

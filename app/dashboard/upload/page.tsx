@@ -3,6 +3,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 import {
   UploadCloud, CheckCircle, AlertCircle, Zap, Loader2, ChevronLeft,
   ChevronDown, ChevronUp, Tag, AlignLeft, X, Sparkles, Wand2, PenLine,
@@ -59,6 +60,14 @@ export default function UploadPage() {
   const [result, setResult] = useState<UploadResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [useAI, setUseAI] = useState(true);
+  const [userId, setUserId] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.user) setUserId(data.session.user.id);
+      else router.push("/auth");
+    });
+  }, [router]);
 
   const resetFile = () => { setFile(null); setResult(null); setError(null); setGenerated(null); setUseGeneratedConfirmed(false); setNameOverride(""); setCategory(""); setDescription(""); };
 
@@ -116,6 +125,7 @@ export default function UploadPage() {
       if (finalName) formData.append("nameOverride", finalName);
       if (finalCat) formData.append("category", finalCat);
       if (finalDesc) formData.append("description", finalDesc);
+      if (userId) formData.append("userId", userId);
 
       const res = await fetch("/api/upload", { method: "POST", body: formData });
       const data = await res.json();
@@ -163,7 +173,7 @@ export default function UploadPage() {
             <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1.5px solid #38bdf8", animation: "spinR 8s linear infinite" }} />
             <div style={{ position: "absolute", inset: 4, borderRadius: "50%", background: "rgba(56,189,248,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 8, fontWeight: 900, color: "#38bdf8" }}>NR</div>
           </div>
-          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", color: "#6b7280" }}>UPLOAD ENGINE</span>
+          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", color: "#6b7280" }}>CONTRIBUTE ENGINE</span>
         </div>
         <div style={{ width: 120 }} />
       </div>
@@ -174,13 +184,13 @@ export default function UploadPage() {
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} style={{ marginBottom: 48, textAlign: "center" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(56,189,248,0.07)", border: "1px solid rgba(56,189,248,0.18)", borderRadius: 50, padding: "5px 16px", marginBottom: 18 }}>
             <UploadCloud size={12} color="#38bdf8" />
-            <span style={{ fontSize: 9, color: "#38bdf8", fontWeight: 700, letterSpacing: "0.2em" }}>UPLOAD ENGINE</span>
+            <span style={{ fontSize: 9, color: "#38bdf8", fontWeight: 700, letterSpacing: "0.2em" }}>CONTRIBUTE ENGINE</span>
           </div>
           <h1 style={{ fontSize: "clamp(26px,4vw,46px)", fontWeight: 900, margin: "0 0 12px", background: "linear-gradient(135deg,#fff,#38bdf8,#a78bfa)", backgroundSize: "200%", animation: "gradShift 4s ease infinite", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "-0.03em" }}>
-            Inject Data Into
+            Contribute Data Into
             <br />The Neural Vault
           </h1>
-          <p style={{ color: "#6b7280", fontSize: 12, lineHeight: 1.7 }}>Upload your dataset and choose how to add metadata — enter manually or let Groq AI generate it from your file.</p>
+          <p style={{ color: "#6b7280", fontSize: 12, lineHeight: 1.7 }}>Contribute your dataset and choose how to add metadata — enter manually or let Groq AI generate it from your file.</p>
         </motion.div>
 
         {/* Drop Zone */}
@@ -200,7 +210,7 @@ export default function UploadPage() {
                     <UploadCloud size={32} color="#38bdf8" />
                   </div>
                 </motion.div>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#e2d9f3", margin: "0 0 6px" }}>{dragging ? "Drop to upload" : "Drag & drop your dataset"}</p>
+                <p style={{ fontSize: 15, fontWeight: 700, color: "#e2d9f3", margin: "0 0 6px" }}>{dragging ? "Drop to contribute" : "Drag & drop your dataset"}</p>
                 <p style={{ fontSize: 11, color: "#6b7280", margin: 0 }}>or click to browse · CSV, PDF, JSON, XLSX</p>
               </>
             ) : (
@@ -343,7 +353,7 @@ export default function UploadPage() {
                       <CheckCircle size={18} color="#4ade80" />
                       <div>
                         <div style={{ fontSize: 12, fontWeight: 700, color: "#4ade80" }}>Metadata confirmed: {generated?.name}</div>
-                        <div style={{ fontSize: 9, color: "#6b7280" }}>Ready to upload · category: {generated?.category}</div>
+                        <div style={{ fontSize: 9, color: "#6b7280" }}>Ready to contribute · category: {generated?.category}</div>
                       </div>
                       <button onClick={() => { setUseGeneratedConfirmed(false); }} style={{ marginLeft: "auto", background: "none", border: "none", color: "#6b7280", cursor: "pointer", fontSize: 9, fontFamily: "inherit" }}>Change</button>
                     </motion.div>
@@ -403,7 +413,7 @@ export default function UploadPage() {
             {/* Upload button */}
             <button onClick={handleUpload} disabled={!canUpload}
               style={{ width: "100%", padding: "16px", borderRadius: 16, backgroundColor: canUpload ? "transparent" : "rgba(255,255,255,0.05)", backgroundImage: canUpload ? "linear-gradient(135deg,#7c3aed,#a855f7,#38bdf8)" : "none", backgroundSize: "200%", animation: canUpload ? "gradShift 3s ease infinite" : "none", border: "none", color: canUpload ? "#fff" : "#4b5563", fontSize: 13, fontWeight: 800, fontFamily: "inherit", letterSpacing: "0.1em", cursor: canUpload ? "pointer" : "not-allowed", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, boxShadow: canUpload ? "0 0 28px rgba(124,58,237,0.4)" : "none", transition: "all 0.25s" }}>
-              {uploading ? <><Loader2 size={16} style={{ animation: "spinR 1s linear infinite" }} /> UPLOADING…</> : <><UploadCloud size={16} /> UPLOAD TO NEURAL VAULT</>}
+              {uploading ? <><Loader2 size={16} style={{ animation: "spinR 1s linear infinite" }} /> CONTRIBUTING…</> : <><UploadCloud size={16} /> CONTRIBUTE TO NEURAL VAULT</>}
             </button>
 
             {uploading && (
@@ -430,7 +440,7 @@ export default function UploadPage() {
             <motion.div initial={{ opacity: 0, y: 20, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0 }} transition={{ type: "spring", stiffness: 200 }} style={{ marginTop: 32 }}>
               <div style={{ padding: "18px 22px", background: "rgba(74,222,128,0.06)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: "16px 16px 0 0", display: "flex", alignItems: "center", gap: 12 }}>
                 <CheckCircle size={22} color="#4ade80" />
-                <div><div style={{ fontSize: 13, fontWeight: 700, color: "#4ade80" }}>Upload Successful!</div><div style={{ fontSize: 9, color: "#6b7280" }}>Injected into the neural vault</div></div>
+                <div><div style={{ fontSize: 13, fontWeight: 700, color: "#4ade80" }}>Contribution Successful!</div><div style={{ fontSize: 9, color: "#6b7280" }}>Injected into the neural vault</div></div>
                 {result.file_url && <a href={result.file_url} target="_blank" rel="noreferrer" style={{ marginLeft: "auto", padding: "5px 12px", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.18)", borderRadius: 50, color: "#4ade80", fontSize: 9, fontWeight: 700, textDecoration: "none" }}>Open File →</a>}
               </div>
 

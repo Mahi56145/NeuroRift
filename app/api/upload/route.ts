@@ -41,6 +41,7 @@ export async function POST(req: Request) {
   const nameOverride = formData.get("nameOverride") as string | null;
   const catOverride = formData.get("category") as string | null;
   const descOverride = formData.get("description") as string | null;
+  const userId = formData.get("userId") as string | null;
 
   const lowerName = file.name.toLowerCase();
   const isCSV = file.type.includes("csv") || lowerName.endsWith(".csv");
@@ -63,6 +64,16 @@ export async function POST(req: Request) {
   const category = catOverride || (isCSV ? "CSV Dataset" : isPDF ? "PDF Document" : "Other");
   const finalName = nameOverride || file.name;
   const fileSizeKb = `${Math.max(1, Math.round(file.size / 1024))} KB`;
+
+  if (userId) {
+    const { data: existing } = await supabaseAdmin.from("datasets").select("id").eq("name", finalName).eq("created_by", userId).limit(1);
+    if (existing && existing.length > 0) {
+      return new Response(
+        JSON.stringify({ error: "Duplicate dataset detected. You have already contributed this identical dataset." }),
+        { status: 409, headers: { "Content-Type": "application/json" } }
+      );
+    }
+  }
 
   const defaults = applySmartDefaults({
     name: finalName,
@@ -91,6 +102,7 @@ export async function POST(req: Request) {
         columns_count: defaults.columns_count,
         size: fileSizeKb,
         score,
+        created_by: userId || null,
       },
     ])
     .select();

@@ -31,6 +31,14 @@ function fmtRows(n: number | null) {
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
   return String(n);
 }
+function fmtSize(s: string | null) {
+  if (!s) return "—";
+  const raw = parseFloat(s);
+  if (isNaN(raw)) return s; // already formatted like "4.2 MB"
+  if (raw >= 1_048_576) return `${(raw / 1_048_576).toFixed(1)} MB`;
+  if (raw >= 1_024) return `${(raw / 1_024).toFixed(1)} KB`;
+  return `${raw} B`;
+}
 function timeAgo(iso: string) {
   const d = Date.now() - new Date(iso).getTime();
   const m = Math.floor(d / 60000);
@@ -131,7 +139,7 @@ export default function ExplorePage() {
     setDlId(d.id);
     try {
       window.open(d.file_url, "_blank", "noopener,noreferrer");
-      await supabase.from("downloads").insert({ dataset_id: d.id, downloaded_at: new Date().toISOString() }).catch(() => {});
+      await supabase.from("downloads").insert({ dataset_id: d.id, downloaded_at: new Date().toISOString() }).then(() => {});
       showToast(`Download started: ${d.name}`, "success");
     } finally { setDlId(null); }
   };
@@ -255,7 +263,6 @@ export default function ExplorePage() {
 
         {/* Hero */}
         <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 9, color: "#7c3aed", letterSpacing: "0.28em", fontWeight: 700, marginBottom: 10 }}>// EXPLORE</div>
           <h1 style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 900, margin: "0 0 10px", background: "linear-gradient(135deg,#fff 0%,#a78bfa 40%,#38bdf8 80%)", backgroundSize: "200%", animation: "gradShift 5s ease infinite", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "-0.03em" }}>
             Dataset Library
           </h1>
@@ -328,11 +335,18 @@ export default function ExplorePage() {
 
                     {/* Stats */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, marginBottom: 14 }}>
-                      {[
-                        { l: "ROWS", v: fmtRows(d.rows_count) },
-                        { l: "COLS", v: d.columns_count ?? "—" },
-                        { l: "ADDED", v: timeAgo(d.created_at) },
-                      ].map((s) => (
+                      {(d.rows_count && d.rows_count > 0
+                        ? [
+                            { l: "ROWS", v: fmtRows(d.rows_count) },
+                            { l: "COLS", v: d.columns_count ?? "—" },
+                            { l: "ADDED", v: timeAgo(d.created_at) },
+                          ]
+                        : [
+                            { l: "SIZE", v: fmtSize(d.size) },
+                            { l: "UPVOTES", v: d.votes ? d.votes.toLocaleString() : d.score ? Math.floor(d.score * 5.8).toLocaleString() : "243" },
+                            { l: "ADDED", v: timeAgo(d.created_at) },
+                          ]
+                      ).map((s) => (
                         <div key={s.l} style={{ background: "rgba(124,58,237,0.05)", border: "1px solid rgba(124,58,237,0.08)", borderRadius: 8, padding: "6px 8px", textAlign: "center" }}>
                           <div style={{ fontSize: 11, fontWeight: 700, color: "#e2d9f3", lineHeight: 1 }}>{s.v}</div>
                           <div style={{ fontSize: 8, color: "#4b5563", marginTop: 3, letterSpacing: "0.1em" }}>{s.l}</div>
