@@ -123,7 +123,10 @@ export async function GET() {
     if (existingError) throw existingError;
 
     const existingSlugs = new Set((existingRows ?? []).map((r: { slug: string }) => r.slug));
-    const toInsert = mapped.filter((d: { slug: string }) => !existingSlugs.has(d.slug));
+    const toInsert = mapped.filter(
+      (d): d is (typeof mapped)[number] & { slug: string } =>
+        typeof d.slug === "string" && d.slug.length > 0 && !existingSlugs.has(d.slug)
+    );
 
     let inserted = 0;
     if (toInsert.length > 0) {
